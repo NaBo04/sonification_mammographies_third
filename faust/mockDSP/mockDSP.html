@@ -1,0 +1,118 @@
+<html>
+<head>
+<H1> Faust generated WebAudio node </H1>
+</head>
+<body>
+<P> Mute:
+    <input type="range" onchange="toggleMute(event) "min="0" max="1" value="0" step="1"> 
+<P> Volume:
+    <input type="range" oninput="changeMean(event) "min="0" max="1" value="0" step="0.01"/>
+<P> Noise:
+    <input type="range" oninput="changeStdDev(event) "min="0" max="1" value="0.5" step="0.01"/>        
+<P> Frequency:
+    <input type="range" oninput="changeSkewness(event) "min="0" max="1" value="0.5" step="0.01"/>        
+<P> Tempo:
+    <input type="range" oninput="changeKurtosis(event) "min="0" max="1" value="0.5" step="0.01"/>        
+
+<!-- Load 'faust2wasm' script generated .js file -->
+<script src="mockDSP.js"></script>
+
+<script>
+    
+if (typeof (WebAssembly) === "undefined") {
+    alert("WebAssembly is not supported in this browser, the page will not work !")
+}
+
+var isWebKitAudio = (typeof (webkitAudioContext) !== "undefined");
+var audio_context = (isWebKitAudio) ? new webkitAudioContext({ latencyHint: 0.00001 }) : new AudioContext({ latencyHint: 0.00001 });
+audio_context.destination.channelInterpretation = "discrete";
+
+var mock_dsp = null;
+
+// Slider handler to change the 'osc' frequency
+function toggleMute()
+{
+    var val = event.target.value;
+    console.log(val);
+    // val = parseFloat(val);
+    mock_dsp.setParamValue("/audiogen/mute", val);
+}
+
+function changeMean(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/vol", val);
+}
+
+// Slider handler to change the 'osc' volume
+function changeStdDev(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/noise", val);
+}
+// Slider handler to change the 'osc' volume
+function changeSkewness(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/freq", val);
+}
+// Slider handler to change the 'osc' volume
+function changeKurtosis(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/tempo", val);
+}
+
+function startmockDSP()
+{
+    // Create the Faust generated node
+    var pluginURL = ".";
+    var plugin = new FaustmockDSP(audio_context, pluginURL);
+    plugin.load().then(node => {
+                            mock_dsp = node;
+                            console.log(mock_dsp.getJSON());
+                            // Print paths to be used with 'setParamValue'
+                            console.log(mock_dsp.getParams());
+                            // Connect it to output as a regular WebAudio node
+                            mock_dsp.connect(audio_context.destination);
+                      });
+}
+
+// Load handler
+window.addEventListener('load', startmockDSP);
+
+// To activate audio on iOS
+window.addEventListener('touchstart', function() {
+                        if (audio_context.state !== "suspended") return;
+                        // create empty buffer
+                        var buffer = audio_context.createBuffer(1, 1, 22050);
+                        var source = audio_context.createBufferSource();
+                        source.buffer = buffer;
+                        
+                        // connect to output (your speakers)
+                        source.connect(audio_context.destination);
+                        
+                        // play the file
+                        source.start();
+                        
+                        audio_context.resume().then(() => console.log("Audio resumed"));
+                        }, false);
+
+// On desktop
+window.addEventListener("mousedown", () => {
+    if (audio_context.state !== "suspended") return;
+    audio_context.resume().then(() => console.log("Audio resumed"))
+});  
+
+</script>
+
+</body>
+</html>
