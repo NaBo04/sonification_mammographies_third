@@ -19,7 +19,11 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
         la debo eliminar.
 - canvas.js: Se encarga del contenido gráfico con el que se interactua. Primero define los 
         parámetros para el cursor, su forma, color y tamaño. También agrega su valor en texto junto
-        a la barra deslizante que lo regula.
+        a la barra deslizante que lo regula. Luego, crea el canvas que se utilizará para mostrar la
+        imagen, el cursor, los recuadros, etc. Para después cargar la imagen sobre este mismo 
+        canvas. Ya todo lo que queda después es definir funciones según distintos eventos. Siendo, 
+        desplazarse en la imagen apretando la rueda del mouse o la barra espaciadora. Hacer zoom, 
+        con la rueda del mouse. Y Colocar cuadros en el canvas presionando el click izquierdo. 
 
 # Actualizaciones
 
@@ -28,3 +32,5 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
 - Comentarios en: canvas.js 
 - Eliminé partes innecesarias y cambié el orden en: sonification.js
 - Eliminé partes innecesarias y cambié el orden en: canvas.js
+- Junté dos funciones iguales en canvas.js relacionadas a 'mouse:up'
+- Eliminé todo lo relacionado a isDrawingMode de canvas.js.

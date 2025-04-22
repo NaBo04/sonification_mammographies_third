@@ -4,7 +4,7 @@ const arrayDisplay = document.getElementById('arrayDisplay'); //Toma una seccion
 function getPixelDataFromOriginalImage(x, y, windowSize) { //Crea una copia de la imagen en pantalla para trabajarla en un contexto de dibujo y retorna 
 	var offScreenCanvas = document.createElement('canvas'); //Crea un canvas oculto
 	var offScreenCtx = offScreenCanvas.getContext('2d', { willReadFrequently: true }); //Hace que el canvas tenga un contexto de dibujo 2D para ciertos comandos y optimiza el leer los pixeles
-	offScreenCanvas.width = imgInstance._originalElement.width; //El nuevo canvas tiene el mismo ancho que la imagen original
+	offScreenCanvas.width = imgInstance._originalElement.width; //El nuevo canvas tiene el mismo ancho que la variable de imagen original
 	offScreenCanvas.height = imgInstance._originalElement.height; //Tambien el mismo alto. (ImgInstance es una variable de canvas.js)
 	offScreenCtx.drawImage(imgInstance._originalElement, 0, 0); //En el contexto de dibujo del nuevo canvas, copia la imagen original por completo desde el origen
 	var pixelData = offScreenCtx.getImageData(x, y, windowSize, windowSize).data; //Del contexto de dibujo, extrae la informacion RGBA de un cuadro de ese tamaño y en esas coordenadas
