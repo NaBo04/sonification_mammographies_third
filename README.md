@@ -34,4 +34,13 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
 - Eliminé todo lo relacionado a isDrawingMode de canvas.js.
 - Solucioné provisoriamente el exceso en el valor de skewness y kurtosis
 - Arreglé un pequeño error relacionado a la carga de la imagen en el canvas
-- Esta versión tiene un código de prueba comentado que genera una sinusoide como sonido en la página web
+- Esta versión tiene un código de prueba comentado que genera una sinusoide como sonido en la página
+        web
+- Estuve investigando sobre el tema de FAUST, entiendo lo que contiene su directorio. En el actual,
+        este contiene el archivo mockDSP.dsp, el más importante, que es el que se escribe en FAUST
+        y describe los parámetros importantes para como voy a usar el audio en la página. Este es el
+        que puedo modernizar y pasarlo a AudioWorklet. Luego el mockDSP.html es simplemente una
+        página web de prueba para comprobar que el audio está funcionando correctamente, este me 
+        ineteresa utilizarlo para hacer pruebas luego de la actualización. Por último mockDSP.js y 
+        mockDSP.wasm son generados automáticamente por el compilador de FAUST para manejar la API
+        entre otros.
