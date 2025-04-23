@@ -30,7 +30,12 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
 - Comentarios en: styles.css
 - Comentarios en: sonification.js
 - Comentarios en: canvas.js 
+- Comentarios en index.html
 - Eliminé partes innecesarias y cambié el orden en: sonification.js
 - Eliminé partes innecesarias y cambié el orden en: canvas.js
 - Junté dos funciones iguales en canvas.js relacionadas a 'mouse:up'
 - Eliminé todo lo relacionado a isDrawingMode de canvas.js.
+- Eliminé partes innecesarias y cambié el orden en: index.html
+
+- Solucioné provisoriamente el exceso en el valor de skewness y kurtosis
+- Arreglé un pequeño error relacionado a la carga de la imagen en el canvas

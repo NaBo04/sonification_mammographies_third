@@ -31,7 +31,7 @@ function sonification(mean, std, skw, kur, mute){ //Convierte los datos estadist
 
 canvas.on('mouse:move', function(event) { //Sintaxis de Fabric. canvas es un objeto y realiza una funcion con este evento: mover el mouse sobre el canvas
     const window_size = 10; //Tamaño para ventana cuadrada alrededor del puntero
-	var ctx = canvas.getContext('2d', { willReadFrequently: true }); //Guarda el contexto 2D de dibujo del canvas para leer pixeles
+	var ctx = canvas.getContext('2d', { willReadFrequently: true });//Guarda el contexto 2D de dibujo del canvas para leer pixeles
 	var pointer = canvas.getPointer(event.e); //Coordenadas del mouse respecto al canvas, no a la ventana
     ///////// La DATA pareciera estar desfasada hacia abajo y la derecha /////////// Revisar si esto sigue siendo asi
 	var data = ctx.getImageData(event.e.clientX, event.e.clientY, window_size, window_size).data; //Obtiene la info RGBA del contexto 2D, para una ventana que parte en la posicion del mouse respecto a la ventana
@@ -41,7 +41,7 @@ canvas.on('mouse:move', function(event) { //Sintaxis de Fabric. canvas es un obj
 	}
 
 	var objects = canvas.getObjects(); //Guarda los objetos dibujados en el canvas gestionado por Fabric
-	mammography = objects[0] //El primer objeto del canvas es la imagen de la mamografia
+	var mammography = objects[0] //El primer objeto del canvas es la imagen de la mamografia
 	var BWPixelData = []; //Para guardar los valores de brillo de cada pixel de la imagen (black-white)
 	var imagePointer = mammography.toLocalPoint(new fabric.Point(pointer.x, pointer.y), 'top', 'left'); //Entrega las coordenadas del puntero, pero ahora respecto a la imagen misma
 	var pixelData = getPixelDataFromOriginalImage(Math.round(imagePointer.x) + 50, Math.round(imagePointer.y) + 50, 4); //Usa la funcion de arriba para obtener la info alrededor del puntero. (Tiene desplazamiento y distinto tamaño de ventana)
@@ -65,6 +65,12 @@ canvas.on('mouse:move', function(event) { //Sintaxis de Fabric. canvas es un obj
 	else {
 		skewness = Math.sqrt(array.map(x => Math.pow(x/255-mean, 3)).reduce((a,b) => a+b)/(n*Math.pow(std, 3))); //Calcula skewness definitiva normalizada
 		kurtosis = Math.sqrt(array.map(x => Math.pow(x/255-mean, 4)).reduce((a,b) => a+b)/(n*Math.pow(std, 4))); //Calcula kurtosis definitiva normalizada
+		if ( skewness > 1 ){
+			skewness = 1.0;
+		}
+		if ( kurtosis > 1 ){
+			kurtosis = 1.0;
+		}
 	}
 	if (isNaN(skewness)){ //Creo que esto tambien es redundante se puede hacer mejor 
 		skewness = 0.0001;

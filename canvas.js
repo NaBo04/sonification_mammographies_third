@@ -71,7 +71,6 @@ canvas.on('mouse:up', function(opt) { //Relaciona una funcion al evento de solta
 
 canvas.on('mouse:down', function(opt) { //Relaciona una funcion al evento de presionar el click del mouse sobre el canvas
     var evt = opt.e; //Toma el evento realizado con el mouse, del objeto opt de fabric
-    console.log(evt.buttons)
     if (evt.buttons === 4) { //Boton del medio (rueda), pero esto no funciona realmente.
         this.isDragging = true; //Activa el modo de arrastre en la imagen
         this.selection = false; //Tampoco selecciona nada
