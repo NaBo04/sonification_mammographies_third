@@ -63,6 +63,10 @@ function startmockDSP()
                             mock_dsp = node; //lo carga en la variable creada antes
                             mock_dsp.connect(audio_context.destination); //conecta el nodo directamente a la salida de antes
                       });
+    // const ctx = new AudioContext();
+    // const osc = ctx.createOscillator();
+    // osc.connect(ctx.destination);
+    // osc.start();
 }
 
 window.addEventListener('load', startmockDSP); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo

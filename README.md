@@ -24,18 +24,14 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
         canvas. Ya todo lo que queda después es definir funciones según distintos eventos. Siendo, 
         desplazarse en la imagen apretando la rueda del mouse o la barra espaciadora. Hacer zoom, 
         con la rueda del mouse. Y Colocar cuadros en el canvas presionando el click izquierdo. 
+- index.html: 
 
 # Actualizaciones
 
-- Comentarios en: styles.css
-- Comentarios en: sonification.js
-- Comentarios en: canvas.js 
-- Comentarios en index.html
-- Eliminé partes innecesarias y cambié el orden en: sonification.js
-- Eliminé partes innecesarias y cambié el orden en: canvas.js
+- Comentarios descriptivos en todos los archivos de código.
+- Eliminé partes innecesarias y cambié el orden en los códigos sin alterar su funcionamiento.
 - Junté dos funciones iguales en canvas.js relacionadas a 'mouse:up'
 - Eliminé todo lo relacionado a isDrawingMode de canvas.js.
-- Eliminé partes innecesarias y cambié el orden en: index.html
-
 - Solucioné provisoriamente el exceso en el valor de skewness y kurtosis
 - Arreglé un pequeño error relacionado a la carga de la imagen en el canvas
+- Esta versión tiene un código de prueba comentado que genera una sinusoide como sonido en la página web
