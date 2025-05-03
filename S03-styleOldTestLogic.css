@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFF;
+  }
+  
+  a{
+    color: black;
+    text-decoration: none;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  a:visited {
+    color: black;
+  }
+  li{
+    padding: 3px 0;
+  }
+  
+  #manual{
+    padding-top: 80px;
+  }
+  
+  .body-results{
+    background-color: #FFF;
+  }
+  .open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 40px;
+    right: 35px;
+    width: 300px;
+  }
+  
+  .form-popup {
+    display: none;
+    position: fixed;
+    /*top: 15%;*/
+    /*left: 35%;*/
+    right: 0px;
+    bottom: 0px;
+    /*right: 15px;*/
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+  
+  table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      width:100%
+  }
+  
+  .form-container {
+    max-width: 250px;
+    padding: 10px;
+    background-color: #e8e8e8;
+  }
+  
+  .results{
+    max-width: 900px;
+    background-color: #EEE;
+    margin-top: 30px;
+  }
+  
+  .home{
+  margin-left: 40px;
+  margin-top: 20px;
+  }
+  
+  .form-container input[type=radio] {
+    /*width: 10%;*/
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  .form-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  .form-container .cancel {
+    background-color: red;
+  }
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+  .form-container .lbl{
+    padding: 0 3%;
+  }
+  .form-container .options{
+    margin-bottom: 5px;
+  }
+  
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .sq {
+    width:25px;
+    height:25px;
+    position: absolute;
+    display: none;
+    cursor: none;
+    left: 600px;
+    top: 300px;
+    border:1px solid red;
+  }
+  
+  #test_img{
+    cursor: none;
+  }
+  
+  #canvas{
+    border-style: solid;
+    border-color: #808080;
+  
+    margin-top: 0px;
+  }
+  

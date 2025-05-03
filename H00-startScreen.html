@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Screen</title>
+    <link rel="stylesheet" href="S01-styleStartScreen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script> <!-- libreria web para importar una funcion /!-->
+</head>
+<body>
+    <div id="centralBlock" class="contenido">
+        <h1>Sonification Tests</h1>
+        <input type="text" id="userName" placeholder="Enter Your Name">
+        <button id="startButton">Start</button>
+    </div>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            var userName = document.getElementById('userName').value;
+            if(userName.trim() === '') {
+                alert('Please enter your name.');
+                return;
+            }
+
+            //var uuid = uuidv4(); // Generate a UUID, es un url unico e irrepetible para continuar usandolo y guardar progreso
+            //window.location.href = 'test.html?name=' + encodeURIComponent(userName) + '&uuid=' + uuid; //Carga ese URL
+            window.location.href = 'H00-main.html';
+        });
+    </script>
+</body>
+</html>

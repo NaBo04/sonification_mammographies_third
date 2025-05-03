@@ -6,8 +6,27 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
 
 # Descripción de este directorio
 
-- styles.css: Contiene configuración estética para la página web.
-- sonification.js: Contiene 2 funciones que ayudan al flujo principal. La primera se encarga de
+- H00-startScreen.html: Página de inicio, donde se pide el nombre de usuario para ingresar. Maneja 
+        la lógica de que si no se ingresó el nombre arroja una advertencia. 
+- H01-testSelection.html: Página para luego de ingresar, en la que se debe seleccionar un test a 
+        realizar. Aún no está implementada
+- H02-test3.html: Página donde se encuentra el test 3, que es el con mamografías reales. Actualmente
+        tiene unas funciones para manejar los parámetros de mock_dsp, pero no funcionan 
+        correctamente. Inicia todo lo relaciondo a Faust. Muestra una imagen fija de mamografía.
+        Tiene instrucciones de los controles. Tiene un apartado de debugueo para la información de
+        pixeles en el puntero dentro de la imagen. Tiene una barra para ajustar el tamaño del
+        puntero. 
+- H03-oldTestLogic.html: Código temporal que contiene lo que era la antigua lógica de implementación
+        de los test en la página. La tengo para ir revisando qué se hacía en esta para luego
+        implementarla en la página final.
+- J00-canvas.js: Se encarga del contenido gráfico con el que se interactua. Primero define los 
+        parámetros para el cursor, su forma, color y tamaño. También agrega su valor en texto junto
+        a la barra deslizante que lo regula. Luego, crea el canvas que se utilizará para mostrar la
+        imagen, el cursor, los recuadros, etc. Para después cargar la imagen sobre este mismo 
+        canvas. Ya todo lo que queda después es definir funciones según distintos eventos. Siendo, 
+        desplazarse en la imagen apretando la rueda del mouse o la barra espaciadora. Hacer zoom, 
+        con la rueda del mouse. Y Colocar cuadros en el canvas presionando el click izquierdo.
+- J01-sonification.js: Contiene 2 funciones que ayudan al flujo principal. La primera se encarga de
         obtener los valores de brillo rojo, de RGBA, de cada pixel en un área dada. La segunda, se
         encarga de asignar los parámetros de sonido del HTML principal, según los valores de los
         datos estadísticos. Luego, la parte principal relaciona el evento del movimiento del mouse
@@ -17,14 +36,8 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
         También incluye la representación visual de los valores de los pixeles en forma de matriz, 
         en la ventana de la página, esta parte parece ser de debugueo, por lo que luego de revisarla
         la debo eliminar.
-- canvas.js: Se encarga del contenido gráfico con el que se interactua. Primero define los 
-        parámetros para el cursor, su forma, color y tamaño. También agrega su valor en texto junto
-        a la barra deslizante que lo regula. Luego, crea el canvas que se utilizará para mostrar la
-        imagen, el cursor, los recuadros, etc. Para después cargar la imagen sobre este mismo 
-        canvas. Ya todo lo que queda después es definir funciones según distintos eventos. Siendo, 
-        desplazarse en la imagen apretando la rueda del mouse o la barra espaciadora. Hacer zoom, 
-        con la rueda del mouse. Y Colocar cuadros en el canvas presionando el click izquierdo. 
-- index.html: 
+- S00-styleStartScreen.css: Contiene estilos para la estética de la página de inicio.
+- S03-styleTest3.css: Contiene configuración estética para la página web para el test 3. 
 
 # Actualizaciones
 
@@ -44,3 +57,11 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
         ineteresa utilizarlo para hacer pruebas luego de la actualización. Por último mockDSP.js y 
         mockDSP.wasm son generados automáticamente por el compilador de FAUST para manejar la API
         entre otros.
+- Recuperé la página de inicio, donde se pide el nombre de usuario. Está pendiente poder guardar el
+        progreso con el URL único, para continuar al salir. La enlacé a la página del test 3 de 
+        mamografías.
+- Conseguí hacer mi versión de sonido para los 5 parámetros con faust. Le agregué el parámetro de 
+        volumen. Hice una nueva página para testear el cambio en estos y logré hacer que sonara. Ya
+        que sé que funciona, ahora puedo esperar a la versión de faust del profe para que esa sea 
+        la función oficial de sonido según los parámetros y unirlo con la versión final de la 
+        página.

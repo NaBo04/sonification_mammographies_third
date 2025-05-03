@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonification_Mammographies</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="S00-styleMain.css">
     <script src="./lib/fabric.js"></script>
     <script src="faust/mockDSP/mockDSP.js"></script>
 </head>
@@ -98,12 +98,12 @@ window.addEventListener("mousedown", () => { //Relaciona una funcion al evento d
 <div style="display: flex;">
     <canvas id="rasterCanvas"></canvas>
     <div id="arrayDisplay"></div>
-    <script src="canvas.js"></script>
+    <script src="J00-canvas.js"></script>
 </div>
 <div style="padding-top: 25px;">
     <input type="range" id="mySlider" min="0" max="200" value="100" oninput="updateSliderValue(this.value)">
     <span id="sliderValue">100</span>
 </div>
-    <script src="sonification.js"></script>
+    <script src="J01-sonification.js"></script>
 </body>
 </html>

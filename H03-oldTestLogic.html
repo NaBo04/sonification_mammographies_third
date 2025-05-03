@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sonificación Mamografías</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="S01-styleTestSelection.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+  <script src="public/javascripts/Tone.js" charset="utf-8"></script>
+
+</head>
+
+<script src="public/faust/mockDSP/mockDSP.js"></script>
+
+<script id="faust-audio-context">
+    
+if (typeof (WebAssembly) === "undefined") {
+    alert("WebAssembly is not supported in this browser, the page will not work !")
+}
+
+var isWebKitAudio = (typeof (webkitAudioContext) !== "undefined");
+var audio_context = (isWebKitAudio) ? new webkitAudioContext({ latencyHint: 0.00001 }) : new AudioContext({ latencyHint: 0.00001 });
+audio_context.destination.channelInterpretation = "discrete";
+
+var mock_dsp = null;
+
+// Slider handler to change the 'osc' frequency
+function toggleMute()
+{
+    var val = event.target.value;
+    console.log(val);
+    // val = parseFloat(val);
+    mock_dsp.setParamValue("/audiogen/mute", val);
+}
+
+function changeMean(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/vol", val);
+}
+
+// Slider handler to change the 'osc' volume
+function changeStdDev(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/noise", val);
+}
+// Slider handler to change the 'osc' volume
+function changeSkewness(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/freq", val);
+}
+// Slider handler to change the 'osc' volume
+function changeKurtosis(event)
+{
+    var val = event.target.value;
+    val = parseFloat(val);
+    console.log(val);
+    mock_dsp.setParamValue("/audiogen/tempo", val);
+}
+
+function startmockDSP()
+{
+    // Create the Faust generated node
+    var pluginURL = ".";
+    var plugin = new FaustmockDSP(audio_context, pluginURL);
+    plugin.load().then(node => {
+                            mock_dsp = node;
+                            console.log(mock_dsp.getJSON());
+                            // Print paths to be used with 'setParamValue'
+                            console.log(mock_dsp.getParams());
+                            // Connect it to output as a regular WebAudio node
+                            mock_dsp.connect(audio_context.destination);
+                      });
+}
+
+// Load handler
+window.addEventListener('load', startmockDSP);
+
+// To activate audio on iOS
+window.addEventListener('touchstart', function() {
+                        if (audio_context.state !== "suspended") return;
+                        // create empty buffer
+                        var buffer = audio_context.createBuffer(1, 1, 22050);
+                        var source = audio_context.createBufferSource();
+                        source.buffer = buffer;
+                        
+                        // connect to output (your speakers)
+                        source.connect(audio_context.destination);
+                        
+                        // play the file
+                        source.start();
+                        
+                        audio_context.resume().then(() => console.log("Audio resumed"));
+                        }, false);
+
+// On desktop
+window.addEventListener("mousedown", () => {
+    if (audio_context.state !== "suspended") return;
+    audio_context.resume().then(() => console.log("Audio resumed"))
+});  
+
+</script>
+
+<body id="body-index">
+  <?php
+
+  $Answers = file_get_contents("public/answers/test2ans.json");
+  $Data = json_decode($Answers, true);
+  $correct = $Data["answers"][2]["micros"][0];
+  $actual = ["x"=>150, "y"=> 120];
+
+
+  $carlos = `[{"x": 178.5, "y": 84}, {"x": 250.5, "y": 84}]`;
+  $john = json_decode($carlos, true);
+  $valor = $john[0]["x"];
+
+
+  ?>
+
+
+  <div id="manual" >
+    <h1 style="text-align: center;">Sonificación Colores y Mamografías sintéticas </h1>
+    <p style="text-align: center;">Los siguientes test tienen por objetivo probar el uso de sonido como herramienta de apoyo para la detección de contrstes de colores en imágenes.</p>
+    <p style="text-align: center;">A continuación puedes elegir entre dos test, cada uno puede ser realizado con ayuda de sonido.</p>
+  </div>
+
+  <div>
+    <!--<img id="test_img" class="center" src="public/images/test3/im1og.png" style="height: 100vh; display: none;"/>-->
+    <canvas id="canvas" class="center"></canvas>
+  </div>
+  <!--<div id="color" style="display: none; width:200px;height:50px;float:left">jiji</div>-->
+  <div id="sq0" class="sq"></div>
+  <div id="sq1" class="sq"></div>
+  <div id="sq2" class="sq"></div>
+  <div id="sq3" class="sq"></div>
+  <div id="sq4" class="sq"></div>
+  <div id="sq5" class="sq"></div>
+  <div id="sq6" class="sq"></div>
+  <div id="sq7" class="sq"></div>
+  <div id="sq8" class="sq"></div>
+  <div id="sq9" class="sq"></div>
+
+  <div id="testForm" class="form-popup">
+    <!--<form class="form-container" action="/" method="post">-->
+    <form class="form-container">
+      <h2>Elige el test a realizar</h2>
+      <div>
+        <!--<button type="submit" id="send" class="btn" value="Submit">Enviar</button>-->
+        <button type="button" id="zonasGrises" class="btn" value="Submit">Test 1 - Zonas Grises</button>
+        <button type="button" id="imagenesSinteticas" class="btn" value="Submit">Test 2 - Imágenes sintéticas</button>
+        <button type="button" id="mamografias" class="btn" value="Submit">Test 3 - Mamografías</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="initForm" class="form-popup">
+    <!--<form class="form-container" action="/" method="post">-->
+    <form class="form-container">
+      <p>Identificación</p>
+      <div class="options">
+        <!--<label id="cert1" class="lbl">id</label>-->
+        <input type="textbox" name="user_id">
+
+      </div>
+      <p>Sonificación</p>
+      <div class="options">
+        <label id="soni0" class="lbl"><input type="radio" name="sonido" value="0" checked> Sin Sonido</input></label></br>
+        <label id="soni1" class="lbl"><input type="radio" name="sonido" value="1"> Sonificación 1</input></label></br>
+        <label id="soni2" class="lbl"><input type="radio" name="sonido" value="2"> Sonificación 2</input></label></br>
+        <label id="soni3" class="lbl"><input type="radio" name="sonido" value="3"> Sonificación FAUST</input></label>
+      </div>
+      <div>
+        <!--<button type="submit" id="send" class="btn" value="Submit">Enviar</button>-->
+        <button type="button" id="send_init" class="btn" value="Submit">Empezar Test</button>
+
+      </div>
+    </form>
+  </div>
+
+  <div id="myForm" class="form-popup">
+    <!--<form class="form-container" action="/" method="post">-->
+    <form class="form-container">
+      <p>Qué área es más clara?</p>
+      <div class="options">
+        <label id="dark1" class="lbl"><input type="radio" name="darker" value="Down"> Abajo</input></label>
+        <label id="dark2" class="lbl"><input type="radio" name="darker" value="Same" checked> Iguales</input></label>
+        <label id="dark3" class="lbl"><input type="radio" name="darker" value="Up"> Arriba</label>
+      </div>
+      <p>Qué tan seguro está de su respuesta?</p>
+      <div class="options">
+        <label id="cert1" class="lbl"><input type="radio" name="certainty" value="1"> 1</label>
+        <label id="cert2" class="lbl"><input type="radio" name="certainty" value="2"> 2</input></label>
+        <label id="cert3" class="lbl"><input type="radio" name="certainty" value="3" checked> 3</input></label>
+        <label id="cert4" class="lbl"><input type="radio" name="certainty" value="4"> 4</input></label>
+        <label id="cert5" class="lbl"><input type="radio" name="certainty" value="5"> 5</input></label>
+      </div>
+      <div>
+        <!--<button type="submit" id="send" class="btn" value="Submit">Enviar</button>-->
+        <button type="button" id="send" class="btn" value="Submit">Enviar</button>
+        <!--  <button type="button" id="cancel" class="btn cancel">Cancelar</button> -->
+      </div>
+    </form>
+  </div>
+
+  <div id="synthForm" class="form-popup">
+    <!--<form class="form-container" action="/" method="post">-->
+    <form class="form-container">
+      <h2>Haga click sobre las microcalcificaciones</h2>
+
+
+      <h2>Qué tan seguro está de su respuesta?</h2>
+      <div class="options">
+        <label id="synthCert1" class="lbl"><input type="radio" name="synthCertainty" value="1"> 1</label>
+        <label id="synthCert2" class="lbl"><input type="radio" name="synthCertainty" value="2"> 2</input></label>
+        <label id="synthCert3" class="lbl"><input type="radio" name="synthCertainty" value="3" checked> 3</input></label>
+        <label id="synthCert4" class="lbl"><input type="radio" name="synthCertainty" value="4"> 4</input></label>
+        <label id="synthCert5" class="lbl"><input type="radio" name="synthCertainty" value="5"> 5</input></label>
+      </div>
+      <div>
+        <!--<label class="lbl"><input type="checkbox" id="cbox1" value="first_checkbox"> No hay microcalsificaciones</label>-->
+      </div>
+      <div>
+        <!--<button type="submit" id="send" class="btn" value="Submit">Enviar</button>-->
+        <button type="button" id="delete" class="btn cancel">Borrar Selección</button>
+        <button type="button" id="synthSend" class="btn" value="Submit">Enviar</button>
+
+
+      </div>
+    </form>
+  </div>
+
+  <div id="ansForm" class="form-popup">
+    <form id="ans-form-input" class="form-container" method="POST" action="" >
+      <h2>Test Finalizado</h2>
+      <div>
+        <input id="iid" type="hidden" name="idex"></input>
+        <input id="test" type="hidden" name="test"></input>
+        <input id="sonido" type="hidden" name="sonido"></input>
+        <button type="submit" name='submit' id="send_ans" class="btn" value="Submit">Enviar respuestas</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="synthAnsForm" class="form-popup">
+    <form id="synth-form-input" class="form-container" method="POST" action="" >
+      <h2>Test Finalizado</h2>
+      <div>
+        <input id="iidSynth" type="hidden" name="idex"></input>
+        <input id="testSynth" type="hidden" name="test"></input>
+        <button type="submit" id="send_ans_synth" class="btn" value="Submit">Enviar respuestas</button>
+      </div>
+    </form>
+  </div>
+
+
+
+  <script src="public/javascripts/view.index.js"></script>
+
+
+</body>
+</html>
