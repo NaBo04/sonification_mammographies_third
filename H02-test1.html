@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test 1</title>
+    <link rel="stylesheet" href="S02-styleTest1.css">
+</head>
+<body>
+    <div id="centralBlock" class="contenido">
+        <div id="testSelection" class="container">
+            <div id="leftColumn" class="column">
+                <img src="./assets/test1/im1.png" style="border: 2px solid black;" width="500">
+            </div>
+            <div id="rightColumn" class="column" style="padding-left: 100px;">
+                <h0 class="tempo">Tiempo:
+                    <span id="time" style="padding-left: 5px;">00:00</span>
+                </h0>
+
+                <h1 class="titulo">¿Qué área es más clara?</h1>
+                <button class="option-button" id="answer1" onclick="pressOptionButton('answer1')">Área superior</button>
+                <button class="option-button" id="answer2" onclick="pressOptionButton('answer2')">Son iguales</button>
+                <button class="option-button" id="answer3" onclick="pressOptionButton('answer3')">Área inferior</button>
+
+                <h2 class="titulo">¿Qué tan seguro está de su respuesta?</h2>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button class="option-button small-button" id="scale1" onclick="pressOptionButton('scale1')">1</button>
+                    <button class="option-button small-button" id="scale2" onclick="pressOptionButton('scale2')">2</button>
+                    <button class="option-button small-button" id="scale3" onclick="pressOptionButton('scale3')">3</button>
+                    <button class="option-button small-button" id="scale4" onclick="pressOptionButton('scale4')">4</button>
+                    <button class="option-button small-button" id="scale5" onclick="pressOptionButton('scale5')">5</button>
+                </div>
+                <div id="connections" class="footer" style="padding-top: 40px;">
+                    <button class="back-button" onclick="window.location.href='H01-testSelection.html'">Volver</button>
+                    <button class="next-button" onclick="pressNextButton()">Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var answerSelected = "";
+        var scaleSelected = ""; 
+        const answersButtons = ["answer1", "answer2", "answer3"];
+        const scaleButtons = ["scale1", "scale2", "scale3", "scale4", "scale5"];
+
+        function pressOptionButton(id) {
+            const group = id.includes("answer") ? (answerSelected = id, answersButtons) : (scaleSelected = id, scaleButtons);
+            for (const buttonId of group) {
+                const btn = document.getElementById(buttonId);
+                if (!btn) continue;
+        
+                if (buttonId === id) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            }
+        }
+
+        function pressNextButton() {
+            if (answerSelected == ""){
+                alert('Please select an answer.');
+                return;
+            }
+            if (scaleSelected == ""){
+                alert('Please select a scale.');
+                return;
+            }
+
+            window.location.href = 'H01-testSelection.html';
+        }
+    </script>
+</body>
+</html>

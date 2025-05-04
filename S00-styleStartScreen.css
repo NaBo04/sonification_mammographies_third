@@ -17,4 +17,6 @@ body { /* Ahora esto solo al cuerpo */
 }
 .contenido h1 {
     margin-top: 0; /* Elimina el margen superior del texto para centrar bien */
+    text-align: center;
+    font-size: 50px;
   }

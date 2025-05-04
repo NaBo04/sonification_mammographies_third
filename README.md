@@ -70,3 +70,6 @@
         de usuario. Arroja advertencias en caso de no seleccionar correctamente las opciones. Tiene
         la opción de volver atrás en caso de querer cambiar de usuario. Una vez se seleccionen las
         opciones al darle a empezar envía al test 3.
+- Cree 2 nuevas páginas, para el test 1 y 2. Estas tienen la estructura base de lo que en primera
+        instancia fueron. Por ahora está implementada la lógica de que se necesitan respuestas para
+        continuar, en cualquier momento se pude volver y hay cambios de página correctos. 

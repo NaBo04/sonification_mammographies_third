@@ -1,0 +1,97 @@
+html, body { /* Aplica esto a toda la página y al cuerpo */
+    height: 100%; /* Ocupa toda la ventana */
+    margin: 0; /* Quita los margenes por defecto del navegador */
+}
+
+body { /* Ahora esto solo al cuerpo */
+    display: flex; /* Formato para poder centrar */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    background-color: #d3d1d1; /* Color de fondo */
+}
+
+.contenido {
+    padding: 40px; /* Bordes alrededor del contenido */
+    background-color: white; /* Color del bloque de contenido */
+    border: 1px solid #393838; /* Color del borde */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombreado */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    width: 45%;
+}
+
+.option-button {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #495049;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.option-button:hover {
+    background-color: #a1aaa1;
+}
+.option-button.selected {
+    background-color: rgb(76, 133, 240);
+    color: white;
+}
+.small-button {
+    padding: 5px 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 30px;
+}
+
+.tempo {
+    display: flex; 
+    justify-content: right; 
+    padding-bottom: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+}
+
+.footer {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button {
+    padding: 10px 20px;
+    font-size: 22px;
+    background-color: #c14141;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.back-button:hover {
+    background-color: #d29292;
+}
+.next-button {
+    padding: 10px 20px;
+    font-size: 22px;
+    background-color: #3baf54;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.next-button:hover {
+    background-color: #87d17d;
+}

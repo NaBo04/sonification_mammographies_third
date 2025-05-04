@@ -79,3 +79,8 @@ body { /* Ahora esto solo al cuerpo */
 .next-button:hover {
     background-color: #87d17d;
 }
+
+.titulo {
+    text-align: center;
+    font-size: 30px;
+}
