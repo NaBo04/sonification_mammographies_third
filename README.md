@@ -1,9 +1,5 @@
 # Esta es la tercera versión de sonification_mammographies
 
-Actualmente es una copia de la segunda versión, con comentarios adicionales en los códigos,
-que me ayudan a entender el funcionamiento completo de este. En este readme iré detallando las
-actualizaciones pertinentes, cambios y funcionalidades del código completo.
-
 # Descripción de este directorio
 
 - H00-startScreen.html: Página de inicio, donde se pide el nombre de usuario para ingresar. Maneja 
@@ -19,6 +15,8 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
 - H03-oldTestLogic.html: Código temporal que contiene lo que era la antigua lógica de implementación
         de los test en la página. La tengo para ir revisando qué se hacía en esta para luego
         implementarla en la página final.
+- H04-tryingFaust.html: Página web de testeo de los nuevos parámetros que hice con una función de 
+        prueba de Faust.
 - J00-canvas.js: Se encarga del contenido gráfico con el que se interactua. Primero define los 
         parámetros para el cursor, su forma, color y tamaño. También agrega su valor en texto junto
         a la barra deslizante que lo regula. Luego, crea el canvas que se utilizará para mostrar la
@@ -63,5 +61,12 @@ actualizaciones pertinentes, cambios y funcionalidades del código completo.
 - Conseguí hacer mi versión de sonido para los 5 parámetros con faust. Le agregué el parámetro de 
         volumen. Hice una nueva página para testear el cambio en estos y logré hacer que sonara. Ya
         que sé que funciona, ahora puedo esperar a la versión de faust del profe para que esa sea 
-        la función oficial de sonido según los parámetros y unirlo con la versión final de la 
-        página.
+        la función oficial de sonido según los parámetros.
+- Enlacé esta nueva versión de sonido que hice con Faust a la página web original y suenan los
+        valores por defecto que dejé puestos.
+- Agregué un slider para manejar el volumen del audio y un botón para mutear el sonido. Ambos
+        funcionan correctamente y con los nuevos parámetros que cree.
+- Cree la página de selección de test y tipo de sonificación, esta viene luego de ingresar el nombre
+        de usuario. Arroja advertencias en caso de no seleccionar correctamente las opciones. Tiene
+        la opción de volver atrás en caso de querer cambiar de usuario. Una vez se seleccionen las
+        opciones al darle a empezar envía al test 3.

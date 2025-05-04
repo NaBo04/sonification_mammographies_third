@@ -25,8 +25,15 @@ const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado pe
 };
 
 function updateSliderValue(value) { //Actualiza el valor según la barra deslizante
-    brushSize = parseInt(value, 10); //Convierte el valor a entero en base 10
+    brushSize = value; //Convierte el valor a entero en base 10
     document.getElementById("sliderValue").textContent = brushSize; //Actualiza el texto que indica el tamaño del pincel
+};
+function updateVolumeValue(value) { //Actualiza el valor según la barra deslizante
+    document.getElementById("volumeValue").textContent = value; //Actualiza el texto que indica el volumen
+};
+function updateMuteValue() { //Actualiza el valor según la barra deslizante
+    var muteStatus = muteCheckBox.checked ? "ON" : "OFF";
+    document.getElementById("muteValue").textContent = muteStatus; //Actualiza el texto que indica el volumen
 };
 
 const canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric

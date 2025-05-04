@@ -22,11 +22,11 @@ function sonification(mean, std, skw, kur, mute){ //Convierte los datos estadist
 	skw = parseFloat(skw)
 	kur = parseFloat(kur)
 
-	mock_dsp.setParamValue("/audiogen/mute", mute) //Le pasa los valores como parametros a mock_dsp
-	mock_dsp.setParamValue("/audiogen/vol", mean)
-	mock_dsp.setParamValue("/audiogen/noise", std)
-	mock_dsp.setParamValue("/audiogen/freq", skw)
-	mock_dsp.setParamValue("/audiogen/tempo", kur)
+	//mock_dsp.setParamValue("/audiogen/mute", mute) //Le pasa los valores como parametros a mock_dsp
+	// mock_dsp.setParamValue("/audiogen/vol", mean)
+	// mock_dsp.setParamValue("/audiogen/noise", std)
+	// mock_dsp.setParamValue("/audiogen/freq", skw)
+	// mock_dsp.setParamValue("/audiogen/tempo", kur)
 }
 
 canvas.on('mouse:move', function(event) { //Sintaxis de Fabric. canvas es un objeto y realiza una funcion con este evento: mover el mouse sobre el canvas

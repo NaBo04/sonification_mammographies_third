@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Screen</title>
+    <link rel="stylesheet" href="S01-styleTestSelection.css">
+</head>
+<body>
+    <div id="centralBlock" class="contenido">
+        <div id="testSelection" class="container">
+            <div id="leftColumn" class="column">
+                <h1>Selecciona el test a realizar</h1>
+                <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1 - Zonas Grises</button>
+                <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2 - Imágenes sintéticas</button>
+                <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3 - Mamografías</button>
+                
+            </div>
+            <div id="rightColumn" class="column">
+                <h1>Selecciona la Sonificación</h1>
+                <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
+                <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
+                <button class="option-button" id="son3" onclick="pressOptionButton('son3')">Sonificación 3</button>
+                <button class="option-button" id="son4" onclick="pressOptionButton('son4')">Sonificación 4</button>
+                <button class="option-button" id="son5" onclick="pressOptionButton('son5')">Sonificación 5</button>
+            </div>
+        </div>
+        <div id="connections" class="footer">
+            <button class="back-button" onclick="window.location.href='H00-startScreen.html'">Volver</button>
+            <button class="next-button" onclick="pressNextButton()">Empezar</button>
+        </div>
+    </div>
+    <script>
+        var testSelected = "";
+        var sonSelected = ""; 
+        const testButtons = ["test1", "test2", "test3"];
+        const sonButtons = ["son1", "son2", "son3", "son4", "son5"];
+    
+        function pressOptionButton(id) {
+            const group = id.includes("test") ? (testSelected = id, testButtons) : (sonSelected = id, sonButtons);
+            for (const buttonId of group) {
+                const btn = document.getElementById(buttonId);
+                if (!btn) continue;
+        
+                if (buttonId === id) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            }
+        }
+        
+        function pressNextButton(){
+            if (testSelected == ""){
+                alert('Please select a test.');
+                return;
+            }
+            if (sonSelected == ""){
+                alert('Please select a sonification.');
+                return;
+            }
+
+            window.location.href = 'H04-test3.html';
+        }
+      </script>
+</body>
+</html>
