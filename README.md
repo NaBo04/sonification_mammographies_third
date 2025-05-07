@@ -73,3 +73,4 @@
 - Cree 2 nuevas páginas, para el test 1 y 2. Estas tienen la estructura base de lo que en primera
         instancia fueron. Por ahora está implementada la lógica de que se necesitan respuestas para
         continuar, en cualquier momento se pude volver y hay cambios de página correctos. 
+- Agregué la selección de imagen aleatoria a los test 1 y 2.

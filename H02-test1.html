@@ -3,12 +3,21 @@
 <head>
     <title>Test 1</title>
     <link rel="stylesheet" href="S02-styleTest1.css">
+    <script type="module">
+        var random_number = Math.floor(Math.random() * 45) + 1;
+        var selectedImage = document.getElementById('image');
+        selectedImage.src = `./assets/test1/im${random_number}.png`;
+
+        var title = document.getElementById('imageNumber');
+        title.textContent = `Test 1 - Imagen ${random_number}`;
+    </script>
 </head>
 <body>
     <div id="centralBlock" class="contenido">
         <div id="testSelection" class="container">
             <div id="leftColumn" class="column">
-                <img src="./assets/test1/im1.png" style="border: 2px solid black;" width="500">
+                <h1 id="imageNumber"> Imagen </h1>
+                <img id="image" src="" style="border: 2px solid black;" width="480">
             </div>
             <div id="rightColumn" class="column" style="padding-left: 100px;">
                 <h0 class="tempo">Tiempo:
