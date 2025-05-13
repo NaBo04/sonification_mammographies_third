@@ -3,20 +3,31 @@
 # Descripción de este directorio
 
 - H00-startScreen.html: Página de inicio, donde se pide el nombre de usuario para ingresar. Maneja 
-        la lógica de que si no se ingresó el nombre arroja una advertencia. 
+        la lógica de que si no se ingresó el nombre arroja una advertencia.
 - H01-testSelection.html: Página para luego de ingresar, en la que se debe seleccionar un test a 
-        realizar. Aún no está implementada
-- H02-test3.html: Página donde se encuentra el test 3, que es el con mamografías reales. Actualmente
-        tiene unas funciones para manejar los parámetros de mock_dsp, pero no funcionan 
+        realizar y una sonificación que se va a usar. Maneja la lógica de que se seleccione una
+        opción en ambos casos para continuar. Al seleccionar cada test distinto envía a una página
+        distinta al presionar 'Empezar'. Al presionar 'Volver' retorna a la página de inicio.
+- H02-test1.html: Página donde se realiza el test 1 'Zonas Grises'. Muestra una imagen aleatoria 
+        dentro de las 45 disponibles, junto con el número de esta. Indica el lugar donde se mostrará
+        el tiempo transcurrido del test. Muestra 2 preguntas y sus respuestas relacionadas al test.
+        Al presionar 'Volver' lleva a la página de selección de test y no se guarda el progreso. Al
+        presionar 'Finalizar' lleva a la página de selección de test. Maneja la lógica de que si no 
+        se ha seleccionado una opción en ambas preguntas, entonces no deja finalizar.
+- H03-test2.html: Página donde se realiza el test 2 'Imágenes Sintéticas'. Muestra una imagen 
+        aleatoria dentro de las 45 disponibles, junto con el número de esta. Indica el lugar donde 
+        se mostrará el tiempo transcurrido del test. Muestra 1 pregunta y sus respuestas 
+        relacionadas al test. Al presionar 'Volver' lleva a la página de selección de test y no se 
+        guarda el progreso. Al presionar 'Finalizar' lleva a la página de selección de test. Maneja 
+        la lógica de que si no se ha seleccionado una opción en ambas preguntas, entonces no deja 
+        finalizar.
+- H04-test3.html: Página donde se encuentra el test 3 'Mamografías'. Actualmente tiene unas 
+        funciones para manejar los parámetros de mock_dsp, pero no funcionan 
         correctamente. Inicia todo lo relaciondo a Faust. Muestra una imagen fija de mamografía.
         Tiene instrucciones de los controles. Tiene un apartado de debugueo para la información de
         pixeles en el puntero dentro de la imagen. Tiene una barra para ajustar el tamaño del
-        puntero. 
-- H03-oldTestLogic.html: Código temporal que contiene lo que era la antigua lógica de implementación
-        de los test en la página. La tengo para ir revisando qué se hacía en esta para luego
-        implementarla en la página final.
-- H04-tryingFaust.html: Página web de testeo de los nuevos parámetros que hice con una función de 
-        prueba de Faust.
+        puntero. Maneja la lógica de que si no se ha seleccionado una opción en ambas preguntas, 
+        entonces no deja finalizar.
 - J00-canvas.js: Se encarga del contenido gráfico con el que se interactua. Primero define los 
         parámetros para el cursor, su forma, color y tamaño. También agrega su valor en texto junto
         a la barra deslizante que lo regula. Luego, crea el canvas que se utilizará para mostrar la
@@ -34,8 +45,11 @@
         También incluye la representación visual de los valores de los pixeles en forma de matriz, 
         en la ventana de la página, esta parte parece ser de debugueo, por lo que luego de revisarla
         la debo eliminar.
-- S00-styleStartScreen.css: Contiene estilos para la estética de la página de inicio.
-- S03-styleTest3.css: Contiene configuración estética para la página web para el test 3. 
+- S00-styleStartScreen.css: Contiene configuración estética para la página de inicio. 
+- S01-styleTestSelection.css: Contiene configuración estética para la página de selección de tests. 
+- S02-styleTest1.css: Contiene configuración estética para la página del test 1. 
+- S03-styleTest2.css: Contiene configuración estética para la página del test 2. 
+- S04-styleTest3.css: Contiene configuración estética para la página del test 3. 
 
 # Actualizaciones
 
@@ -74,3 +88,7 @@
         instancia fueron. Por ahora está implementada la lógica de que se necesitan respuestas para
         continuar, en cualquier momento se pude volver y hay cambios de página correctos. 
 - Agregué la selección de imagen aleatoria a los test 1 y 2.
+- Agregué el conteo de tiempo en pantalla en los test 1 y 2.
+- Implementé la página de término. Esta sale cuando se termina uno de los tests (por ahora 1 y 2), y
+        tiene un botón para en el futuro descargar las respuestas, y otro para continuar con otro
+        test, que retorna a la página de selección de test.

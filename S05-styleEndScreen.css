@@ -1,0 +1,58 @@
+html, body { /* Aplica esto a toda la página y al cuerpo */
+    height: 100%; /* Ocupa toda la ventana */
+    margin: 0; /* Quita los margenes por defecto del navegador */
+}
+body { /* Ahora esto solo al cuerpo */
+    display: flex; /* Formato para poder centrar */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    background-color: #d3d1d1; /* Color de fondo */
+}
+.contenido {
+    padding: 40px; /* Bordes alrededor del contenido */
+    background-color: white; /* Color del bloque de contenido */
+    border: 1px solid #393838; /* Color del borde */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombreado */
+}
+.contenido h1 {
+    margin-top: 0; /* Elimina el margen superior del texto para centrar bien */
+    text-align: center;
+    font-size: 50px;
+  }
+
+.contenido h2 {
+    margin-top: 10; /* Elimina el margen superior del texto para centrar bien */
+    text-align: center;
+    font-size: 25px;
+  }
+
+.downloadButton {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #495049;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.downloadButton:hover {
+    background-color: #a1aaa1;
+}
+
+.nextButton {
+    padding: 10px 20px;
+    font-size: 22px;
+    background-color: #3baf54;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
+}
+.nextButton:hover {
+    background-color: #87d17d;
+}

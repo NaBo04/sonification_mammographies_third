@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>End Screen</title>
+    <link rel="stylesheet" href="S05-styleEndScreen.css">
+</head>
+<body>
+    <div id="centralBlock" class="contenido">
+        <h1>Test Finalizado</h1>
+        <h2>Puedes descargar tus respuestas para luego enviarlas a: correo@uc.cl <br>
+            o puedes realizar otro test y enviarlas luego.
+        </h2>
+        <button class="downloadButton" id="downloadButton">Descargar Respuestas</button>
+        <button class="nextButton" id="nextButton">Continuar</button>
+    </div>
+
+    <script>
+        document.getElementById('nextButton').addEventListener('click', function() {
+            window.location.href = 'H01-testSelection.html';
+        });
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            window.location.href = 'H01-testSelection.html';
+        });
+    </script>
+</body>
+</html>

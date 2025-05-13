@@ -20,7 +20,7 @@
                 <img id="image" src="" style="border: 2px solid black;" width="480">
             </div>
             <div id="rightColumn" class="column" style="padding-left: 100px;">
-                <h0 class="tempo">Tiempo:
+                <h0 class="tempo">Tiempo transcurrido:
                     <span id="time" style="padding-left: 5px;">00:00</span>
                 </h0>
 
@@ -48,6 +48,7 @@
         const scaleButtons = ["scale1", "scale2", "scale3", "scale4", "scale5"];
 
         function pressOptionButton(id) {
+            scaleSelected = id;
             for (const buttonId of scaleButtons) {
                 const btn = document.getElementById(buttonId);
                 if (!btn) continue;
@@ -70,8 +71,24 @@
                 return;
             }
 
-            window.location.href = 'H01-testSelection.html';
+            window.location.href = 'H05-endScreen.html';
         }
+
+        let seconds = 0;
+        function formatTime(sec) {
+            if (sec < 3600){
+                const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+                const secs = String(sec % 60).padStart(2, '0');
+                return `${mins}:${secs}`;
+            }
+            return '59:59'
+        }
+        function updateTimer() {
+            seconds++;
+            document.getElementById("time").textContent = formatTime(seconds);
+        }
+        setInterval(updateTimer, 1000);
+        
     </script>
 </body>
 </html>
