@@ -4,12 +4,29 @@
     <title>Test 1</title>
     <link rel="stylesheet" href="S02-styleTest1.css">
     <script type="module">
-        var random_number = Math.floor(Math.random() * 45) + 1;
+        let usedNumbers = [];
+        for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[1]){
+            usedNumbers.push(number[0]);
+        }
+        let notUsedNumbers = [];
+        for (let i = 1; i<=45; i++){
+            if (!usedNumbers.includes(i)){
+                notUsedNumbers.push(i);
+            }
+        }
+        if (notUsedNumbers.length === 0) {
+            sessionStorage.setItem('fullTest', 'test de Zonas Grises');
+            window.location.href = 'H05-endScreen.html';
+        }
+
+        var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)];
         var selectedImage = document.getElementById('image');
         selectedImage.src = `./assets/test1/im${random_number}.png`;
 
         var title = document.getElementById('imageNumber');
         title.textContent = `Test 1 - Imagen ${random_number}`;
+
+        window.imageNumber = random_number;
     </script>
 </head>
 <body>
@@ -25,17 +42,17 @@
                 </h0>
 
                 <h1 class="titulo">¿Qué área es más clara?</h1>
-                <button class="option-button" id="answer1" onclick="pressOptionButton('answer1')">Área superior</button>
-                <button class="option-button" id="answer2" onclick="pressOptionButton('answer2')">Son iguales</button>
-                <button class="option-button" id="answer3" onclick="pressOptionButton('answer3')">Área inferior</button>
+                <button class="option-button" id="Superior" onclick="pressOptionButton('Superior')">Área superior</button>
+                <button class="option-button" id="Iguales" onclick="pressOptionButton('Iguales')">Son iguales</button>
+                <button class="option-button" id="Inferior" onclick="pressOptionButton('Inferior')">Área inferior</button>
 
                 <h2 class="titulo">¿Qué tan seguro está de su respuesta?</h2>
                 <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button class="option-button small-button" id="scale1" onclick="pressOptionButton('scale1')">1</button>
-                    <button class="option-button small-button" id="scale2" onclick="pressOptionButton('scale2')">2</button>
-                    <button class="option-button small-button" id="scale3" onclick="pressOptionButton('scale3')">3</button>
-                    <button class="option-button small-button" id="scale4" onclick="pressOptionButton('scale4')">4</button>
-                    <button class="option-button small-button" id="scale5" onclick="pressOptionButton('scale5')">5</button>
+                    <button class="option-button small-button" id="1" onclick="pressOptionButton('1')">1</button>
+                    <button class="option-button small-button" id="2" onclick="pressOptionButton('2')">2</button>
+                    <button class="option-button small-button" id="3" onclick="pressOptionButton('3')">3</button>
+                    <button class="option-button small-button" id="4" onclick="pressOptionButton('4')">4</button>
+                    <button class="option-button small-button" id="5" onclick="pressOptionButton('5')">5</button>
                 </div>
                 <div id="connections" class="footer" style="padding-top: 40px;">
                     <button class="back-button" onclick="window.location.href='H01-testSelection.html'">Volver</button>
@@ -47,11 +64,11 @@
     <script>
         var answerSelected = "";
         var scaleSelected = ""; 
-        const answersButtons = ["answer1", "answer2", "answer3"];
-        const scaleButtons = ["scale1", "scale2", "scale3", "scale4", "scale5"];
+        const answersButtons = ["Superior", "Iguales", "Inferior"];
+        const scaleButtons = ["1", "2", "3", "4", "5"];
 
         function pressOptionButton(id) {
-            const group = id.includes("answer") ? (answerSelected = id, answersButtons) : (scaleSelected = id, scaleButtons);
+            const group = id.includes("e") ? (answerSelected = id, answersButtons) : (scaleSelected = id, scaleButtons);
             for (const buttonId of group) {
                 const btn = document.getElementById(buttonId);
                 if (!btn) continue;
@@ -73,6 +90,22 @@
                 alert('Please select a scale.');
                 return;
             }
+            
+            let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
+            let answersData = [window.imageNumber, document.getElementById("time").textContent, answerSelected, scaleSelected]; // [n_imagen, tiempo, respuesta, escala]
+            userAnswers[1].push(answersData);
+            userAnswers[1].sort(function(a,b) {
+                return a[0] - b[0];
+            });
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+            usersList = JSON.parse(localStorage.getItem('usersList'));
+            for (let i in usersList) {
+                if (usersList[i][0] == userAnswers[0]) {
+                    usersList[i] = userAnswers;
+                }
+            }
+            localStorage.setItem('usersList', JSON.stringify(usersList));
 
             window.location.href = 'H05-endScreen.html';
         }
@@ -91,7 +124,7 @@
             document.getElementById("time").textContent = formatTime(seconds);
         }
         setInterval(updateTimer, 1000);
-
+        
     </script>
 </body>
 </html>

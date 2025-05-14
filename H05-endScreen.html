@@ -7,20 +7,50 @@
 <body>
     <div id="centralBlock" class="contenido">
         <h1>Test Finalizado</h1>
-        <h2>Puedes descargar tus respuestas para luego enviarlas a: correo@uc.cl <br>
+        <h2 id="message">Puedes descargar tus respuestas y después enviarlas a: correo@uc.cl <br>
             o puedes realizar otro test y enviarlas luego.
         </h2>
-        <button class="downloadButton" id="downloadButton">Descargar Respuestas</button>
+        <button class="downloadButton" id="downloadButton" onclick="downloadAnswers()">Descargar Respuestas</button>
         <button class="nextButton" id="nextButton">Continuar</button>
     </div>
 
     <script>
+
         document.getElementById('nextButton').addEventListener('click', function() {
             window.location.href = 'H01-testSelection.html';
         });
-        document.getElementById('downloadButton').addEventListener('click', function() {
-            window.location.href = 'H01-testSelection.html';
-        });
+
+        var userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
+        function downloadAnswers() {
+            if (userAnswers == null) {
+                alert('No se ha iniciado sesión. Por favor reiniciar.');
+                return;
+            }
+            let contenido = `Usuario;${userAnswers[0]}\n\n`;
+            contenido += 'test 1\nimagen;tiempo;respuesta;nivel de seguridad\n';
+            for (let answer of userAnswers[1]) {
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
+            }
+            const blob = new Blob([contenido], { type: 'text/csv' });
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${userAnswers[0]}_Answers.csv`; //Quiero que el archivo se llame segun el nombre de usuario
+
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        let fullTest = sessionStorage.getItem('fullTest');
+        if (fullTest != null && fullTest != 'nothing'){
+            sessionStorage.setItem('fullTest', 'nothing');
+            let newText = `Has completado todas las pruebas del ${fullTest}.<br> Por favor, descarga tus respuestas y evíalas a: correo@uc.cl. <br> También puedes realizar otro test y enviarlas luego.`
+            document.getElementById('message').innerHTML = newText;
+        }
+
     </script>
 </body>
 </html>

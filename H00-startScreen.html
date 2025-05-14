@@ -3,7 +3,6 @@
 <head>
     <title>Start Screen</title>
     <link rel="stylesheet" href="S00-styleStartScreen.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script> <!-- libreria web para importar una funcion /!-->
 </head>
 <body>
     <div id="centralBlock" class="contenido">
@@ -13,6 +12,14 @@
     </div>
 
     <script>
+        let usersList = localStorage.getItem('usersList');
+        if (usersList == null) { 
+            usersList = [];
+        } else {
+            usersList = JSON.parse(usersList);
+        }
+        console.log(usersList);
+
         document.getElementById('startButton').addEventListener('click', function() {
             var userName = document.getElementById('userName').value;
             if(userName.trim() === '') {
@@ -20,8 +27,21 @@
                 return;
             }
 
-            //var uuid = uuidv4(); // Generate a UUID, es un url unico e irrepetible para continuar usandolo y guardar progreso
-            //window.location.href = 'test.html?name=' + encodeURIComponent(userName) + '&uuid=' + uuid; //Carga ese URL
+            let userAnswers = null;
+            if (usersList != null) {
+                for (let val_name of usersList) {
+                    if (val_name[0] == userName) {
+                        userAnswers = val_name;
+                    }
+                }
+            }
+            if ( userAnswers == null ) {
+                userAnswers = [userName, [], [], []];
+                usersList.push(userAnswers);
+                localStorage.setItem('usersList', JSON.stringify(usersList));
+            }
+            
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
             window.location.href = 'H01-testSelection.html';
         });
     </script>

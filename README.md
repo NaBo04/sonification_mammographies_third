@@ -92,3 +92,13 @@
 - Implementé la página de término. Esta sale cuando se termina uno de los tests (por ahora 1 y 2), y
         tiene un botón para en el futuro descargar las respuestas, y otro para continuar con otro
         test, que retorna a la página de selección de test.
+- Implementé la descarga de un archivo .csv de prueba al presionar el botón correspondiente en la
+        pantallada de término.
+- Ahora el archivo de descarga incluye el nombre del usuario.
+- Agregué muchos cambios de la lógica de guardar el usuario y las respuestas. Funciona con listas,
+        que dependen del nombre de usuario. Si se usa el mismo nombre de usuario se guardan las
+        respuestas, y así no vuelven a salir imágenes ya realizadas en los tests. Se guardan el 
+        número de la imagen realizada, el tiempo, y las 2 respuestas para el test 1. Si se completan
+        todos las imágenes del test 1, envía directo a la página final donde cambia el texto y se
+        pueden descargar las respuestas.
+- Programé el formato de respuestas del test 1. Ya se descarga correctamente en el .csv. 
