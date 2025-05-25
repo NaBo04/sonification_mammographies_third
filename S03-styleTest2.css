@@ -57,6 +57,11 @@ body { /* Ahora esto solo al cuerpo */
     font-size: 30px;
 }
 
+.texto {
+    font-size: 20px;
+    padding-top: 10px;
+}
+
 .tempo {
     display: flex; 
     justify-content: right; 

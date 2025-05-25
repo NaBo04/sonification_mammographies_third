@@ -26,10 +26,14 @@
                 alert('No se ha iniciado sesión. Por favor reiniciar.');
                 return;
             }
-            let contenido = `Usuario;${userAnswers[0]}\n\n`;
-            contenido += 'test 1\nimagen;tiempo;respuesta;nivel de seguridad\n';
+            let contenido = `Usuario;${userAnswers[0]}\n`;
+            contenido += '\ntest 1\nimagen;tiempo;respuesta;nivel de seguridad\n';
             for (let answer of userAnswers[1]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
+            }
+            contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad\n';
+            for (let answer of userAnswers[2]) {
+                contenido += `${answer[0]};${answer[1]};${answer[2]}\n`;
             }
             const blob = new Blob([contenido], { type: 'text/csv' });
 

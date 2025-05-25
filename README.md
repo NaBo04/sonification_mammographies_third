@@ -102,3 +102,4 @@
         todos las imágenes del test 1, envía directo a la página final donde cambia el texto y se
         pueden descargar las respuestas.
 - Programé el formato de respuestas del test 1. Ya se descarga correctamente en el .csv. 
+- Implementé la carga de datos de progreso a la página, por si es que no se guardan en el navegador.
