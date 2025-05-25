@@ -67,7 +67,7 @@ body { /* Ahora esto solo al cuerpo */
     justify-content: center; 
     padding-bottom: 30px;
     padding-right: 30px;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .footer {
@@ -147,4 +147,17 @@ body { /* Ahora esto solo al cuerpo */
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
+}
+
+#sizeSlider {
+  width: 300px; /* cambia este valor al tamaño que quieras */
+  height: 10px;  /* controla el grosor del track */
+}
+#volumeSlider {
+  width: 300px; /* cambia este valor al tamaño que quieras */
+  height: 10px;  /* controla el grosor del track */
+}
+#muteCheckBox {
+    width: 20px;
+    height: 20px;
 }

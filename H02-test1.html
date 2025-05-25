@@ -3,6 +3,7 @@
 <head>
     <title>Test 1</title>
     <link rel="stylesheet" href="S02-styleTest1.css">
+    <script src="./lib/fabric.js"></script>
     <script type="module">
         let usedNumbers = [];
         for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[1]){
@@ -45,14 +46,30 @@
                     </div>
                 </div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
-                <h0 class="tempo">Tiempo transcurrido:
+                <h0 class="tempo" style="padding-top: 50px; padding-bottom: 50px;">Tiempo transcurrido:
                     <span id="time" style="padding-left: 5px;">00:00</span>
                 </h0>
-                <p>Acá van los sliders</p>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <div style="padding-top: 30px; font-size: 20px;">
+                    Tamaño del puntero <br>
+                    <input type="range" id="sizeSlider" min="10" max="200" step="10" value="100" oninput="updateSizeValue(this.value)">
+                    <span id="sizeValue">100</span>
+                </div>
+                <div style="padding-top: 30px; font-size: 20px;">
+                    Volumen <br>
+                    <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2" oninput="updateVolumeValue(this.value)">
+                    <span id="volumeValue">2</span>
+                </div>
+                <div style="padding-top: 30px; font-size: 20px;">
+                    Mute <br>
+                    <input type="checkbox" id="muteCheckBox" onchange="updateMuteValue()"/>
+                    <span id="muteValue">OFF</span>
+                </div>
             </div>
             <div id="leftColumn" class="column" style="padding-left: 20px;">
                 <div>
-                    <img id="image" src="" style="border: 2px solid black;" width="500">
+                    <canvas id="rasterCanvas" style="border: 2px solid black;"></canvas>
+                    <img id="image" src="" style="display: none;" width="500">
                     <script src="J00-canvas.js"></script>
                 </div>
             </div>

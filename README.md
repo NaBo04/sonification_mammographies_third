@@ -105,4 +105,10 @@
 - Implementé la carga de datos de progreso a la página, por si es que no se guardan en el navegador.
 - Agregué a los test 1 y 2 un botón que dice controles, que abre un pop-up que en el futuro mostrará
         los controles que salen en la página de test 3, o los nuevos que agregue.
-- Ajusté la distribución en pantalla de los test 1 y 2.
+- Ajusté la distribución en pantalla de los test 1 y 2. Esto para ajustarse a la resolución de mi 
+        PC. 
+- Agregué una columna a la izquierda de los test 1 y 2, donde están ahora el tiempo, controles y los
+        sliders con el botón de mute.
+- Estoy creando un nuevo canvas.js, los test 1 y 2 ya están enlazados a este, por ahor logré crear
+        el canvas con la imagen correspondiente y del tamaño que tenía antes. Se ve igual que antes,
+        solo que ya no es solo una imagen, es un cavas de fabric con una imagen en el.
