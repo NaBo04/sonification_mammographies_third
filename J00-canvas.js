@@ -1,4 +1,12 @@
 var brushSize = 100;
+var zoom = 0.25;
+const brushColor = '#FF0F0F90';
+const brushOpacity = 0.9;
+let canvas;
+let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
+let lastZoom = null;
+let lastCursor = null;
+
 
 function updateSizeValue(value) { //Actualiza el valor segÃºn la barra deslizante
     brushSize = value; //Convierte el valor a entero en base 10
@@ -12,6 +20,32 @@ function updateMuteValue() { //Actualiza el valor segÃºn la barra deslizante
     document.getElementById("muteValue").textContent = muteStatus; //Actualiza el texto que indica el volumen
 };
 
+const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado personalizado
+    const square = `
+        <svg
+            height="${ brushSize*zoom }"
+            width="${ brushSize*zoom }"
+            fill="${ brushColor }"
+            fill-opacity="${ brushOpacity }"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <rect
+                width="${ brushSize*zoom }"
+                height="${ brushSize*zoom }"
+            />
+        </svg>
+    `; //Los valores tienen que estar iguales para que calce, se ajusta bien considerando el zoom.
+    return `data:image/svg+xml;base64,${ window.btoa(square) }`; //Esto es para que el navegador lo pueda usar como cursor grÃ¡fico
+};
+const getAndCacheCursor = () => { //Esto revisa si cambiaron las condiciones del cursor para obtener uno nuevo, sino mantener el antiguo.
+    if (brushSize !== lastBrushSize || zoom !== lastZoom || !lastCursor) {
+        lastCursor = `url(${ getDrawCursor() }) 0 0, crosshair`;
+        lastBrushSize = brushSize;
+        lastZoom = zoom;
+    }
+    return lastCursor;
+};
+
 window.addEventListener('load', () => { //Esta parte crea un canvas al que le aÃ±ade la imagen que se selecconÃ³ en el HTML
     const imgElement = document.getElementById("image");
     const initializeCanvasWithImage = () => {
@@ -19,12 +53,12 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le aÃ
         const imgHeight = imgElement.naturalHeight;
         const imgScale = imgElement.width / imgElement.naturalWidth;
 
-        const canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric
+        canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric
             width : imgWidth * imgScale, //dos tercios del ancho de la ventana
             height : imgHeight * imgScale, //cuatro quintos del alto de la ventana
             backgroundColor : "#FFF", //Color de fondo
             enableRetinaScaling: true, //Para ajustarse a varios tipos de pantalla
-            //freeDrawingCursor: `url(${ getDrawCursor() }) ${ brushSize } ${ brushSize }, crosshair`, //Activa el cursor personalizado
+            freeDrawingCursor: `url(${ getDrawCursor() }) ${ brushSize } ${ brushSize }, crosshair`, //Activa el cursor personalizado
             selection: false, //Para no seleccionar y arrastrar objetos con el mouse
         });
         const fabricImg = new fabric.Image(imgElement, {
@@ -39,6 +73,7 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le aÃ
 
         canvas.add(fabricImg);
         //canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
+        configurarEventosCanvas();
     }
 
     if (imgElement.complete && imgElement.naturalHeight !== 0) {
@@ -49,3 +84,10 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le aÃ
         };
     }
 });
+
+function configurarEventosCanvas() {
+    canvas.on('mouse:move', () => {
+        canvas.setCursor(getAndCacheCursor());
+    });
+}
+

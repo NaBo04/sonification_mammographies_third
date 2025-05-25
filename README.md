@@ -112,3 +112,31 @@
 - Estoy creando un nuevo canvas.js, los test 1 y 2 ya están enlazados a este, por ahor logré crear
         el canvas con la imagen correspondiente y del tamaño que tenía antes. Se ve igual que antes,
         solo que ya no es solo una imagen, es un cavas de fabric con una imagen en el.
+- Agregué el cursor cuadrado rojo en los test 1 y 2. También lo optimicé porque antes obtenía uno
+        nuevo siempre que se movía el mouse, ahora solo si hubo cambios en el tamaño o el zoom.
+
+# Proximos pasos: 
+Agregar a los test 1 y 2:
+- El zoom con la rueda del mouse y verificar que todo esté correcto
+- El moverse con el click derecho
+- El colocar cuadrados con click, que se queden puestos, se ajusten al zoom y recordar guardar 
+        donde se colocan como respuestas del tipo [x, y, size] para que se descarguen en los datos
+        después y sirvan para el código que quiero hacer de comprobar respuestas. Recordar también,
+        que esta función no va en el test 1, que solo es escuhar.
+- Agregar la lista de controles.
+- Revisar todos los puntos que se relacionan a las respuestas, descarga y carga de estas, para
+        añadir de manera correcta las respuestas del test 2 y 3 con los cuadrados.
+- Agregar la sonificación. Esto es largo porque debo verificar que todo se haga de manera correcta.
+        Puedo usar las imágenes de prueba o inventar las mías.
+- Agregar el test 3 de la misma forma que los 1 y 2.
+
+# Pasos opcionales
+- Botón de pausa de tiempo
+- Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
+
+# Pedirle al profe
+- Acceso a las imágenes de mamografías con respuestas o al mismo dropbox en el que están, para 
+        añadirlas al test 3 y para usar mi código con las respuestas correctas.
+- Preguntarle por el tema de meter las 5 sonificaciones o no. Y luego ver como añadir esto en el
+        código.
+- Pedirle la o las sonificaciones finales para añadirlas.
