@@ -32,7 +32,7 @@
 <body>
     <div id="centralBlock" class="contenido">
         <div id="testSelection" class="container">
-            <div id="leftColumn" class="column">
+            <div id="infoColumn" class="column">
                 <div class="encabezado">
                     <h1 id="imageNumber"> Test 2 - Imagen </h1>
                     <button class="helpButton" onclick="abrirModal()">Controles</button>
@@ -44,19 +44,21 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <img id="image" src="" style="border: 2px solid black;" width="480">
-                    <script src="J00-canvas.js"></script>
-                </div>
-            </div>
-            <div id="rightColumn" class="column" style="padding-left: 100px;">
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <h0 class="tempo">Tiempo transcurrido:
                     <span id="time" style="padding-left: 5px;">00:00</span>
                 </h0>
-
+                <p>Acá van los sliders</p>
+            </div>
+            <div id="leftColumn" class="column" style="padding-left: 20px;">
+                <div>
+                    <img id="image" src="" style="border: 2px solid black;" width="500">
+                    <script src="J00-canvas.js"></script>
+                </div>
+            </div>
+            <div id="rightColumn" class="column" style="padding-left: 20px;">
                 <h1 class="titulo">Encuentre las zonas irregulares</h1>
-                <hr style="border: none; height: 2px; background-color: black; width: 90%;">
-
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <h2 class="titulo" style="padding-top: 100px;">¿Qué tan seguro está de su respuesta?</h2>
                 <div style="display: flex; gap: 8px; justify-content: center;">
                     <h3 class="texto">Inseguro</h3>
@@ -67,6 +69,7 @@
                     <button class="option-button small-button" id="5" onclick="pressOptionButton('5')">5</button>
                     <h3 class="texto">Seguro</h3>
                 </div>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div id="connections" class="footer" style="padding-top: 100px;">
                     <button class="back-button" onclick="window.location.href='H01-testSelection.html'">Volver</button>
                     <button class="next-button" onclick="pressNextButton()">Finalizar</button>

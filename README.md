@@ -103,3 +103,6 @@
         pueden descargar las respuestas.
 - Programé el formato de respuestas del test 1. Ya se descarga correctamente en el .csv. 
 - Implementé la carga de datos de progreso a la página, por si es que no se guardan en el navegador.
+- Agregué a los test 1 y 2 un botón que dice controles, que abre un pop-up que en el futuro mostrará
+        los controles que salen en la página de test 3, o los nuevos que agregue.
+- Ajusté la distribución en pantalla de los test 1 y 2.

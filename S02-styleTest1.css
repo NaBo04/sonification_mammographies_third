@@ -11,7 +11,7 @@ body { /* Ahora esto solo al cuerpo */
 }
 
 .contenido {
-    padding: 40px; /* Bordes alrededor del contenido */
+    padding: 20px; /* Bordes alrededor del contenido */
     background-color: white; /* Color del bloque de contenido */
     border: 1px solid #393838; /* Color del borde */
     border-radius: 10px; /* Bordes redondeados */
@@ -64,7 +64,7 @@ body { /* Ahora esto solo al cuerpo */
 
 .tempo {
     display: flex; 
-    justify-content: right; 
+    justify-content: center; 
     padding-bottom: 30px;
     padding-right: 30px;
     font-size: 20px;
