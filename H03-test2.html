@@ -33,8 +33,21 @@
     <div id="centralBlock" class="contenido">
         <div id="testSelection" class="container">
             <div id="leftColumn" class="column">
-                <h1 id="imageNumber"> Imagen </h1>
-                <img id="image" src="" style="border: 2px solid black;" width="480">
+                <div class="encabezado">
+                    <h1 id="imageNumber"> Test 2 - Imagen </h1>
+                    <button class="helpButton" onclick="abrirModal()">Controles</button>
+                    <div id="miModal" class="modal">
+                        <div class="modal-contenido">
+                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                            <h2>Controles</h2>
+                            <p>Acá la descripción</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img id="image" src="" style="border: 2px solid black;" width="480">
+                    <script src="J00-canvas.js"></script>
+                </div>
             </div>
             <div id="rightColumn" class="column" style="padding-left: 100px;">
                 <h0 class="tempo">Tiempo transcurrido:
@@ -124,6 +137,8 @@
         }
         setInterval(updateTimer, 1000);
         
+        function abrirModal() {document.getElementById("miModal").style.display = "block";}
+        function cerrarModal() {document.getElementById("miModal").style.display = "none";}
     </script>
 </body>
 </html>

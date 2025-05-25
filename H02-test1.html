@@ -33,8 +33,21 @@
     <div id="centralBlock" class="contenido">
         <div id="testSelection" class="container">
             <div id="leftColumn" class="column">
-                <h1 id="imageNumber"> Imagen </h1>
-                <img id="image" src="" style="border: 2px solid black;" width="480">
+                <div class="encabezado">
+                    <h1 id="imageNumber"> Test 1 - Imagen </h1>
+                    <button class="helpButton" onclick="abrirModal()">Controles</button>
+                    <div id="miModal" class="modal">
+                        <div class="modal-contenido">
+                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                            <h2>Controles</h2>
+                            <p>Acá la descripción</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img id="image" src="" style="border: 2px solid black;" width="480">
+                    <script src="J00-canvas.js"></script>
+                </div>
             </div>
             <div id="rightColumn" class="column" style="padding-left: 100px;">
                 <h0 class="tempo">Tiempo transcurrido:
@@ -45,7 +58,7 @@
                 <button class="option-button" id="Superior" onclick="pressOptionButton('Superior')">Área superior</button>
                 <button class="option-button" id="Iguales" onclick="pressOptionButton('Iguales')">Son iguales</button>
                 <button class="option-button" id="Inferior" onclick="pressOptionButton('Inferior')">Área inferior</button>
-
+                <hr style="border: none; height: 2px; background-color: black; width: 90%;">
                 <h2 class="titulo">¿Qué tan seguro está de su respuesta?</h2>
                 <div style="display: flex; gap: 10px; justify-content: center;">
                     <h3 class="texto">Inseguro</h3>
@@ -126,6 +139,9 @@
             document.getElementById("time").textContent = formatTime(seconds);
         }
         setInterval(updateTimer, 1000);
+
+        function abrirModal() {document.getElementById("miModal").style.display = "block";}
+        function cerrarModal() {document.getElementById("miModal").style.display = "none";}
         
     </script>
 </body>
