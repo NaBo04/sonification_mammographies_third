@@ -114,6 +114,8 @@
         solo que ya no es solo una imagen, es un cavas de fabric con una imagen en el.
 - Agregué el cursor cuadrado rojo en los test 1 y 2. También lo optimicé porque antes obtenía uno
         nuevo siempre que se movía el mouse, ahora solo si hubo cambios en el tamaño o el zoom.
+- Ahora el cursor no desaparece cuando hago click y deshabilité el click derecho dentro del canvas
+        para poder usarlo para mover la imagen.
 
 # Proximos pasos: 
 Agregar a los test 1 y 2:

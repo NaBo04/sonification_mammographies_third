@@ -46,6 +46,20 @@ const getAndCacheCursor = () => { //Esto revisa si cambiaron las condiciones del
     return lastCursor;
 };
 
+function configurarEventosCanvas() {
+    canvas.upperCanvasEl.addEventListener('contextmenu', function(e){ 
+        e.preventDefault();//Elimina la función por defecto del click derecho
+    });
+
+    canvas.on('mouse:move', () => {
+        canvas.setCursor(getAndCacheCursor());
+    });
+
+    canvas.on('mouse:up', () => {
+        canvas.setCursor(getAndCacheCursor());
+    });
+}
+
 window.addEventListener('load', () => { //Esta parte crea un canvas al que le añade la imagen que se selecconó en el HTML
     const imgElement = document.getElementById("image");
     const initializeCanvasWithImage = () => {
@@ -71,7 +85,7 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
             scaleY: imgScale
         });
 
-        canvas.add(fabricImg);
+        canvas.add(fabricImg); //Añade la imagen al canvas
         //canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
         configurarEventosCanvas();
     }
@@ -84,10 +98,3 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
         };
     }
 });
-
-function configurarEventosCanvas() {
-    canvas.on('mouse:move', () => {
-        canvas.setCursor(getAndCacheCursor());
-    });
-}
-
