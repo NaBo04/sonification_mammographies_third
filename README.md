@@ -117,19 +117,20 @@
 - Ahora el cursor no desaparece cuando hago click y deshabilité el click derecho dentro del canvas
         para poder usarlo para mover la imagen.
 - Añadí el movimiento de la imagen con el click derecho.
+- Ahora se agregan los cuadrados donde hago click izquierdo.
+- Quité que se puedan colocar cuadrados en el test 1, porque no es su función.
 
 # Proximos pasos: 
 Agregar a los test 1 y 2:
-- El colocar cuadrados con click, que se queden puestos, se ajusten al zoom y recordar guardar 
-        donde se colocan como respuestas del tipo [x, y, size] para que se descarguen en los datos
-        después y sirvan para el código que quiero hacer de comprobar respuestas. Recordar también,
-        que esta función no va en el test 1, que solo es escuhar.
-- Agregar la lista de controles.
+- Guardar donde se colocan los cuadradros como respuestas del tipo [x, y, size] para que se 
+        descarguen en los datos después y sirvan para el código que quiero hacer de comprobar
+        respuestas.
 - Revisar todos los puntos que se relacionan a las respuestas, descarga y carga de estas, para
         añadir de manera correcta las respuestas del test 2 y 3 con los cuadrados.
+- Agregar la lista de controles.
+- Agregar el test 3 de la misma forma que los 1 y 2.
 - Agregar la sonificación. Esto es largo porque debo verificar que todo se haga de manera correcta.
         Puedo usar las imágenes de prueba o inventar las mías.
-- Agregar el test 3 de la misma forma que los 1 y 2.
 - Hacer el código para comprobar las respuestas y compilar las otras.
 
 # Pasos opcionales

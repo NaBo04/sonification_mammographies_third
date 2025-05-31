@@ -2,6 +2,8 @@ var brushSize = 25;
 var zoom = 1;
 const brushColor = '#FF0F0F90';
 const brushOpacity = 0.9;
+const maxSize = 128; //Tamaño maximo del cursor para que salga en el navegador
+var squareSize = Math.min(brushSize * zoom, maxSize); 
 let canvas;
 let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
@@ -22,8 +24,7 @@ function updateMuteValue() { //Actualiza el valor según la barra deslizante
 };
 
 const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado personalizado
-    const maxSize = 128; //Tamaño maximo del cursor para que salga en el navegador
-    const squareSize = Math.min(brushSize * zoom, maxSize); 
+    squareSize = Math.min(brushSize * zoom, maxSize); 
     const square = `
         <svg
             height="${ squareSize }"
@@ -55,8 +56,18 @@ function configurarEventosCanvas() {
     });
 
     canvas.on('mouse:down', function(e) {
-        if (e.button == 1) { //Detecta el click izquierdo
-            console.log("colocando cuadrado");
+        if (e.button == 1 && putSquare == true) { //Detecta el click izquierdo
+            var pointer = this.getPointer(e); //Obtiene las coordenadas actuales del puntero
+            squareSize = Math.min(brushSize * zoom, maxSize) / zoom; 
+            var rect = new fabric.Rect({ //Variable que crea un objeto de fabric igual al puntero 
+                left: pointer.x, //Coordenadas de la variable son las del mouse
+                top: pointer.y,
+                fill: 'rgba(255,0,0,0.5)', //Color
+                width: squareSize,  //Ancho y altura
+                height: squareSize, 
+                selectable: false //No es seleccionable luego
+            });
+            canvas.add(rect); //Lo agrega al canvas para que se vea en pantalla
         }
     });
 
