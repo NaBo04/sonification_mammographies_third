@@ -6,6 +6,7 @@ let canvas;
 let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
 let lastCursor = null;
+let isDragging = false;
 
 
 function updateSizeValue(value) { //Actualiza el valor según la barra deslizante
@@ -49,15 +50,17 @@ const getAndCacheCursor = () => { //Esto revisa si cambiaron las condiciones del
 };
 
 function configurarEventosCanvas() {
-    canvas.upperCanvasEl.addEventListener('contextmenu', function(e){ 
-        e.preventDefault();//Elimina la función por defecto del click derecho
-    });
-
-    canvas.on('mouse:move', () => {
+    canvas.on('mouse:move', function(opt) {
         canvas.setCursor(getAndCacheCursor());
     });
 
-    canvas.on('mouse:up', () => {
+    canvas.on('mouse:down', function(e) {
+        if (e.button == 1) { //Detecta el click izquierdo
+            console.log("colocando cuadrado");
+        }
+    });
+
+    canvas.on('mouse:up', () => { //Para colocar de nuevo el puntero al soltar el mouse
         canvas.setCursor(getAndCacheCursor());
     });
 
@@ -72,6 +75,33 @@ function configurarEventosCanvas() {
         opt.e.stopPropagation(); //Que no afecte a elementos fuera del canvas
         canvas.requestRenderAll(); //Redibuja todo el canvas, para evitar problemas de sincronizacion, luego de los ajustes.
         canvas.setCursor(getAndCacheCursor());
+    });
+    //Todo esto de abajo es para el click derecho que funciona distinto
+    canvas.upperCanvasEl.addEventListener('contextmenu', function(e){ //Con esto recibo el click derecho
+        e.preventDefault(); //Elimina la función por defecto del click derecho
+    });
+
+    canvas.upperCanvasEl.addEventListener('mousedown', function(e) {
+        if (e.button == 2) { //Detecta el click derecho
+            isDragging = true;
+            canvas.lastPosX = e.clientX; //Guarda la posición del mouse para luego calcular el movimiento
+            canvas.lastPosY = e.clientY;
+        }
+    });
+
+    canvas.upperCanvasEl.addEventListener('mouseup', () => { //Para dejar de arrastrar cuando se suelta el click dercho
+        isDragging = false;
+    });
+
+    canvas.upperCanvasEl.addEventListener('mousemove', function(e) {
+        if (isDragging == true) {
+            var vpt = canvas.viewportTransform; //Guarda valores que usa fabric para la vista del canvas
+            vpt[4] += e.clientX - canvas.lastPosX; //4 es vista horizontal y con esto la ajusta según el desplazamiento
+            vpt[5] += e.clientY - canvas.lastPosY; //5 es vista vertical y hace lo mismo
+            canvas.requestRenderAll(); //Carga nuevamente todo lo que contiene el canvas
+            canvas.lastPosX = e.clientX; //Guarda las coordenadas del mouse
+            canvas.lastPosY = e.clientY;
+        }
     });
 }
 

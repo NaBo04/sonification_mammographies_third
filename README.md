@@ -116,10 +116,10 @@
         nuevo siempre que se movía el mouse, ahora solo si hubo cambios en el tamaño o el zoom.
 - Ahora el cursor no desaparece cuando hago click y deshabilité el click derecho dentro del canvas
         para poder usarlo para mover la imagen.
+- Añadí el movimiento de la imagen con el click derecho.
 
 # Proximos pasos: 
 Agregar a los test 1 y 2:
-- El moverse con el click derecho
 - El colocar cuadrados con click, que se queden puestos, se ajusten al zoom y recordar guardar 
         donde se colocan como respuestas del tipo [x, y, size] para que se descarguen en los datos
         después y sirvan para el código que quiero hacer de comprobar respuestas. Recordar también,
@@ -135,10 +135,12 @@ Agregar a los test 1 y 2:
 # Pasos opcionales
 - Botón de pausa de tiempo
 - Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
+- Me gustaría invertir unas cositas, y es que podría cambiar el tamaño del puntero con la rueda del
+        mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas. 
 
 # Pedirle al profe
 - Acceso a las imágenes de mamografías con respuestas o al mismo dropbox en el que están, para 
-        añadirlas al test 3 y para usar mi código con las respuestas correctas.
+        añadirlas al test 3 y para usar mi código para extraer las respuestas correctas.
 - Preguntarle por el tema de meter las 5 sonificaciones o no. Y luego ver como añadir esto en el
         código.
 - Pedirle la o las sonificaciones finales para añadirlas.
