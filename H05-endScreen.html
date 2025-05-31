@@ -33,7 +33,7 @@
             }
             contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad\n';
             for (let answer of userAnswers[2]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
             const blob = new Blob([contenido], { type: 'text/csv' });
 

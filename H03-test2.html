@@ -96,8 +96,7 @@
     </div>
     <script>
         const putSquare = true;
-        
-        var isAnswered = true;  //Por ahora parte en true, pero debe partir en false y activarse cuando exista una respuesta
+        var squares = [];
         var scaleSelected = "";
         const scaleButtons = ["1", "2", "3", "4", "5"];
 
@@ -116,17 +115,18 @@
         }
 
         function pressNextButton() {
-            if (isAnswered == false){
-                alert('Please select an answer.');
+            if (squares.length == 0) {
+                alert('Please mark your answer.');
                 return;
             }
             if (scaleSelected == ""){
                 alert('Please select a scale.');
                 return;
             }
+            
 
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
-            let answersData = [window.imageNumber, document.getElementById("time").textContent, scaleSelected]; // [n_imagen, tiempo, escala]
+            let answersData = [window.imageNumber, document.getElementById("time").textContent, scaleSelected, squares]; // [n_imagen, tiempo, escala]
             userAnswers[2].push(answersData);
             userAnswers[2].sort(function(a,b) {
                 return a[0] - b[0];

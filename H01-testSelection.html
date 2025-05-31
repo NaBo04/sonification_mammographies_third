@@ -105,7 +105,7 @@
                     let usuario = lineas[0].split(';')[1];
                     let test1Answers = [];
                     let i = 4;
-                    while (lineas[i] != ';;;\r') {
+                    while (lineas[i] != "") {
                         let answer1 = lineas[i].trim().split(';');
                         answer1[0] = parseInt(answer1[0]);
                         test1Answers.push(answer1);
@@ -116,6 +116,13 @@
                     while (i < lineas.length) {
                         let answer2 = lineas[i].trim().split(';');
                         answer2[0] = parseInt(answer2[0]);
+                        let squares2 = answer2[3].split(',');
+                        let squaresList = [];
+                        for (let j = 0; j < squares2.length / 3; j++) {
+                            newSquare = [squares2[3*j], squares2[1 + (3*j)], squares2[2 + (3*j)]];
+                            squaresList.push(newSquare);
+                        }
+                        answer2[3] = squaresList;
                         test2Answers.push(answer2);
                         i++;
                     }

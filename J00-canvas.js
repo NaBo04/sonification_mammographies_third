@@ -5,6 +5,7 @@ const brushOpacity = 0.9;
 const maxSize = 128; //TamaÃ±o maximo del cursor para que salga en el navegador
 var squareSize = Math.min(brushSize * zoom, maxSize); 
 let canvas;
+let imgScale;
 let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
 let lastCursor = null;
@@ -68,6 +69,7 @@ function configurarEventosCanvas() {
                 selectable: false //No es seleccionable luego
             });
             canvas.add(rect); //Lo agrega al canvas para que se vea en pantalla
+            squares.push([pointer.x / imgScale, pointer.y / imgScale, squareSize / imgScale]);
         }
     });
 
@@ -121,7 +123,7 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le aÃ
     const initializeCanvasWithImage = () => {
         const imgWidth = imgElement.naturalWidth;
         const imgHeight = imgElement.naturalHeight;
-        const imgScale = imgElement.width / imgElement.naturalWidth;
+        imgScale = imgElement.width / imgElement.naturalWidth;
 
         canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric
             width : imgWidth * imgScale, //dos tercios del ancho de la ventana

@@ -119,14 +119,11 @@
 - Añadí el movimiento de la imagen con el click derecho.
 - Ahora se agregan los cuadrados donde hago click izquierdo.
 - Quité que se puedan colocar cuadrados en el test 1, porque no es su función.
+- Ahora las respuestas de donde se ponen los caudrados se guarda correctamente en el test 2, estas
+        se pueden descargar y cargar correctamente.
 
 # Proximos pasos: 
 Agregar a los test 1 y 2:
-- Guardar donde se colocan los cuadradros como respuestas del tipo [x, y, size] para que se 
-        descarguen en los datos después y sirvan para el código que quiero hacer de comprobar
-        respuestas.
-- Revisar todos los puntos que se relacionan a las respuestas, descarga y carga de estas, para
-        añadir de manera correcta las respuestas del test 2 y 3 con los cuadrados.
 - Agregar la lista de controles.
 - Agregar el test 3 de la misma forma que los 1 y 2.
 - Agregar la sonificación. Esto es largo porque debo verificar que todo se haga de manera correcta.
@@ -138,6 +135,7 @@ Agregar a los test 1 y 2:
 - Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
 - Me gustaría invertir unas cositas, y es que podría cambiar el tamaño del puntero con la rueda del
         mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas. 
+- Si el profe dice, tengo que agregar las 5 sonificaciones y guardarlo como respuesta en cada caso.
 
 # Pedirle al profe
 - Acceso a las imágenes de mamografías con respuestas o al mismo dropbox en el que están, para 
