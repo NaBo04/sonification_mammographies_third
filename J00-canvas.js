@@ -1,5 +1,5 @@
-var brushSize = 100;
-var zoom = 0.25;
+var brushSize = 25;
+var zoom = 1;
 const brushColor = '#FF0F0F90';
 const brushOpacity = 0.9;
 let canvas;
@@ -21,17 +21,19 @@ function updateMuteValue() { //Actualiza el valor según la barra deslizante
 };
 
 const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado personalizado
+    const maxSize = 128; //Tamaño maximo del cursor para que salga en el navegador
+    const squareSize = Math.min(brushSize * zoom, maxSize); 
     const square = `
         <svg
-            height="${ brushSize*zoom }"
-            width="${ brushSize*zoom }"
+            height="${ squareSize }"
+            width="${ squareSize }"
             fill="${ brushColor }"
             fill-opacity="${ brushOpacity }"
             xmlns="http://www.w3.org/2000/svg"
         >
             <rect
-                width="${ brushSize*zoom }"
-                height="${ brushSize*zoom }"
+                width="${ squareSize }"
+                height="${ squareSize }"
             />
         </svg>
     `; //Los valores tienen que estar iguales para que calce, se ajusta bien considerando el zoom.
@@ -56,6 +58,19 @@ function configurarEventosCanvas() {
     });
 
     canvas.on('mouse:up', () => {
+        canvas.setCursor(getAndCacheCursor());
+    });
+
+    canvas.on('mouse:wheel', function(opt) {
+        var delta = opt.e.deltaY; //Obtiene un valor segun cuanto se movio la rueda del mouse, positivo o negativo.
+        zoom = canvas.getZoom(); //Obtiene el valor actual del zoom del canvas
+        zoom *= 0.999 ** delta; //Realiza el zoom de manera suave
+        if (zoom > 10) zoom = 10; //Limite del zoom
+        if (zoom < 0.5) zoom = 0.5;
+        canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom); //Se realiza el zoom respecto a la posicion actual del mouse
+        opt.e.preventDefault(); //Que no haga el movieminto default de la página y se mueva completa hacia arriba o abajo
+        opt.e.stopPropagation(); //Que no afecte a elementos fuera del canvas
+        canvas.requestRenderAll(); //Redibuja todo el canvas, para evitar problemas de sincronizacion, luego de los ajustes.
         canvas.setCursor(getAndCacheCursor());
     });
 }
@@ -86,7 +101,7 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
         });
 
         canvas.add(fabricImg); //Añade la imagen al canvas
-        //canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
+        canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
         configurarEventosCanvas();
     }
 

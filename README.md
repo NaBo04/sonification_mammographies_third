@@ -119,7 +119,6 @@
 
 # Proximos pasos: 
 Agregar a los test 1 y 2:
-- El zoom con la rueda del mouse y verificar que todo esté correcto
 - El moverse con el click derecho
 - El colocar cuadrados con click, que se queden puestos, se ajusten al zoom y recordar guardar 
         donde se colocan como respuestas del tipo [x, y, size] para que se descarguen en los datos
@@ -131,6 +130,7 @@ Agregar a los test 1 y 2:
 - Agregar la sonificación. Esto es largo porque debo verificar que todo se haga de manera correcta.
         Puedo usar las imágenes de prueba o inventar las mías.
 - Agregar el test 3 de la misma forma que los 1 y 2.
+- Hacer el código para comprobar las respuestas y compilar las otras.
 
 # Pasos opcionales
 - Botón de pausa de tiempo
