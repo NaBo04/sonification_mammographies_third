@@ -121,6 +121,7 @@
 - Quité que se puedan colocar cuadrados en el test 1, porque no es su función.
 - Ahora las respuestas de donde se ponen los caudrados se guarda correctamente en el test 2, estas
         se pueden descargar y cargar correctamente.
+- Agregué los controles detallados a los test 1 y 2.
 
 # Proximos pasos: 
 Agregar a los test 1 y 2:
