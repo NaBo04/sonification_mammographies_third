@@ -31,8 +31,12 @@
             for (let answer of userAnswers[1]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
-            contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad\n';
+            contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad;cuadrados\n';
             for (let answer of userAnswers[2]) {
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
+            }
+            contenido += '\ntest 3\nimagen;tiempo;nivel de seguridad;cuadrados\n';
+            for (let answer of userAnswers[3]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
             const blob = new Blob([contenido], { type: 'text/csv' });

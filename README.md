@@ -122,11 +122,9 @@
 - Ahora las respuestas de donde se ponen los caudrados se guarda correctamente en el test 2, estas
         se pueden descargar y cargar correctamente.
 - Agregué los controles detallados a los test 1 y 2.
+- Agregué el test 3 a todo lo anterior. Está completo y funcional hasta el punto de los test 1 y 2.
 
 # Proximos pasos: 
-Agregar a los test 1 y 2:
-- Agregar la lista de controles.
-- Agregar el test 3 de la misma forma que los 1 y 2.
 - Agregar la sonificación. Esto es largo porque debo verificar que todo se haga de manera correcta.
         Puedo usar las imágenes de prueba o inventar las mías.
 - Hacer el código para comprobar las respuestas y compilar las otras.
@@ -144,3 +142,4 @@ Agregar a los test 1 y 2:
 - Preguntarle por el tema de meter las 5 sonificaciones o no. Y luego ver como añadir esto en el
         código.
 - Pedirle la o las sonificaciones finales para añadirlas.
+- Correo para enviarle las respuestas.

@@ -13,7 +13,7 @@
             <ul class="progress-list">
                 <li>Test 1: <span id="test1Progress">0</span>/45</li>
                 <li>Test 2: <span id="test2Progress">0</span>/45</li>
-                <li>Test 3: </li>
+                <li>Test 3: <span id="test3Progress">0</span>/2</li>
             </ul>
             <hr style="border: none; height: 2px; background-color: black; width: 90%;">
             <h1 class="progress-list" style="padding-top: 40px;">Si tu progreso no se guardó, puedes cargar tu último archivo de respuestas</h1>
@@ -49,9 +49,11 @@
         document.getElementById("nameMember").textContent = userAnswers[0];
         document.getElementById("test1Progress").textContent = userAnswers[1].length;
         document.getElementById("test2Progress").textContent = userAnswers[2].length;
+        document.getElementById("test3Progress").textContent = userAnswers[3].length;
+        console.log(userAnswers[3]);
 
         var testSelected = "";
-        var sonSelected = ""; 
+        var sonSelected = "";
         const testButtons = ["test1", "test2", "test3"];
         const sonButtons = ["son1", "son2", "son3", "son4", "son5"];
     
@@ -113,7 +115,7 @@
                     }
                     let test2Answers = [];
                     i += 3;
-                    while (i < lineas.length) {
+                    while (lineas[i] != "") {
                         let answer2 = lineas[i].trim().split(';');
                         answer2[0] = parseInt(answer2[0]);
                         let squares2 = answer2[3].split(',');
@@ -127,6 +129,20 @@
                         i++;
                     }
                     let test3Answers = [];
+                    i += 3;
+                    while (i < lineas.length) {
+                        let answer3 = lineas[i].trim().split(';');
+                        answer3[0] = parseInt(answer3[0]);
+                        let squares3 = answer3[3].split(',');
+                        let squaresList = [];
+                        for (let j = 0; j < squares3.length / 3; j++) {
+                            newSquare = [squares3[3*j], squares3[1 + (3*j)], squares3[2 + (3*j)]];
+                            squaresList.push(newSquare);
+                        }
+                        answer3[3] = squaresList;
+                        test3Answers.push(answer3);
+                        i++;
+                    }
                     let loadData = [usuario, test1Answers, test2Answers, test3Answers];
                     sessionStorage.setItem('userAnswers', JSON.stringify(loadData));
                     usersList = JSON.parse(localStorage.getItem('usersList'));

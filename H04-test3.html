@@ -1,80 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonification_Mammographies</title>
+    <title>Test 3</title>
     <link rel="stylesheet" href="S04-styleTest3.css">
     <script src="./lib/fabric.js"></script>
+    <script type="module">
+        let usedNumbers = [];
+        for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[3]){
+            usedNumbers.push(number[0]);
+        }
+        let notUsedNumbers = [];
+        for (let i = 1; i<=2; i++){
+            if (!usedNumbers.includes(i)){
+                notUsedNumbers.push(i);
+            }
+        }
+        if (notUsedNumbers.length === 0) {
+            sessionStorage.setItem('fullTest', 'test de Mamografías');
+            window.location.href = 'H05-endScreen.html';
+        }
+
+        var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)];
+        var selectedImage = document.getElementById('image');
+        selectedImage.src = `./assets/test3/im${random_number}.jpg`;
+
+        var title = document.getElementById('imageNumber');
+        title.textContent = `Test 3 - Imagen ${random_number}`;
+
+        window.imageNumber = random_number;
+    </script>
 </head>
 <body>
-    <script type="module">
+    <div id="centralBlock" class="contenido">
+        <div id="testSelection" class="container">
+            <div id="infoColumn" class="column">
+                <div class="encabezado">
+                    <h1 id="imageNumber"> Test 2 - Imagen </h1>
+                    <button class="helpButton" onclick="abrirModal()">Controles</button>
+                    <div id="miModal" class="modal">
+                        <div class="modal-contenido">
+                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                            <h2>Controles</h2>
+                            <ul>
+                                <li>El sonido depende del área del cuadrado del puntero.</li>
+                                <li>Puedes ajustar el tamaño del puntero con el slider a la izquierda.</li>
+                                <li>Puedes colocar un cuadrado como respuesta con el click izquierdo.</li>
+                                <li>Puedes hacer zoom con la rueda del mouse.</li>
+                                <li>Puedes desplazar la imagen usando el click derecho.</li>
+                                <li>Puedes regular el volumen con el slider de la izquierda y la caja de mute.</li>
+                                <li>Debes responder la pregunta y colocar al menos un cuadrado para finalizar el test.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <h0 class="tempo" style="padding-top: 50px; padding-bottom: 50px;">Tiempo transcurrido:
+                    <span id="time" style="padding-left: 5px;">00:00</span>
+                </h0>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <div style="padding-top: 30px; font-size: 20px;">
+                    Tamaño del puntero <br>
+                    <input type="range" id="sizeSlider" min="2.5" max="50" step="2.5" value="25" oninput="updateSizeValue(this.value)">
+                    <span id="sizeValue">25</span>
+                </div>
+                <div style="padding-top: 30px; font-size: 20px;">
+                    Volumen <br>
+                    <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2" oninput="updateVolumeValue(this.value)">
+                    <span id="volumeValue">2</span>
+                </div>
+                <div style="padding-top: 30px; font-size: 20px;">
+                    Mute <br>
+                    <input type="checkbox" id="muteCheckBox" onchange="updateMuteValue()"/>
+                    <span id="muteValue">OFF</span>
+                </div>
+            </div>
+            <div id="leftColumn" class="column" style="padding-left: 20px;">
+                <div>
+                    <canvas id="rasterCanvas" style="border: 2px solid black;"></canvas>
+                    <img id="image" src="" style="display: none;" width="500">
+                    <script src="J00-canvas.js"></script>
+                </div>
+            </div>
+            <div id="rightColumn" class="column" style="padding-left: 20px;">
+                <h1 class="titulo">Encuentre las microcalcificaciones</h1>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <h2 class="titulo" style="padding-top: 100px;">¿Qué tan seguro está de su respuesta?</h2>
+                <div style="display: flex; gap: 8px; justify-content: center;">
+                    <h3 class="texto">Inseguro</h3>
+                    <button class="option-button small-button" id="1" onclick="pressOptionButton('1')">1</button>
+                    <button class="option-button small-button" id="2" onclick="pressOptionButton('2')">2</button>
+                    <button class="option-button small-button" id="3" onclick="pressOptionButton('3')">3</button>
+                    <button class="option-button small-button" id="4" onclick="pressOptionButton('4')">4</button>
+                    <button class="option-button small-button" id="5" onclick="pressOptionButton('5')">5</button>
+                    <h3 class="texto">Seguro</h3>
+                </div>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <div id="connections" class="footer" style="padding-top: 100px;">
+                    <button class="back-button" onclick="window.location.href='H01-testSelection.html'">Volver</button>
+                    <button class="next-button" onclick="pressNextButton()">Finalizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const putSquare = true;
+        var squares = [];
+        var scaleSelected = "";
+        const scaleButtons = ["1", "2", "3", "4", "5"];
+
+        function pressOptionButton(id) {
+            scaleSelected = id;
+            for (const buttonId of scaleButtons) {
+                const btn = document.getElementById(buttonId);
+                if (!btn) continue;
         
-if (typeof (WebAssembly) === "undefined") { //Alerta que aparece en el navegador si no soporta WebAssembly
-    alert("WebAssembly is not supported in this browser, the page will not work !")
-}
+                if (buttonId === id) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            }
+        }
 
-var mock_dsp = null; //Esta variable es para guardar el nodo de audio DSP (Digitla Signal Procesing)
+        function pressNextButton() {
+            if (squares.length == 0) {
+                alert('Please mark your answer.');
+                return;
+            }
+            if (scaleSelected == ""){
+                alert('Please select a scale.');
+                return;
+            }
+            
 
-import { createFaustNode } from "./faust/mockDSP.js";
-const audioContext = new (window.AudioContext || window.webkitAudioContext)(); 
+            let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
+            let answersData = [window.imageNumber, document.getElementById("time").textContent, scaleSelected, squares]; // [n_imagen, tiempo, escala, cuadrados]
+            userAnswers[3].push(answersData);
+            userAnswers[3].sort(function(a,b) {
+                return a[0] - b[0];
+            });
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 
-window.addEventListener("load", async () => {
-    const { faustNode } = await createFaustNode(audioContext, "mock_dsp");
-    mock_dsp = faustNode;
-    if (!mock_dsp) return;
-    await mock_dsp.start();
-    mock_dsp.connect(audioContext.destination); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo
+            usersList = JSON.parse(localStorage.getItem('usersList'));
+            for (let i in usersList) {
+                if (usersList[i][0] == userAnswers[0]) {
+                    usersList[i] = userAnswers;
+                }
+            }
+            localStorage.setItem('usersList', JSON.stringify(usersList));
 
-    document.getElementById("volumeSlider").addEventListener("input", () => {
-        mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
-    });
-    document.getElementById("muteCheckBox").addEventListener("change", () => {
-        mock_dsp.setParamValue("/mock_dsp/mute", parseFloat(muteCheckBox.checked ? 1 : 0));
-    });
-});
+            window.location.href = 'H05-endScreen.html';
+        }
 
-window.addEventListener('touchstart', function() { //Funcion ante toque en pantalla de IOS
-    if (audioContext.state !== "suspended") return; //Si no esta suspendido se acaba
-    var buffer = audioContext.createBuffer(1, 1, 22050); //Crea un buffer vacio
-    var source = audioContext.createBufferSource(); //Fuente de Buffer
-    source.buffer = buffer
-    source.connect(audioContext.destination); //Conecta el buffer a la salida
-    source.start(); //Lo reproduce
-    audioContext.resume().then(() => console.log("Audio resumed")); //Continua con el audio que estaba suspendido
-    }, false);
-
-window.addEventListener("mousedown", () => { //Relaciona una funcion al evento de hacer click con el mouse
-    if (audioContext.state !== "suspended") return; //Si el audio estaba suspendido
-    audioContext.resume().then(() => console.log("Audio resumed")) //Lo retorna
-});  
-
+        let seconds = 0;
+        function formatTime(sec) {
+            if (sec < 3600){
+                const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+                const secs = String(sec % 60).padStart(2, '0');
+                return `${mins}:${secs}`;
+            }
+            return '59:59'
+        }
+        function updateTimer() {
+            seconds++;
+            document.getElementById("time").textContent = formatTime(seconds);
+        }
+        setInterval(updateTimer, 1000);
+        
+        function abrirModal() {document.getElementById("miModal").style.display = "block";}
+        function cerrarModal() {document.getElementById("miModal").style.display = "none";}
     </script>
-
-<b>Controles</b>
-<ul>
-    <li>Puedes hacer zoom con la rueda del mouse.</li>
-    <li>Puedes moverle en la imagen manteniendo presionada la rueda del mouse. (No está funcionando)</li>
-    <li>Alternativamente puedes moverte manteniendo presionada la barra espaciadora y moviendo el mouse.</li>
-    <li>Puedes cambiar el tamaño del selector y ajusatr el volumen usando los <i>sliders</i> de abajo.</li>
-    <li>Puedes silenciar el sonido usando la <i>checkbox</i> de abajo.</li>
-</ul>
-<div style="display: flex;">
-    <canvas id="rasterCanvas"></canvas>
-    <div id="arrayDisplay"></div>
-    <script src="J00-canvas_old.js"></script>
-</div>
-<div style="padding-top: 25px;">
-    Tamaño del puntero: 
-    <input type="range" id="mySlider" min="0" max="200" step="10" value="100" oninput="updateSliderValue(this.value)">
-    <span id="sliderValue">100</span>
-     | Volumen: 
-    <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2" oninput="updateVolumeValue(this.value)">
-    <span id="volumeValue">2</span>
-     | Mute:
-    <input type="checkbox" id="muteCheckBox" onchange="updateMuteValue()"/>
-    <span id="muteValue">OFF</span>
-</div>
-    <script src="J01-sonification_old.js"></script>
 </body>
 </html>
