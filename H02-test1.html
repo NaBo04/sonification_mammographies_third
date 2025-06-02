@@ -174,5 +174,30 @@
         function cerrarModal() {document.getElementById("miModal").style.display = "none";}
         
     </script>
+    <script type="module">
+        if (typeof (WebAssembly) === "undefined") { //Alerta que aparece en el navegador si no soporta WebAssembly
+            alert("WebAssembly is not supported in this browser, the page will not work !")
+        }
+        var mock_dsp = null; //Esta variable es para guardar el nodo de audio DSP (Digitla Signal Procesing)
+        import { createFaustNode } from "./faust/mockDSP.js";
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        window.addEventListener("load", async () => {
+            const { faustNode } = await createFaustNode(audioContext, "mock_dsp");
+            mock_dsp = faustNode;
+            window.mock_dsp = faustNode; 
+            if (!mock_dsp) return;
+            await mock_dsp.start();
+            mock_dsp.connect(audioContext.destination); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo
+            mock_dsp.setParamValue("/mock_dsp/mute", 1);
+            document.getElementById("volumeSlider").addEventListener("input", () => {
+                mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
+            });
+            document.getElementById("muteCheckBox").addEventListener("change", () => {
+                mock_dsp.setParamValue("/mock_dsp/mute", parseFloat(muteCheckBox.checked ? 1 : 0));
+            });
+        });
+    </script>
+    <script src="J01-sonification.js"></script>
 </body>
 </html>

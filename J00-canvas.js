@@ -6,6 +6,7 @@ const maxSize = 128; //Tamaño maximo del cursor para que salga en el navegador
 var squareSize = Math.min(brushSize * zoom, maxSize); 
 let canvas;
 let imgScale;
+let originalImageCtx;
 let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
 let lastCursor = null;
@@ -59,17 +60,17 @@ function configurarEventosCanvas() {
     canvas.on('mouse:down', function(e) {
         if (e.button == 1 && putSquare == true) { //Detecta el click izquierdo
             var pointer = this.getPointer(e); //Obtiene las coordenadas actuales del puntero
-            squareSize = Math.min(brushSize * zoom, maxSize) / zoom; 
+            const squareSize2 = Math.min(brushSize * zoom, maxSize) / zoom; 
             var rect = new fabric.Rect({ //Variable que crea un objeto de fabric igual al puntero 
                 left: pointer.x, //Coordenadas de la variable son las del mouse
                 top: pointer.y,
                 fill: 'rgba(255,0,0,0.5)', //Color
-                width: squareSize,  //Ancho y altura
-                height: squareSize, 
+                width: squareSize2,  //Ancho y altura
+                height: squareSize2, 
                 selectable: false //No es seleccionable luego
             });
             canvas.add(rect); //Lo agrega al canvas para que se vea en pantalla
-            squares.push([pointer.x / imgScale, pointer.y / imgScale, squareSize / imgScale]);
+            squares.push([pointer.x / imgScale, pointer.y / imgScale, squareSize2 / imgScale]);
         }
     });
 
@@ -146,6 +147,12 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
         canvas.add(fabricImg); //Añade la imagen al canvas
         canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
         configurarEventosCanvas();
+        //Aquí creo el contexto de dibujo sobre un canvas oculto que contiene solo la imagen original
+        const originalImageCanvas = document.createElement('canvas');
+        originalImageCanvas.width = imgWidth;
+        originalImageCanvas.height = imgHeight;
+        originalImageCtx = originalImageCanvas.getContext('2d', { willReadFrequently: true });
+        originalImageCtx.drawImage(imgElement, 0, 0, imgWidth, imgHeight);
     }
 
     if (imgElement.complete && imgElement.naturalHeight !== 0) {

@@ -123,14 +123,15 @@
         se pueden descargar y cargar correctamente.
 - Agregué los controles detallados a los test 1 y 2.
 - Agregué el test 3 a todo lo anterior. Está completo y funcional hasta el punto de los test 1 y 2.
+- Agregué la sonificación y me aseguré de que funcione correctamente. Ya está operativa en todos los
+        tests.
 
 # Proximos pasos: 
-- Agregar la sonificación. Esto es largo porque debo verificar que todo se haga de manera correcta.
-        Puedo usar las imágenes de prueba o inventar las mías.
 - Hacer el código para comprobar las respuestas y compilar las otras.
 
 # Pasos opcionales
-- Botón de pausa de tiempo
+- Botón de pausa de tiempo, oculte imagen y apague el sonido.
+- Que todo se suspenda si se sale de la pantalla y vuelva cuando haga click.
 - Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
 - Me gustaría invertir unas cositas, y es que podría cambiar el tamaño del puntero con la rueda del
         mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas. 
@@ -141,5 +142,9 @@
         añadirlas al test 3 y para usar mi código para extraer las respuestas correctas.
 - Preguntarle por el tema de meter las 5 sonificaciones o no. Y luego ver como añadir esto en el
         código.
+- En cuanto a las sonificaciones tengo que preguntarle también acerca de las escalas de las ditintas
+        medidas estadísticas para saber cuánto influyen y cuales son sus rangos en las 
+        sonificaciones.
 - Pedirle la o las sonificaciones finales para añadirlas.
 - Correo para enviarle las respuestas.
+- Preguntarle por la red neuronal.
