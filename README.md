@@ -126,14 +126,15 @@
 - Agregué la sonificación y me aseguré de que funcione correctamente. Ya está operativa en todos los
         tests.
 - Eliminé el número de la imagen en cada test, pero se sigue guardando para la lógica de fondo.
+- Quité el tiempo visible, pero se maneja de fondo todavía.
+- Cambié las alertas a español.
+- Eliminé los nobmres de los tests.
+- Dejé la opción para solo 2 sonificaciones.
 
 # Proximos pasos: 
-- Eliminar que el tiempo sea visible en el test, pero que se siga tomando de fondo.
 - Agregar un pop-up al inicio del test con las instrucciones y los controles.
 - Test 1, cambiar pregunta por si las imágenes son iguales.
-- Dejar todo en español. Esto va más que nada para las alertas.
 - Test2 -> Encuentre la(s) microcalcificación(es).
-- Dejar la opción para 2 sonificaciones.
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
         ocurre que sea de la forma UserTestXAnswers.csv, y en el server una base de datos con los 

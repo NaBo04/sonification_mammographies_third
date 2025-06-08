@@ -121,11 +121,11 @@
 
         function pressNextButton() {
             if (squares.length == 0) {
-                alert('Please mark your answer.');
+                alert('Por favor, marque una respuesta.');
                 return;
             }
             if (scaleSelected == ""){
-                alert('Please select a scale.');
+                alert('Por favor, marca una escala de seguridad.');
                 return;
             }
             
@@ -171,7 +171,7 @@
         window.isMuted = false;
 
         if (typeof (WebAssembly) === "undefined") { //Alerta que aparece en el navegador si no soporta WebAssembly
-            alert("WebAssembly is not supported in this browser, the page will not work !")
+            alert("Tu navegador no es compatible con el sistema de sonificación. Por favor utiliza otro.");
         }
         var mock_dsp = null; //Esta variable es para guardar el nodo de audio DSP (Digitla Signal Procesing)
         import { createFaustNode } from "./faust/mockDSP.js";

@@ -25,17 +25,14 @@
             <div id="testSelection" class="container">
                 <div id="midleColumn" class="column">
                     <h1 class="titulo">Selecciona el test a realizar</h1>
-                    <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1 - Zonas Grises</button>
-                    <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2 - Imágenes sintéticas</button>
-                    <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3 - Mamografías</button>
+                    <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
+                    <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
+                    <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
                 </div>
                 <div id="rightColumn" class="column">
                     <h1 class="titulo">Selecciona la Sonificación</h1>
                     <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
                     <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
-                    <button class="option-button" id="son3" onclick="pressOptionButton('son3')">Sonificación 3</button>
-                    <button class="option-button" id="son4" onclick="pressOptionButton('son4')">Sonificación 4</button>
-                    <button class="option-button" id="son5" onclick="pressOptionButton('son5')">Sonificación 5</button>
                 </div>
             </div>
             <div id="connections" class="footer">
@@ -54,7 +51,7 @@
         var testSelected = "";
         var sonSelected = "";
         const testButtons = ["test1", "test2", "test3"];
-        const sonButtons = ["son1", "son2", "son3", "son4", "son5"];
+        const sonButtons = ["son1", "son2"];
     
         function pressOptionButton(id) {
             const group = id.includes("test") ? (testSelected = id, testButtons) : (sonSelected = id, sonButtons);
@@ -72,11 +69,11 @@
         
         function pressNextButton(){
             if (testSelected == ""){
-                alert('Please select a test.');
+                alert('Por favor, selecciona el test que quieres realizar.');
                 return;
             }
             if (sonSelected == ""){
-                alert('Please select a sonification.');
+                alert('Por favor, selecciona una sonificación para el test.');
                 return;
             }
 

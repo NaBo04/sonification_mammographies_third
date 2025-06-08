@@ -6,8 +6,8 @@
 </head>
 <body>
     <div id="centralBlock" class="contenido">
-        <h1>Sonification Tests</h1>
-        <input type="text" id="userName" placeholder="Enter Your Name">
+        <h1>Tests de sonificación</h1>
+        <input type="text" id="userName" placeholder="Ingresa tu nombre">
         <button id="startButton">Start</button>
     </div>
 
@@ -22,7 +22,7 @@
         document.getElementById('startButton').addEventListener('click', function() {
             var userName = document.getElementById('userName').value;
             if(userName.trim() === '') {
-                alert('Please enter your name.');
+                alert('Por favor, ingresa un nombre de usuario.');
                 return;
             }
 
