@@ -47,18 +47,10 @@ body { /* Ahora esto solo al cuerpo */
 .column {
     padding: 10px;
 }
-#leftContent {
-    width: 25%;
-}
-#rightContent {
+#centralBlock {
     max-width: 50%;
     min-width: 40%;
     box-sizing: border-box; /* Esto incluye padding y borde dentro del ancho total */
-}
-
-
-.progress-list{
-    font-size: 20px;
 }
 
 .footer {
@@ -98,20 +90,4 @@ body { /* Ahora esto solo al cuerpo */
 .titulo {
     text-align: center;
     font-size: 30px;
-}
-
-.uploadButton {
-    display: block;
-    width: 300px;
-    margin: 20px auto;
-    padding: 15px;
-    font-size: 18px;
-    background-color: #495049;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-.uploadButton:hover {
-    background-color: #a1aaa1;
 }

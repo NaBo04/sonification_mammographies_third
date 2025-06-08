@@ -5,49 +5,26 @@
     <link rel="stylesheet" href="S01-styleTestSelection.css">
 </head>
 <body>
-    <div id="leftContent" class="column">
-        <div id="progress" class="contenido">
-            <h1 class="titulo">Progreso de
-                    <span id="nameMember" style="padding-left: 2px;">User</span>
-            </h1>
-            <ul class="progress-list">
-                <li>Test 1: <span id="test1Progress">0</span>/45</li>
-                <li>Test 2: <span id="test2Progress">0</span>/45</li>
-                <li>Test 3: <span id="test3Progress">0</span>/2</li>
-            </ul>
-            <hr style="border: none; height: 2px; background-color: black; width: 90%;">
-            <h1 class="progress-list" style="padding-top: 40px;">Si tu progreso no se guardó, puedes cargar tu último archivo de respuestas</h1>
-            <button class="uploadButton" id="uploadButton" onclick="uploadAnswers()">Cargar respuestas</button>
+    <div id="centralBlock" class="contenido">
+        <div id="testSelection" class="container">
+            <div id="midleColumn" class="column">
+                <h1 class="titulo">Selecciona el test a realizar</h1>
+                <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
+                <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
+                <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
+            </div>
+            <div id="rightColumn" class="column">
+                <h1 class="titulo">Selecciona la Sonificación</h1>
+                <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
+                <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
+            </div>
         </div>
-    </div>
-    <div id="rightContent" class="column">
-        <div id="centralBlock" class="contenido">
-            <div id="testSelection" class="container">
-                <div id="midleColumn" class="column">
-                    <h1 class="titulo">Selecciona el test a realizar</h1>
-                    <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
-                    <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
-                    <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
-                </div>
-                <div id="rightColumn" class="column">
-                    <h1 class="titulo">Selecciona la Sonificación</h1>
-                    <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
-                    <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
-                </div>
-            </div>
-            <div id="connections" class="footer">
-                <button class="back-button" onclick="window.location.href='H00-startScreen.html'">Volver</button>
-                <button class="next-button" onclick="pressNextButton()">Empezar</button>
-            </div>
+        <div id="connections" class="footer">
+            <button class="back-button" onclick="window.location.href='H00-startScreen.html'">Volver</button>
+            <button class="next-button" onclick="pressNextButton()">Empezar</button>
         </div>
     </div>
     <script>
-        let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
-        document.getElementById("nameMember").textContent = userAnswers[0];
-        document.getElementById("test1Progress").textContent = userAnswers[1].length;
-        document.getElementById("test2Progress").textContent = userAnswers[2].length;
-        document.getElementById("test3Progress").textContent = userAnswers[3].length;
-
         var testSelected = "";
         var sonSelected = "";
         const testButtons = ["test1", "test2", "test3"];
@@ -84,83 +61,6 @@
             } else{
                 window.location.href = 'H04-test3.html';
             }
-        }
-
-        function uploadAnswers(){
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.csv';
-            input.style.display = 'none';
-
-            input.onchange = function(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const contenido = e.target.result;
-                    const lineas = contenido.trim().split('\n');
-                    let usuario = lineas[0].split(';')[1];
-                    let test1Answers = [];
-                    let i = 4;
-                    while (lineas[i] != "") {
-                        let answer1 = lineas[i].trim().split(';');
-                        answer1[0] = parseInt(answer1[0]);
-                        test1Answers.push(answer1);
-                        i++;
-                    }
-                    let test2Answers = [];
-                    i += 3;
-                    while (lineas[i] != "") {
-                        let answer2 = lineas[i].trim().split(';');
-                        answer2[0] = parseInt(answer2[0]);
-                        let squares2 = answer2[3].split(',');
-                        let squaresList = [];
-                        for (let j = 0; j < squares2.length / 3; j++) {
-                            newSquare = [squares2[3*j], squares2[1 + (3*j)], squares2[2 + (3*j)]];
-                            squaresList.push(newSquare);
-                        }
-                        answer2[3] = squaresList;
-                        test2Answers.push(answer2);
-                        i++;
-                    }
-                    let test3Answers = [];
-                    i += 3;
-                    while (i < lineas.length) {
-                        let answer3 = lineas[i].trim().split(';');
-                        answer3[0] = parseInt(answer3[0]);
-                        let squares3 = answer3[3].split(',');
-                        let squaresList = [];
-                        for (let j = 0; j < squares3.length / 3; j++) {
-                            newSquare = [squares3[3*j], squares3[1 + (3*j)], squares3[2 + (3*j)]];
-                            squaresList.push(newSquare);
-                        }
-                        answer3[3] = squaresList;
-                        test3Answers.push(answer3);
-                        i++;
-                    }
-                    let loadData = [usuario, test1Answers, test2Answers, test3Answers];
-                    sessionStorage.setItem('userAnswers', JSON.stringify(loadData));
-                    usersList = JSON.parse(localStorage.getItem('usersList'));
-                    let found = false;
-                    for (let i in usersList) {
-                        if (usersList[i][0] == loadData[0]) {
-                            usersList[i] = loadData;
-                            found = true;
-                        }
-                    }
-                    if (found == false) {
-                        usersList.push(loadData);
-                    }
-                    localStorage.setItem('usersList', JSON.stringify(usersList));
-                    location.reload();
-                };
-                reader.readAsText(file);
-            };
-
-            document.body.appendChild(input);
-            input.click();
-            document.body.removeChild(input);
         }
       </script>
 </body>

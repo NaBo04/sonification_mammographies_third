@@ -131,23 +131,24 @@
 - Eliminé los nobmres de los tests.
 - Dejé la opción para solo 2 sonificaciones.
 - Cambié la pregunta del test 1. Y su lógica por detrás.
+- Cambié la pregunta del test 2.
+- Eliminé todo lo relacionado al progreso y la carga de datos del usuario.
 
 # Proximos pasos: 
 - Agregar un pop-up al inicio del test con las instrucciones y los controles.
-- Test2 -> Encuentre la(s) microcalcificación(es).
+- Cambiar la lógica de los test, y hacer que al seleccionar uno vaya desde ese hasta el final.
+- Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
+        de esto solamente.
+- Datos sin pasar por el usuario, eliminar carga y descarga de archivos, todo automático cuando 
+        termine los tests. (Enfocarme en esto)
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
         ocurre que sea de la forma UserTestXAnswers.csv, y en el server una base de datos con los 
         nombres de usuario y si uno se repite que diga UserTestXAnswers_2.csv.
-- Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
-        valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
-- Cambiar la lógica de los test, y hacer que al seleccionar uno vaya desde ese hasta el final.
-- Datos sin pasar por el usuario, eliminar carga y descarga de archivos, todo automático cuando 
-        termine los tests. (Enfocarme en esto)
-- Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
-        de esto solamente.
 - Checkpoints solo al terminar los test por completo (45 imágenes).
 - Que las respuestas se envién de forma automática después de cada test completo.
+- Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
+        valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
 
 
 # Pasos opcionales
