@@ -130,10 +130,10 @@
 - Cambié las alertas a español.
 - Eliminé los nobmres de los tests.
 - Dejé la opción para solo 2 sonificaciones.
+- Cambié la pregunta del test 1. Y su lógica por detrás.
 
 # Proximos pasos: 
 - Agregar un pop-up al inicio del test con las instrucciones y los controles.
-- Test 1, cambiar pregunta por si las imágenes son iguales.
 - Test2 -> Encuentre la(s) microcalcificación(es).
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me

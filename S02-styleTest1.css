@@ -29,7 +29,7 @@ body { /* Ahora esto solo al cuerpo */
 
 .option-button {
     display: block;
-    width: 300px;
+    width: 80px;
     margin: 20px auto;
     padding: 15px;
     font-size: 18px;
