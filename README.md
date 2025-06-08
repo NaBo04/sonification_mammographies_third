@@ -127,6 +127,7 @@
         tests.
 
 # Proximos pasos: 
+- Arreglar el bug del mute.
 - Hacer el código para comprobar las respuestas y compilar las otras.
 
 # Pasos opcionales
@@ -148,3 +149,20 @@
 - Pedirle la o las sonificaciones finales para añadirlas.
 - Correo para enviarle las respuestas.
 - Preguntarle por la red neuronal.
+
+# Apuntes reunión
+
+- Eliminar número visible de la imagen.
+- Dejar 2 sonificaciones.
+- Eliminar tiempo visible del test.
+- Pop-up al inicio del test que explique lo que se hace.
+- Test 1, cambiar pregunta por si las imágenes son iguales.
+- Dejar todo en español.
+- De un test hasta terminar.
+- Test2 -> Encuentre la(s) microcalcificación
+- Datos sin pasar por el usuario, eliminar carga y descarga de archivos, todo automático cuando 
+        termine los tests. (Enfocarme en esto)
+- Comparar solo los centros de los cuadrados.
+- Checkpoints solo al terminar los test por completo (45 imágenes).
+- Que las respuestas se envién de forma automática después de cada test completo.
+- Añadir la red. (como un quinto parámetro).

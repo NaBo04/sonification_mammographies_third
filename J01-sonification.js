@@ -57,7 +57,9 @@ window.addEventListener('load', () => {
     });
     
     canvas.upperCanvasEl.addEventListener('mouseenter', () => {
-        mock_dsp.setParamValue("/mock_dsp/mute", 0);
+        if (window.isMuted == false) {
+            mock_dsp.setParamValue("/mock_dsp/mute", 0);
+        }
     });
     canvas.upperCanvasEl.addEventListener('mouseleave', () => {
         mock_dsp.setParamValue("/mock_dsp/mute", 1);

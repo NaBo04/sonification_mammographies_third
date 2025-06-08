@@ -175,6 +175,8 @@
         
     </script>
     <script type="module">
+        window.isMuted = false;
+
         if (typeof (WebAssembly) === "undefined") { //Alerta que aparece en el navegador si no soporta WebAssembly
             alert("WebAssembly is not supported in this browser, the page will not work !")
         }
@@ -194,7 +196,7 @@
                 mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
             });
             document.getElementById("muteCheckBox").addEventListener("change", () => {
-                mock_dsp.setParamValue("/mock_dsp/mute", parseFloat(muteCheckBox.checked ? 1 : 0));
+                muteCheckBox.checked ? window.isMuted = true : window.isMuted = false;
             });
         });
     </script>
