@@ -25,6 +25,7 @@
         selectedImage.src = `./assets/test2/im${random_number}.png`;
 
         window.imageNumber = random_number;
+        window.time = "";
     </script>
 </head>
 <body>
@@ -32,28 +33,8 @@
         <div id="testSelection" class="container">
             <div id="infoColumn" class="column">
                 <div class="encabezado">
-                    <h1 id="imageNumber" style="margin: auto; font-size: 50px;"> Test 2 </h1>
-                    <button class="helpButton" onclick="abrirModal()">Controles</button>
-                    <div id="miModal" class="modal">
-                        <div class="modal-contenido">
-                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
-                            <h2>Controles</h2>
-                            <ul>
-                                <li>El sonido depende del área del cuadrado del puntero.</li>
-                                <li>Puedes ajustar el tamaño del puntero con el slider a la izquierda.</li>
-                                <li>Puedes colocar un cuadrado como respuesta con el click izquierdo.</li>
-                                <li>Puedes hacer zoom con la rueda del mouse.</li>
-                                <li>Puedes desplazar la imagen usando el click derecho.</li>
-                                <li>Puedes regular el volumen con el slider de la izquierda y la caja de mute.</li>
-                                <li>Debes responder la pregunta y colocar al menos un cuadrado para finalizar el test.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h1 id="imageNumber" style="margin: auto; font-size: 50px; padding-bottom: 30px; padding-top: 20px;"> Test 2 </h1>
                 </div>
-                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
-                <h0 class="tempo" style="padding-top: 50px; padding-bottom: 50px;">Tiempo transcurrido:
-                    <span id="time" style="padding-left: 5px;">00:00</span>
-                </h0>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px; font-size: 20px;">
                     Tamaño del puntero <br>
@@ -65,10 +46,29 @@
                     <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2" oninput="updateVolumeValue(this.value)">
                     <span id="volumeValue">2</span>
                 </div>
-                <div style="padding-top: 30px; font-size: 20px;">
+                <div style="padding-top: 30px; padding-bottom: 20px; font-size: 20px;">
                     Mute <br>
                     <input type="checkbox" id="muteCheckBox" onchange="updateMuteValue()"/>
                     <span id="muteValue">OFF</span>
+                </div>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <div style="padding-top: 30px;">
+                    <button class="helpButton" onclick="abrirModal()" style="margin: auto;">Controles</button>
+                        <div id="miModal" class="modal">
+                            <div class="modal-contenido">
+                                <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                                <h2>Controles</h2>
+                                <ul>
+                                    <li>El sonido depende del área del cuadrado del puntero.</li>
+                                    <li>Puedes ajustar el tamaño del puntero con el slider a la izquierda.</li>
+                                    <li>Puedes colocar un cuadrado como respuesta con el click izquierdo.</li>
+                                    <li>Puedes hacer zoom con la rueda del mouse.</li>
+                                    <li>Puedes desplazar la imagen usando el click derecho.</li>
+                                    <li>Puedes regular el volumen con el slider de la izquierda y la caja de mute.</li>
+                                    <li>Debes responder la pregunta y colocar al menos un cuadrado para finalizar el test.</li>
+                                </ul>
+                            </div>
+                        </div>
                 </div>
             </div>
             <div id="leftColumn" class="column" style="padding-left: 20px;">
@@ -131,7 +131,7 @@
             
 
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
-            let answersData = [window.imageNumber, document.getElementById("time").textContent, scaleSelected, squares]; // [n_imagen, tiempo, escala]
+            let answersData = [window.imageNumber, window.time, scaleSelected, squares]; // [n_imagen, tiempo, escala]
             userAnswers[2].push(answersData);
             userAnswers[2].sort(function(a,b) {
                 return a[0] - b[0];
@@ -160,7 +160,7 @@
         }
         function updateTimer() {
             seconds++;
-            document.getElementById("time").textContent = formatTime(seconds);
+            window.time = formatTime(seconds);
         }
         setInterval(updateTimer, 1000);
         

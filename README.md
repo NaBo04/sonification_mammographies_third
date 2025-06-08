@@ -128,6 +128,11 @@
 - Eliminé el número de la imagen en cada test, pero se sigue guardando para la lógica de fondo.
 
 # Proximos pasos: 
+- Eliminar que el tiempo sea visible en el test, pero que se siga tomando de fondo.
+- Agregar un pop-up al inicio del test con las instrucciones y los controles.
+- Test 1, cambiar pregunta por si las imágenes son iguales.
+- Dejar todo en español. Esto va más que nada para las alertas.
+- Test2 -> Encuentre la(s) microcalcificación(es).
 - Dejar la opción para 2 sonificaciones.
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
@@ -135,12 +140,7 @@
         nombres de usuario y si uno se repite que diga UserTestXAnswers_2.csv.
 - Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
         valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
-- Eliminar que el tiempo sea visible en el test, pero que se siga tomando de fondo.
-- Agregar un pop-up al inicio del test con las instrucciones y los controles.
-- Test 1, cambiar pregunta por si las imágenes son iguales.
-- Dejar todo en español. Esto va más que nada para las alertas.
 - Cambiar la lógica de los test, y hacer que al seleccionar uno vaya desde ese hasta el final.
-- Test2 -> Encuentre la(s) microcalcificación(es).
 - Datos sin pasar por el usuario, eliminar carga y descarga de archivos, todo automático cuando 
         termine los tests. (Enfocarme en esto)
 - Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas

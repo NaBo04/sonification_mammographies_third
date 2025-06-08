@@ -62,14 +62,6 @@ body { /* Ahora esto solo al cuerpo */
     padding-top: 10px;
 }
 
-.tempo {
-    display: flex; 
-    justify-content: center; 
-    padding-bottom: 30px;
-    padding-right: 30px;
-    font-size: 30px;
-}
-
 .footer {
     margin-top: 60px;
     display: flex;
