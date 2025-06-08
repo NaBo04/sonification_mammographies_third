@@ -24,9 +24,6 @@
         var selectedImage = document.getElementById('image');
         selectedImage.src = `./assets/test1/im${random_number}.png`;
 
-        var title = document.getElementById('imageNumber');
-        title.textContent = `Test 1 - Imagen ${random_number}`;
-
         window.imageNumber = random_number;
     </script>
 </head>
@@ -35,7 +32,7 @@
         <div id="testSelection" class="container">
             <div id="infoColumn" class="column">
                 <div class="encabezado">
-                    <h1 id="imageNumber"> Test 1 - Imagen </h1>
+                    <h1 id="imageNumber" style="margin: auto; font-size: 50px;"> Test 1 </h1>
                     <button class="helpButton" onclick="abrirModal()">Controles</button>
                     <div id="miModal" class="modal">
                         <div class="modal-contenido">

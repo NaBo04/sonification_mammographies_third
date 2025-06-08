@@ -125,44 +125,36 @@
 - Agregué el test 3 a todo lo anterior. Está completo y funcional hasta el punto de los test 1 y 2.
 - Agregué la sonificación y me aseguré de que funcione correctamente. Ya está operativa en todos los
         tests.
+- Eliminé el número de la imagen en cada test, pero se sigue guardando para la lógica de fondo.
 
 # Proximos pasos: 
-- Arreglar el bug del mute.
-- Hacer el código para comprobar las respuestas y compilar las otras.
-
-# Pasos opcionales
-- Botón de pausa de tiempo, oculte imagen y apague el sonido.
-- Que todo se suspenda si se sale de la pantalla y vuelva cuando haga click.
-- Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
-- Me gustaría invertir unas cositas, y es que podría cambiar el tamaño del puntero con la rueda del
-        mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas. 
-- Si el profe dice, tengo que agregar las 5 sonificaciones y guardarlo como respuesta en cada caso.
-
-# Pedirle al profe
-- Acceso a las imágenes de mamografías con respuestas o al mismo dropbox en el que están, para 
-        añadirlas al test 3 y para usar mi código para extraer las respuestas correctas.
-- Preguntarle por el tema de meter las 5 sonificaciones o no. Y luego ver como añadir esto en el
-        código.
-- En cuanto a las sonificaciones tengo que preguntarle también acerca de las escalas de las ditintas
-        medidas estadísticas para saber cuánto influyen y cuales son sus rangos en las 
-        sonificaciones.
-- Pedirle la o las sonificaciones finales para añadirlas.
-- Correo para enviarle las respuestas.
-- Preguntarle por la red neuronal.
-
-# Apuntes reunión
-
-- Eliminar número visible de la imagen.
-- Dejar 2 sonificaciones.
-- Eliminar tiempo visible del test.
-- Pop-up al inicio del test que explique lo que se hace.
+- Dejar la opción para 2 sonificaciones.
+- Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
+        las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
+        ocurre que sea de la forma UserTestXAnswers.csv, y en el server una base de datos con los 
+        nombres de usuario y si uno se repite que diga UserTestXAnswers_2.csv.
+- Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
+        valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
+- Eliminar que el tiempo sea visible en el test, pero que se siga tomando de fondo.
+- Agregar un pop-up al inicio del test con las instrucciones y los controles.
 - Test 1, cambiar pregunta por si las imágenes son iguales.
-- Dejar todo en español.
-- De un test hasta terminar.
-- Test2 -> Encuentre la(s) microcalcificación
+- Dejar todo en español. Esto va más que nada para las alertas.
+- Cambiar la lógica de los test, y hacer que al seleccionar uno vaya desde ese hasta el final.
+- Test2 -> Encuentre la(s) microcalcificación(es).
 - Datos sin pasar por el usuario, eliminar carga y descarga de archivos, todo automático cuando 
         termine los tests. (Enfocarme en esto)
-- Comparar solo los centros de los cuadrados.
+- Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
+        de esto solamente.
 - Checkpoints solo al terminar los test por completo (45 imágenes).
 - Que las respuestas se envién de forma automática después de cada test completo.
-- Añadir la red. (como un quinto parámetro).
+
+
+# Pasos opcionales
+- Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
+- Me gustaría invertir unas cositas, y es que podría cambiar el tamaño del puntero con la rueda del
+        mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas.
+
+# Pedirle al profe
+- Todas las imágenes del test 3 de mamografías.
+- La sonificación final, para esto necesito el mockDSP. Tengo que tener ojo con los rangos mínimos, 
+        máximos, los intervalos de cambio, etc. Que también le añada mute y volumen.
