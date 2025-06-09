@@ -5,26 +5,46 @@
     <link rel="stylesheet" href="S01-styleTestSelection.css">
 </head>
 <body>
-    <div id="centralBlock" class="contenido">
-        <div id="testSelection" class="container">
-            <div id="midleColumn" class="column">
-                <h1 class="titulo">Selecciona el test a realizar</h1>
-                <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
-                <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
-                <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
-            </div>
-            <div id="rightColumn" class="column">
-                <h1 class="titulo">Selecciona la Sonificación</h1>
-                <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
-                <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
-            </div>
+    <div id="leftContent" class="column">
+        <div id="progress" class="contenido">
+            <h1 class="titulo">Progreso de
+                    <span id="nameMember" style="padding-left: 2px;">User</span>
+            </h1>
+            <ul class="progress-list">
+                <li>Test 1: <span id="test1Progress">0</span>/45</li>
+                <li>Test 2: <span id="test2Progress">0</span>/45</li>
+                <li>Test 3: <span id="test3Progress">0</span>/2</li>
+            </ul>
         </div>
-        <div id="connections" class="footer">
-            <button class="back-button" onclick="window.location.href='H00-startScreen.html'">Volver</button>
-            <button class="next-button" onclick="pressNextButton()">Empezar</button>
+    </div>
+    <div id="rightContent" class="column">
+        <div id="centralBlock" class="contenido">
+            <div id="testSelection" class="container">
+                <div id="midleColumn" class="column">
+                    <h1 class="titulo">Selecciona el test a realizar</h1>
+                    <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
+                    <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
+                    <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
+                </div>
+                <div id="rightColumn" class="column">
+                    <h1 class="titulo">Selecciona la Sonificación</h1>
+                    <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
+                    <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
+                </div>
+            </div>
+            <div id="connections" class="footer">
+                <button class="back-button" onclick="window.location.href='H00-startScreen.html'">Volver</button>
+                <button class="next-button" onclick="pressNextButton()">Empezar</button>
+            </div>
         </div>
     </div>
     <script>
+        let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
+        document.getElementById("nameMember").textContent = userAnswers[0];
+        document.getElementById("test1Progress").textContent = userAnswers[1].length;
+        document.getElementById("test2Progress").textContent = userAnswers[2].length;
+        document.getElementById("test3Progress").textContent = userAnswers[3].length;
+
         var testSelected = "";
         var sonSelected = "";
         const testButtons = ["test1", "test2", "test3"];

@@ -47,10 +47,17 @@ body { /* Ahora esto solo al cuerpo */
 .column {
     padding: 10px;
 }
-#centralBlock {
+#leftContent {
+    width: 25%;
+}
+#rightContent {
     max-width: 50%;
     min-width: 40%;
     box-sizing: border-box; /* Esto incluye padding y borde dentro del ancho total */
+}
+
+.progress-list{
+    font-size: 20px;
 }
 
 .footer {
