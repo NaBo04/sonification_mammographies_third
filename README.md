@@ -133,19 +133,22 @@
 - Cambié la pregunta del test 1. Y su lógica por detrás.
 - Cambié la pregunta del test 2.
 - Eliminé todo lo relacionado al progreso y la carga de datos del usuario.
+- Añadí la lógica del orden de los test 1, 2 y 3, con botones bloqueados.
+- Añadí la sonificación usada a las respuestas del .csv
+- Ahora al terminar una imagen de un test, sigue con otra, hasta pasar por todas las del test donde
+        lo lleva a la pantalla final que le dice que se guardaron las respuestas. Acá se deberán 
+        subir automáticamente a algún lugar. 
+- Eliminé la parte de un test completo en la pantalla final, ya que esta ahora solo sale en ese
+        caso. Además agregué un texto distinto para cuando se terminaron todos los tests.
 
 # Proximos pasos: 
-- Arregar el código de la página de fin de sesión. Ahora solo se llegará a ella con los test 
-        finalizados. Y cambiar el texto. Voy a agregar que solo se llegue acá una vez por test, para
-        enviar las respuestas una sola vez, para esto quiero bloquear los botones de selección de 
-        test para los test completos.
-- Agregar un pop-up al inicio del test con las instrucciones y los controles. Este tiene que 
-        aparecer solo al pasar de la pestaña de selección al test, no al recargarla al final de cada
-        test. Que este pop-up sea el mismo que el que está en controles.
+- Quiero añadir las instrucciones en una columna en testSelection, que luego sea el mismo texto del
+        botón instrucciones.
+- Quiero añadir un contador de imágenes por test. Para que quien lo de sepa en qué imagen va.
+- Quiero añadir un botón de cambiar de usuario en la pantalla final.
 - Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
         de esto solamente.
 - Añadir una segunda sonificación.
-
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
         ocurre que sea de la forma UserTestXAnswers.csv, y en el server una base de datos con los 
@@ -154,9 +157,11 @@
 - Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
         valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
 
-
 # Pasos opcionales
-- Eliminar los cuadrados puestos con un botón, o con un botón de UNDO, creo que es más fácil.
+- Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar
+        una lista con las coordenadas y los tamañaos para eliminarlos en orden o agregarlos. Luego,
+        una función simple del canvas que cuando se apriete uno de estos botones se carga esa lista,
+        con uno más o menos.
 - Me gustaría invertir unas cositas, y es que podría cambiar el tamaño del puntero con la rueda del
         mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas.
 

@@ -16,7 +16,6 @@
             }
         }
         if (notUsedNumbers.length === 0) {
-            sessionStorage.setItem('fullTest', 'test de Imágenes Sintéticas');
             window.location.href = 'H05-endScreen.html';
         }
 
@@ -53,11 +52,11 @@
                 </div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px;">
-                    <button class="helpButton" onclick="abrirModal()" style="margin: auto;">Controles</button>
+                    <button class="helpButton" onclick="abrirModal()" style="margin: auto;">Instrucciones</button>
                         <div id="miModal" class="modal">
                             <div class="modal-contenido">
                                 <span class="cerrar" onclick="cerrarModal()">&times;</span>
-                                <h2>Controles</h2>
+                                <h2>Instrucciones</h2>
                                 <ul>
                                     <li>El sonido depende del área del cuadrado del puntero.</li>
                                     <li>Puedes ajustar el tamaño del puntero con el slider a la izquierda.</li>
@@ -73,7 +72,7 @@
             </div>
             <div id="leftColumn" class="column" style="padding-left: 20px;">
                 <div>
-                    <canvas id="rasterCanvas" style="border: 2px solid black;"></canvas>
+                    <canvas id="rasterCanvas" style="border: 2px solid black;" width="500" height="650"></canvas>
                     <img id="image" src="" style="display: none;" width="500">
                     <script src="J00-canvas.js"></script>
                 </div>
@@ -131,7 +130,8 @@
             
 
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
-            let answersData = [window.imageNumber, window.time, scaleSelected, squares]; // [n_imagen, tiempo, escala]
+            let userSonification = sessionStorage.getItem('sonification');
+            let answersData = [window.imageNumber, window.time, userSonification, scaleSelected, squares]; // [n_imagen, tiempo, sonificacion, escala, respuesta]
             userAnswers[2].push(answersData);
             userAnswers[2].sort(function(a,b) {
                 return a[0] - b[0];

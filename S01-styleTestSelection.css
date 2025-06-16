@@ -37,6 +37,10 @@ body { /* Ahora esto solo al cuerpo */
     color: white;
 }
 
+.option-button:disabled {
+    background-color: #a1aaa1;
+}
+
 .container {
     display: flex;
     justify-content: space-between;

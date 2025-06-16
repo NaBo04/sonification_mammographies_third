@@ -6,38 +6,41 @@
 </head>
 <body>
     <div id="centralBlock" class="contenido">
-        <h1>Test Finalizado</h1>
-        <h2 id="message">Puedes descargar tus respuestas y después enviarlas a: correo@uc.cl <br>
-            o puedes realizar otro test y enviarlas luego.
+        <h1 id="mainText">Test Finalizado</h1>
+        <h2 id="message">Tus respuestas se han guardado.
         </h2>
         <button class="downloadButton" id="downloadButton" onclick="downloadAnswers()">Descargar Respuestas</button>
         <button class="nextButton" id="nextButton">Continuar</button>
     </div>
 
     <script>
+        var userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
+        if (userAnswers[1].length == 45 && userAnswers[2].length == 45 && userAnswers[3].length == 2) {
+            document.getElementById("mainText").innerText = "Todos los tests finalizados";
+            document.getElementById("message").innerText = "Muchas gracias por tu participación.";
+        }
 
         document.getElementById('nextButton').addEventListener('click', function() {
             window.location.href = 'H01-testSelection.html';
         });
 
-        var userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
         function downloadAnswers() {
             if (userAnswers == null) {
                 alert('No se ha iniciado sesión. Por favor reiniciar.');
                 return;
             }
             let contenido = `Usuario;${userAnswers[0]}\n`;
-            contenido += '\ntest 1\nimagen;tiempo;respuesta;nivel de seguridad\n';
+            contenido += '\ntest 1\nimagen;tiempo;sonificacion;nivel de seguridad;respuesta\n';
             for (let answer of userAnswers[1]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
             }
-            contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad;cuadrados\n';
+            contenido += '\ntest 2\nimagen;tiempo;sonificacion;nivel de seguridad;cuadrados\n';
             for (let answer of userAnswers[2]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
             }
-            contenido += '\ntest 3\nimagen;tiempo;nivel de seguridad;cuadrados\n';
+            contenido += '\ntest 3\nimagen;tiempo;sonificacion;nivel de seguridad;cuadrados\n';
             for (let answer of userAnswers[3]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
             }
             const blob = new Blob([contenido], { type: 'text/csv' });
 
@@ -51,14 +54,6 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-
-        let fullTest = sessionStorage.getItem('fullTest');
-        if (fullTest != null && fullTest != 'nothing'){
-            sessionStorage.setItem('fullTest', 'nothing');
-            let newText = `Has completado todas las pruebas del ${fullTest}.<br> Por favor, descarga tus respuestas y evíalas a: correo@uc.cl. <br> También puedes realizar otro test y enviarlas luego.`
-            document.getElementById('message').innerHTML = newText;
-        }
-
     </script>
 </body>
 </html>
