@@ -38,6 +38,12 @@
             </div>
         </div>
     </div>
+    <div id="lastContent" class="column">
+        <div id="Instructions" class="contenido" style="width: 500px;">
+            <h1 id="instructions" class="titulo">Instrucciones</h1>
+            <p id="instructionsText" class="Instrucciones" style="white-space: pre-wrap;">Selecciona un test y una sonificación.</p>
+        </div>
+    </div>
     <script>
         let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
         document.getElementById("nameMember").textContent = userAnswers[0];
@@ -82,6 +88,19 @@
                 } else {
                     btn.classList.remove('selected');
                 }
+            }
+
+            if (id.includes("test1")) {
+                document.getElementById('instructions').textContent = 'Instrucciones - Test 1';
+                document.getElementById('instructionsText').textContent = "Debes analizar un total de 45 imágenes. Con tu mouse debes\ndesplazarte por la imagen en pantalla y se producirá un sonido\nsegún el área encerrada por el cuadrado de tu puntero. Debes\nresponder si las imágenes son iguales o no y seleccionar tu\nnivel de seguridad para pasar a la siguiente imagen.\n\nControles:\n  • Puedes ajustar el tamaño del puntero con el slider a la\n     izquierda.\n  • Puedes hacer zoom con la rueda del mouse.\n  • Puedes desplazar la imagen desplazando el mouse\n     mientas pulsas el click derecho.\n  • Puedes regular el volumen con el slider de la izquierda\n     y la caja de mute.\n\nSiempre puedes volver a revisar estas instrucciones con el\nbotón del mismo nombre.";
+            }
+            else if (id.includes("test2")) {
+                document.getElementById('instructions').textContent = 'Instrucciones - Test 2';
+                document.getElementById('instructionsText').textContent = "Debes analizar un total de 45 imágenes. Con tu mouse debes\ndesplazarte por la imagen en pantalla y se producirá un sonido\nsegún el área encerrada por el cuadrado de tu puntero. Debes\nmarcar la(s) microcalcificación(es) con un cuadrado y\nseleccionar tu nivel de seguridad para pasar a la siguiente\nimagen. Si consideras que en la imagen no hay una\nmicrocalcificación, no marques ningún cuadrado.\n\nControles:\n  • Puedes marcar un cuadrado con el click izquierdo.\n  • Puedes ajustar el tamaño del puntero con el slider a la\n     izquierda.\n  • Puedes hacer zoom con la rueda del mouse.\n  • Puedes desplazar la imagen desplazando el mouse mientas\n     pulsas el click derecho.\n  • Puedes regular el volumen con el slider de la izquierda y la\n     caja de mute.\n\nSiempre puedes volver a revisar estas instrucciones con el\nbotón del mismo nombre.";
+            }
+            else if (id.includes("test3")) {
+                document.getElementById('instructions').textContent = 'Instrucciones - Test 3';
+                document.getElementById('instructionsText').textContent = "Debes analizar un total de 45 imágenes. Con tu mouse debes\ndesplazarte por la imagen en pantalla y se producirá un sonido\nsegún el área encerrada por el cuadrado de tu puntero. Debes\nmarcar la(s) microcalcificación(es) con un cuadrado y\nseleccionar tu nivel de seguridad para pasar a la siguiente\nimagen. Si consideras que en la imagen no hay una\nmicrocalcificación, no marques ningún cuadrado.\n\nControles:\n  • Puedes marcar un cuadrado con el click izquierdo.\n  • Puedes ajustar el tamaño del puntero con el slider a la\n     izquierda.\n  • Puedes hacer zoom con la rueda del mouse.\n  • Puedes desplazar la imagen desplazando el mouse mientas\n     pulsas el click derecho.\n  • Puedes regular el volumen con el slider de la izquierda y la\n     caja de mute.\n\nSiempre puedes volver a revisar estas instrucciones con el\nbotón del mismo nombre.";
             }
         }
         

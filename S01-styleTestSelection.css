@@ -17,7 +17,7 @@ body { /* Ahora esto solo al cuerpo */
 }
 .option-button {
     display: block;
-    width: 300px;
+    width: 200px;
     margin: 20px auto;
     padding: 15px;
     font-size: 18px;
@@ -55,12 +55,16 @@ body { /* Ahora esto solo al cuerpo */
     width: 25%;
 }
 #rightContent {
-    max-width: 50%;
-    min-width: 40%;
+    max-width: 40%;
+    min-width: 10%;
     box-sizing: border-box; /* Esto incluye padding y borde dentro del ancho total */
 }
 
 .progress-list{
+    font-size: 20px;
+}
+
+.Instrucciones{
     font-size: 20px;
 }
 
