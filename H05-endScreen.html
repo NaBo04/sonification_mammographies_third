@@ -7,10 +7,12 @@
 <body>
     <div id="centralBlock" class="contenido">
         <h1 id="mainText">Test Finalizado</h1>
-        <h2 id="message">Tus respuestas se han guardado.
-        </h2>
+        <h2 id="message">Tus respuestas se han guardado.</h2>
         <button class="downloadButton" id="downloadButton" onclick="downloadAnswers()">Descargar Respuestas</button>
-        <button class="nextButton" id="nextButton">Continuar</button>
+        <div style="padding-top: 15px;">
+            <button class="nextButton" id="nextButton">Continuar</button>
+            <button class="back-button" id="backButton">Cambiar de Usuario</button>
+        </div>
     </div>
 
     <script>
@@ -22,6 +24,10 @@
 
         document.getElementById('nextButton').addEventListener('click', function() {
             window.location.href = 'H01-testSelection.html';
+        });
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'H00-startScreen.html';
         });
 
         function downloadAnswers() {

@@ -143,9 +143,9 @@
 - Añadí las instrucciones al inicio al momento de seleccionar el test, luego son las mismas del
         botón de controles, que ahora se llama de instrucciones.
 - Añadí un contador de progreso en cada test.
+- Agregué un botón de cambiar de usuario en la pantalla final.
 
 # Proximos pasos: 
-- Quiero añadir un botón de cambiar de usuario en la pantalla final.
 - Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
         de esto solamente.
 - Añadir una segunda sonificación.

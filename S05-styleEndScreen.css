@@ -56,3 +56,16 @@ body { /* Ahora esto solo al cuerpo */
 .nextButton:hover {
     background-color: #87d17d;
 }
+
+.back-button {
+    padding: 10px 20px;
+    font-size: 22px;
+    background-color: #c14141;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.back-button:hover {
+    background-color: #d29292;
+}
