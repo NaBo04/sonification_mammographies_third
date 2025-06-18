@@ -23,6 +23,8 @@
         var selectedImage = document.getElementById('image');
         selectedImage.src = `./assets/test3/im${random_number}.jpg`;
 
+        document.getElementById('progress').textContent = `Progreso: ${3 - notUsedNumbers.length}/2 `;
+
         window.imageNumber = random_number;
         window.time = "";
     </script>
@@ -32,8 +34,10 @@
         <div id="testSelection" class="container">
             <div id="infoColumn" class="column">
                 <div class="encabezado">
-                    <h1 id="imageNumber" style="margin: auto; font-size: 50px; padding-bottom: 30px; padding-top: 20px;"> Test 3 </h1>
+                    <h1 id="imageNumber" style="margin: auto; font-size: 50px; padding-bottom: 20px; padding-top: 20px;"> Test 3 </h1>
                 </div>
+                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <p id="progress" style="margin:auto; font-size: 25px; padding-bottom: 20px; padding-top: 25px;"> Progreso: </p>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px; font-size: 20px;">
                     Tamaño del puntero <br>
@@ -58,13 +62,10 @@
                                 <span class="cerrar" onclick="cerrarModal()">&times;</span>
                                 <h2>Instrucciones</h2>
                                 <ul>
-                                    Debes analizar un total de 2 imágenes. Con tu mouse debes<br>
-                                    desplazarte por la imagen en pantalla y se producirá un sonido<br>
-                                    según el área encerrada por el cuadrado de tu puntero. Debes<br>
-                                    marcar la(s) microcalcificación(es) con un cuadrado y<br>
-                                    seleccionar tu nivel de seguridad para pasar a la siguiente<br>
-                                    imagen. Si consideras que en la imagen no hay una <br>
-                                    microcalcificación, no marques ningún cuadrado.<br>
+                                    Debes analizar un total de 2 imágenes. Con tu mouse debes desplazarte por la imagen en pantalla y se producirá un sonido<br>
+                                    según el área encerrada por el cuadrado de tu puntero. Debes marcar la(s) microcalcificación(es) con un cuadrado y seleccionar <br>
+                                    tu nivel de seguridad para pasar a la siguiente imagen. Si consideras que en la imagen no hay una microcalcificación, no <br>
+                                    marques ningún cuadrado.<br>
                                     <br>
                                     Controles:
                                     <li>Puedes marcar un cuadrado con el click izquierdo.</li>

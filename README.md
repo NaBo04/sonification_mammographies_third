@@ -142,9 +142,9 @@
         caso. Además agregué un texto distinto para cuando se terminaron todos los tests.
 - Añadí las instrucciones al inicio al momento de seleccionar el test, luego son las mismas del
         botón de controles, que ahora se llama de instrucciones.
+- Añadí un contador de progreso en cada test.
 
 # Proximos pasos: 
-- Quiero añadir un contador de imágenes por test. Para que quien lo de sepa en qué imagen va.
 - Quiero añadir un botón de cambiar de usuario en la pantalla final.
 - Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
         de esto solamente.
