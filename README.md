@@ -144,11 +144,12 @@
         botón de controles, que ahora se llama de instrucciones.
 - Añadí un contador de progreso en cada test.
 - Agregué un botón de cambiar de usuario en la pantalla final.
+- Añadí la segunda sonificación. Solo que el código de sonification.js, está bien hardcodeado para
+        la parte de las escalas.
 
 # Proximos pasos: 
 - Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
         de esto solamente.
-- Añadir una segunda sonificación.
 - Puede no haber ninguna microcalcificación, cero cuadrados es una respuesta válida.
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
@@ -157,6 +158,9 @@
 - Debo eliminar la descarga de respuestas, esto lo haré cuando ya se envíen de manera automática.
 - Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
         valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
+- Arreglar el hardcodeo de las escalas en sonification, esto lo puedo hacer para cuando el profe me
+        pase las sonificaciones reales. Aparte revisar que creo que la función de escalar tiene unos
+        rangos mínimos-máximos por defecto equivocados.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar

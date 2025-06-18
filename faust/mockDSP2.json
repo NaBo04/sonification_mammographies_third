@@ -1,0 +1,143 @@
+{
+    "name": "mock_dsp",
+    "filename": "mock_dsp.dsp",
+    "version": "2.80.4",
+    "compile_options": "-lang wasm-i -ct 1 -es 1 -mcd 16 -mdd 1024 -mdy 33 -single -ftz 2",
+    "library_list": [
+        "/usr/share/faust/stdfaust.lib",
+        "/usr/share/faust/oscillators.lib",
+        "/usr/share/faust/platform.lib",
+        "/usr/share/faust/maths.lib",
+        "/usr/share/faust/basics.lib"
+    ],
+    "include_pathnames": [
+        "/share/faust",
+        "/usr/local/share/faust",
+        "/usr/share/faust",
+        "."
+    ],
+    "size": 262232,
+    "code": "WGTO",
+    "inputs": 0,
+    "outputs": 1,
+    "meta": [
+        {
+            "basics.lib/name": "Faust Basic Element Library"
+        },
+        {
+            "basics.lib/version": "1.21.0"
+        },
+        {
+            "compile_options": "-lang wasm-i -ct 1 -es 1 -mcd 16 -mdd 1024 -mdy 33 -single -ftz 2"
+        },
+        {
+            "filename": "mock_dsp.dsp"
+        },
+        {
+            "maths.lib/author": "GRAME"
+        },
+        {
+            "maths.lib/copyright": "GRAME"
+        },
+        {
+            "maths.lib/license": "LGPL with exception"
+        },
+        {
+            "maths.lib/name": "Faust Math Library"
+        },
+        {
+            "maths.lib/version": "2.8.1"
+        },
+        {
+            "name": "mock_dsp"
+        },
+        {
+            "oscillators.lib/name": "Faust Oscillator Library"
+        },
+        {
+            "oscillators.lib/version": "1.6.0"
+        },
+        {
+            "platform.lib/name": "Generic Platform Library"
+        },
+        {
+            "platform.lib/version": "1.3.0"
+        }
+    ],
+    "ui": [
+        {
+            "type": "vgroup",
+            "label": "mock_dsp",
+            "items": [
+                {
+                    "type": "hslider",
+                    "label": "kurtosis",
+                    "varname": "fHslider4",
+                    "shortname": "kurtosis",
+                    "address": "/mock_dsp/kurtosis",
+                    "index": 262204,
+                    "init": 800,
+                    "min": 600,
+                    "max": 1000,
+                    "step": 0.4
+                },
+                {
+                    "type": "hslider",
+                    "label": "mean",
+                    "varname": "fHslider1",
+                    "shortname": "mean",
+                    "address": "/mock_dsp/mean",
+                    "index": 262168,
+                    "init": 50,
+                    "min": 25,
+                    "max": 75,
+                    "step": 0.05
+                },
+                {
+                    "type": "checkbox",
+                    "label": "mute",
+                    "varname": "fCheckbox0",
+                    "shortname": "mute",
+                    "address": "/mock_dsp/mute",
+                    "index": 262148
+                },
+                {
+                    "type": "hslider",
+                    "label": "skewness",
+                    "varname": "fHslider3",
+                    "shortname": "skewness",
+                    "address": "/mock_dsp/skewness",
+                    "index": 262192,
+                    "init": 350,
+                    "min": 250,
+                    "max": 450,
+                    "step": 0.2
+                },
+                {
+                    "type": "hslider",
+                    "label": "std_dev",
+                    "varname": "fHslider2",
+                    "shortname": "std_dev",
+                    "address": "/mock_dsp/std_dev",
+                    "index": 262180,
+                    "init": 150,
+                    "min": 100,
+                    "max": 200,
+                    "step": 0.1
+                },
+                {
+                    "type": "hslider",
+                    "label": "volume",
+                    "varname": "fHslider0",
+                    "shortname": "volume",
+                    "address": "/mock_dsp/volume",
+                    "index": 262144,
+                    "init": 0.05,
+                    "min": 0.02,
+                    "max": 0.3,
+                    "step": 0.0001
+                }
+            ]
+        }
+    ]
+}

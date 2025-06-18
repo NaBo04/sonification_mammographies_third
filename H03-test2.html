@@ -183,8 +183,12 @@
         if (typeof (WebAssembly) === "undefined") { //Alerta que aparece en el navegador si no soporta WebAssembly
             alert("Tu navegador no es compatible con el sistema de sonificación. Por favor utiliza otro.");
         }
+        
+        var sonific = sessionStorage.getItem('sonification');
         var mock_dsp = null; //Esta variable es para guardar el nodo de audio DSP (Digitla Signal Procesing)
-        import { createFaustNode } from "./faust/mockDSP.js";
+        import * as DSP1 from "./faust/mockDSP.js";
+        import * as DSP2 from "./faust/mockDSP2.js";
+        const { createFaustNode } = (sonific == 1) ? DSP1 : DSP2;
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         window.addEventListener("load", async () => {

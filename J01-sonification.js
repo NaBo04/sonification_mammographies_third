@@ -9,6 +9,14 @@ function sonification(mean, std, skw, kur){ //Convierte los datos estadisticos e
         return;
     }
 
+    var sonific = sessionStorage.getItem('sonification');
+    if (sonific == 2) {
+        mean = scaleToRange(mean, 0, 0.1, 25, 75); //Esto está re-harcodeado, ojalá arreglar la parte de como se escalan los valores para cada sonificacion
+        std = scaleToRange(std, 0, 0.1, 100, 200);
+        skw = scaleToRange(skw, 0, 0.1, 250, 450);
+        kur = scaleToRange(kur, 0, 0.1, 600, 1000);
+    }
+
 	mock_dsp.setParamValue("/mock_dsp/mean", parseFloat(mean));
 	mock_dsp.setParamValue("/mock_dsp/std_dev", parseFloat(std));
 	mock_dsp.setParamValue("/mock_dsp/skewness", parseFloat(skw));
