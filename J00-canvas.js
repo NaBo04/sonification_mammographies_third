@@ -70,7 +70,7 @@ function configurarEventosCanvas() {
                 selectable: false //No es seleccionable luego
             });
             canvas.add(rect); //Lo agrega al canvas para que se vea en pantalla
-            squares.push([pointer.x / imgScale, pointer.y / imgScale, squareSize2 / imgScale]);
+            squares.push([(pointer.x + squareSize2 / 2) / imgScale, (pointer.y + squareSize2 / 2) / imgScale]); //guarda las coordenadas del centro del cuadrado como respuesta
         }
     });
 

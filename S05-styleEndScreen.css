@@ -10,6 +10,7 @@ body { /* Ahora esto solo al cuerpo */
 }
 .contenido {
     padding: 40px; /* Bordes alrededor del contenido */
+    width: 400px;
     background-color: white; /* Color del bloque de contenido */
     border: 1px solid #393838; /* Color del borde */
     border-radius: 10px; /* Bordes redondeados */

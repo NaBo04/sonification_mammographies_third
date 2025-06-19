@@ -146,11 +146,10 @@
 - Agregué un botón de cambiar de usuario en la pantalla final.
 - Añadí la segunda sonificación. Solo que el código de sonification.js, está bien hardcodeado para
         la parte de las escalas.
+- Cambié las respuestas de los cuadrados a solo los centros y ahora no colocar un cuadrado es una 
+        respuesta válida, como que no hay ninguna sonificación.
 
 # Proximos pasos: 
-- Comparar solo los centros de los cuadrados. Cambiar la respuesta entregada por las coordenadas
-        de esto solamente.
-- Puede no haber ninguna microcalcificación, cero cuadrados es una respuesta válida.
 - Ver el tema de que esto esté en un servidor y las respuestas se envíen cada vez que termina todas
         las fotos de un test y se suban a algún lado, con un nombre de usuario, fecha y hora. Se me
         ocurre que sea de la forma UserTestXAnswers.csv, y en el server una base de datos con los 

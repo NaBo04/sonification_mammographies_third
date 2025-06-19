@@ -130,15 +130,13 @@
 
         function pressNextButton() {
             if (squares.length == 0) {
-                alert('Por favor, marque una respuesta.');
-                return;
+                squares.push("Sin Respuesta");
             }
             if (scaleSelected == ""){
                 alert('Por favor, marca una escala de seguridad.');
                 return;
             }
             
-
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
             let userSonification = sessionStorage.getItem('sonification');
             let answersData = [window.imageNumber, window.time, userSonification, scaleSelected, squares]; // [n_imagen, tiempo, sonificacion, escala, respuesta]
