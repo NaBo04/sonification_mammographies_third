@@ -137,6 +137,10 @@
                 return;
             }
 
+            if (window.time == "") {
+                window.time = "00:00";
+            }  
+
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
             let userSonification = sessionStorage.getItem('sonification');
             let answersData = [window.imageNumber, window.time, userSonification, scaleSelected, squares]; // [n_imagen, tiempo, sonificacion, escala, respuesta]
@@ -159,16 +163,15 @@
 
         let seconds = 0;
         function formatTime(sec) {
-            if (sec < 3600){
-                const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
-                const secs = String(sec % 60).padStart(2, '0');
-                return `${mins}:${secs}`;
-            }
-            return '59:59'
+            const mins = String(Math.floor(sec / 60)).padStart(2, '0');
+            const secs = String(sec % 60).padStart(2, '0');
+            return `${mins}:${secs}`;
         }
         function updateTimer() {
-            seconds++;
-            window.time = formatTime(seconds);
+            if (seconds < 3599) {
+                seconds++;
+            }
+            window.time = formatTime(Math.min(seconds, 3599));
         }
         setInterval(updateTimer, 1000);
         

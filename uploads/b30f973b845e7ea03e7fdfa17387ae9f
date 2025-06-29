@@ -1,0 +1,55 @@
+Usuario;Navarrete
+
+test 1
+imagen;tiempo;sonificación;nivel de seguridad;respuesta
+1;00:01;son1;5;No
+2;00:01;son1;5;Si
+3;00:01;son1;2;Si
+4;00:01;son1;4;No
+5;00:01;son1;2;Si
+6;00:01;son1;3;Si
+7;00:02;son1;4;No
+8;00:01;son1;4;Si
+9;00:01;son1;1;Si
+10;00:03;son1;4;No
+11;00:04;son1;2;Si
+12;00:01;son1;3;No
+13;00:01;son1;3;No
+14;00:01;son1;4;Si
+15;00:02;son1;5;No
+16;00:01;son1;4;No
+17;00:02;son1;2;Si
+18;00:01;son1;2;Si
+19;00:01;son1;4;Si
+20;00:01;son1;4;No
+21;00:01;son1;3;No
+22;00:01;son1;4;No
+23;00:01;son1;4;No
+24;00:01;son1;3;Si
+25;00:01;son1;1;Si
+26;00:02;son1;4;No
+27;00:02;son1;4;Si
+28;00:01;son1;2;Si
+29;00:01;son1;5;Si
+30;00:02;son1;4;Si
+31;00:01;son1;4;Si
+32;00:01;son1;3;No
+33;00:01;son1;3;Si
+34;00:02;son1;2;Si
+35;00:01;son1;4;No
+36;00:01;son1;1;Si
+37;00:01;son1;4;No
+38;00:01;son1;4;Si
+39;00:01;son1;3;No
+40;00:02;son1;4;Si
+41;00:02;son1;3;Si
+42;00:01;son1;4;Si
+43;00:02;son1;2;Si
+44;00:01;son1;4;Si
+45;00:01;son1;2;Si
+
+test 2
+imagen;tiempo;sonificación;nivel de seguridad;cuadrados
+
+test 2
+imagen;tiempo;sonificación;nivel de seguridad;cuadrados
