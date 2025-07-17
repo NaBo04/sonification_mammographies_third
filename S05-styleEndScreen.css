@@ -57,6 +57,9 @@ body { /* Ahora esto solo al cuerpo */
 .nextButton:hover {
     background-color: #87d17d;
 }
+.nextButton:disabled {
+    background-color: #b0bdaf;
+}
 
 .back-button {
     padding: 10px 20px;
