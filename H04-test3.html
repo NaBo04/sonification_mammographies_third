@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="S04-styleTest3.css">
     <script src="./lib/fabric.js"></script>
     <script type="module">
-        let usedNumbers = [];
+        let usedNumbers = []; //Para el manejo de la selección aleatoria de la imágenes y paso por todas
         for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[3]){
             usedNumbers.push(number[0]);
         }
@@ -15,15 +15,12 @@
                 notUsedNumbers.push(i);
             }
         }
-        if (notUsedNumbers.length === 0) {
-            window.location.href = 'H05-endScreen.html';
-        }
 
         var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)];
         var selectedImage = document.getElementById('image');
         selectedImage.src = `./assets/test3/im${random_number}.jpg`;
 
-        document.getElementById('progress').textContent = `Progreso: ${3 - notUsedNumbers.length}/2 `;
+        document.getElementById('progress').textContent = `Progreso: ${3 - notUsedNumbers.length}/2`;
 
         window.imageNumber = random_number;
         window.time = "";
@@ -44,15 +41,10 @@
                     <input type="range" id="sizeSlider" min="2.5" max="50" step="2.5" value="25" oninput="updateSizeValue(this.value)">
                     <span id="sizeValue">25</span>
                 </div>
-                <div style="padding-top: 30px; font-size: 20px;">
+                <div style="padding-top: 30px; padding-bottom: 20px; font-size: 20px;">
                     Volumen <br>
                     <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2" oninput="updateVolumeValue(this.value)">
                     <span id="volumeValue">2</span>
-                </div>
-                <div style="padding-top: 30px; padding-bottom: 20px; font-size: 20px;">
-                    Mute <br>
-                    <input type="checkbox" id="muteCheckBox" onchange="updateMuteValue()"/>
-                    <span id="muteValue">OFF</span>
                 </div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px;">
@@ -158,7 +150,11 @@
             }
             localStorage.setItem('usersList', JSON.stringify(usersList));
 
+            if (document.getElementById('progress').textContent.trim() === 'Progreso: 2/2') {
+                window.location.href = 'H05-endScreen.html';
+            } else {
             window.location.href = 'H04-test3.html';
+            }
         }
 
         let seconds = 0;
@@ -179,7 +175,7 @@
         function cerrarModal() {document.getElementById("miModal").style.display = "none";}
     </script>
     <script type="module">
-        window.isMuted = false;
+        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted"));
 
         if (typeof (WebAssembly) === "undefined") { //Alerta que aparece en el navegador si no soporta WebAssembly
             alert("Tu navegador no es compatible con el sistema de sonificación. Por favor utiliza otro.");
@@ -202,9 +198,6 @@
             mock_dsp.setParamValue("/mock_dsp/mute", 1);
             document.getElementById("volumeSlider").addEventListener("input", () => {
                 mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
-            });
-            document.getElementById("muteCheckBox").addEventListener("change", () => {
-                muteCheckBox.checked ? window.isMuted = true : window.isMuted = false;
             });
         });
     </script>

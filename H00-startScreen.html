@@ -7,6 +7,11 @@
 <body>
     <div id="centralBlock" class="contenido">
         <h1>Tests de sonificación</h1>
+        <p>Elige como deseas realizar el test:</p>
+        <div>
+            <label><input type="radio" name="opcion" value="mute"> Sin sonificación.</label>
+            <label style="padding-left: 30px;"><input type="radio" name="opcion" value="sonification"> Con sonificación.</label>
+        </div>
         <p>Ingresa tu nombre en formato: Apellido Nombre</p>
         <input type="text" id="userName" placeholder="Ingresa tu nombre">
         <button id="startButton">Start</button>
@@ -21,9 +26,20 @@
         }
 
         document.getElementById('startButton').addEventListener('click', function() {
-            var userName = document.getElementById('userName').value;
-            if(userName.trim() === '') {
+            var userName = document.getElementById('userName').value; 
+            if(userName.trim() === '') { //Por si no colocó nombre
                 alert('Por favor, ingresa un nombre de usuario.');
+                return;
+            }
+
+            const seleccionada = document.querySelector('input[name="opcion"]:checked'); //Manejo de seleccion de opcion con/sin sonificacion
+            if (seleccionada) {
+                var isMuted = false;
+                if (seleccionada.value == "mute"){
+                    isMuted = true;
+                }  
+            } else {
+                alert("Por favor, selecciona una opción para el test.");
                 return;
             }
 
@@ -41,6 +57,7 @@
                 localStorage.setItem('usersList', JSON.stringify(usersList));
             }
             sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+            sessionStorage.setItem("isMuted", JSON.stringify(isMuted));
             window.location.href = 'H01-testSelection.html';
         });
     </script>

@@ -20,10 +20,6 @@ function updateSizeValue(value) { //Actualiza el valor según la barra deslizant
 function updateVolumeValue(value) { //Actualiza el valor según la barra deslizante
     document.getElementById("volumeValue").textContent = value; //Actualiza el texto que indica el volumen
 };
-function updateMuteValue() { //Actualiza el valor según la barra deslizante
-    var muteStatus = muteCheckBox.checked ? "ON" : "OFF";
-    document.getElementById("muteValue").textContent = muteStatus; //Actualiza el texto que indica el volumen
-};
 
 const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado personalizado
     squareSize = Math.min(brushSize * zoom, maxSize); 
