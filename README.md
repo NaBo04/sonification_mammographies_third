@@ -63,13 +63,14 @@
 - Para todos los tests, eliminé la checkbox de mute, considerando que eso ahora se selecciona desde
         un inicio. Para esto también eliminé la lógica de actualización de su valor. Ahora todo se
         maneja por medio de una variable global.
+- Para todos los tests, la barra de control del volumen aparece solo si se escogió la opción de 
+        realizar el test con sonificación. Si es el test muteado ya no hay barra de volumen.
 
 # Proximos pasos: 
 
-- Agregar un opción en la pantalla de inicio, que pregunte qué tipo de test quiere realizar, si con
-        sonido o sin sonido. Según esto, por usuario guardar respuestas distintas para con sonido y
-        sin sonido. Eso si, no se puede cambiar una vez se seleccione, y al terminar no se da la 
-        opción de empezar de nuevo, ya que la idea es realizar el test en días distintos.
+- Terminar de ajustar bien los cambios para la opción de los 2 tests, con y sin sonificación. Es 
+        importante considerar que para un mismo nombre se guarden progresos/respuestas por separado
+        para con y sin sonificación.
 - Agregar una barra que cambie el contraste en los tests como una opción más para los usuarios.
 - Indicar explícitamente en las instrucciones que deben colocar los cuadrados lo más centrados 
         posible en las microcalcificaciones.
@@ -96,6 +97,8 @@
         rangos mínimos-máximos por defecto equivocados.
 - Arreglar el escalamiento de la imagen, creo que se ajusta al tamño del canvas. Debería mostrar lo
         que pueda de la imagen como un recorte, que luego se pueda desplazar en lo que falte.
+- Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos.
+- Que la página no vibre al cambiar el volumen (por el tamaño del texto).
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar
