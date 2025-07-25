@@ -45,27 +45,13 @@
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px;">
                     <button class="helpButton" onclick="abrirModal()" style="margin: auto;">Instrucciones</button>
-                        <div id="miModal" class="modal">
-                            <div class="modal-contenido">
-                                <span class="cerrar" onclick="cerrarModal()">&times;</span>
-                                <h2>Instrucciones</h2>
-                                <ul>
-                                    Debes analizar un total de 45 imágenes. Con tu mouse debes desplazarte por la imagen en pantalla y se producirá un sonido<br>
-                                    según el área encerrada por el cuadrado de tu puntero. Debes marcar la(s) microcalcificación(es) con un cuadrado y seleccionar <br>
-                                    tu nivel de seguridad para pasar a la siguiente imagen. Si consideras que en la imagen no hay una microcalcificación, no <br>
-                                    marques ningún cuadrado.<br>
-                                    <br>
-                                    Controles:
-                                    <li>Puedes marcar un cuadrado con el click izquierdo.</li>
-                                    <li>Puedes ajustar el tamaño del puntero con el slider a la izquierda.</li>
-                                    <li>Puedes hacer zoom con la rueda del mouse.</li>
-                                    <li>Puedes desplazar la imagen desplazando el mouse mientas pulsas el click derecho</li>
-                                    <li>Puedes regular el volumen con el slider de la izquierda y la caja de mute.</li>
-                                    <br>
-                                    Siempre puedes volver a revisar estas instrucciones con el botón del mismo nombre.
-                                </ul>
-                            </div>
+                    <div id="miModal" class="modal">
+                        <div class="modal-contenido">
+                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                            <h2 style="text-align: center;">Instrucciones - Test 2</h2>
+                            <div id="contenido-instrucciones" style="white-space: pre-wrap;"></div>
                         </div>
+                    </div>
                 </div>
             </div>
             <div id="leftColumn" class="column" style="padding-left: 20px;">
@@ -96,6 +82,7 @@
             </div>
         </div>
     </div>
+    <script src="J03-instructions.js"></script>
     <script>
         window.isMuted = JSON.parse(sessionStorage.getItem("isMuted"));
         if (!window.isMuted) {
@@ -180,7 +167,14 @@
         }
         setInterval(updateTimer, 1000);
         
-        function abrirModal() {document.getElementById("miModal").style.display = "block";}
+        function abrirModal() { //Para el manejo del pop-up de instrucciones
+            document.getElementById("miModal").style.display = "block";
+            if (window.isMuted) {
+                document.getElementById("contenido-instrucciones").textContent = instrucciones['test2_mute'];
+            } else {
+                document.getElementById("contenido-instrucciones").textContent = instrucciones['test2_son'];
+            }
+        } 
         function cerrarModal() {document.getElementById("miModal").style.display = "none";}
     </script>
     <script type="module">

@@ -127,16 +127,23 @@ body { /* Ahora esto solo al cuerpo */
 }
 .modal-contenido {
   background-color: #fff;
-  margin: 15% auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 10px;
-  width: 50%;
+  width: fit-content;
+  max-width: 90vw; /* que no exceda el ancho de la pantalla */
+  max-height: 90vh; /* que no exceda el alto de la pantalla */
+  overflow: auto; /* scroll interno */
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  font-size: 20px;
 }
 .cerrar {
   color: #aaa;
   float: right;
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
   cursor: pointer;
 }

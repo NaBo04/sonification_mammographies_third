@@ -65,12 +65,15 @@
         maneja por medio de una variable global.
 - Para todos los tests, la barra de control del volumen aparece solo si se escogió la opción de 
         realizar el test con sonificación. Si es el test muteado ya no hay barra de volumen.
+- Ajsuté los pop-ups de instrucciones dentro de cada test, para que también extraigan su contenido
+        del archivo de instrucciones.
 
 # Proximos pasos: 
 
-- Terminar de ajustar bien los cambios para la opción de los 2 tests, con y sin sonificación. Es 
-        importante considerar que para un mismo nombre se guarden progresos/respuestas por separado
-        para con y sin sonificación.
+- Terminar de ajustar bien los cambios para la opción de los 2 tests, con y sin sonificación. Quedan
+        2 cosas de esto, dirigir las respuestas por carpetas en el drive, agregar listas distintas a
+        las respuestas de un usuario en el test (algo así como un test 4, 5 y 6 para un mismo
+        usuario y que pueda tener 45 respuestas por test con y sin sonificación).
 - Agregar una barra que cambie el contraste en los tests como una opción más para los usuarios.
 - Indicar explícitamente en las instrucciones que deben colocar los cuadrados lo más centrados 
         posible en las microcalcificaciones.
@@ -99,6 +102,8 @@
         que pueda de la imagen como un recorte, que luego se pueda desplazar en lo que falte.
 - Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos.
 - Que la página no vibre al cambiar el volumen (por el tamaño del texto).
+- Cuando quite la opción de elegir entre sonificación, habrá más espacio para extender las
+        instrucciones. Así quedaría mejor en el pop-up también.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar
