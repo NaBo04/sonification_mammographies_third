@@ -67,13 +67,12 @@
         realizar el test con sonificación. Si es el test muteado ya no hay barra de volumen.
 - Ajsuté los pop-ups de instrucciones dentro de cada test, para que también extraigan su contenido
         del archivo de instrucciones.
+- Separé las respuestas para un mismo de usuario tanto por si los hizo con o sin sonificacion como
+        por número de test. Ahora son 6 listas en total para cada nombre de usuario.
 
 # Proximos pasos: 
 
-- Terminar de ajustar bien los cambios para la opción de los 2 tests, con y sin sonificación. Quedan
-        2 cosas de esto, dirigir las respuestas por carpetas en el drive, agregar listas distintas a
-        las respuestas de un usuario en el test (algo así como un test 4, 5 y 6 para un mismo
-        usuario y que pueda tener 45 respuestas por test con y sin sonificación).
+- Hacer que las respuestas se suban a carpetas distintas en el OneDrive.
 - Agregar una barra que cambie el contraste en los tests como una opción más para los usuarios.
 - Indicar explícitamente en las instrucciones que deben colocar los cuadrados lo más centrados 
         posible en las microcalcificaciones.

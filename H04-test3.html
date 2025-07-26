@@ -5,8 +5,11 @@
     <link rel="stylesheet" href="S04-styleTest3.css">
     <script src="./lib/fabric.js"></script>
     <script type="module">
+        isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Guarda la variable segun el test con o sin sonificacion
+        index = isMuted ? 3 : 6 ; //3 para test3 sin sonificacion, 6 para test3 con sonificacion
+
         let usedNumbers = []; //Para el manejo de la selección aleatoria de la imágenes y paso por todas
-        for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[3]){
+        for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[index]){
             usedNumbers.push(number[0]);
         }
         let notUsedNumbers = [];
@@ -15,11 +18,9 @@
                 notUsedNumbers.push(i);
             }
         }
-
         var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)];
         var selectedImage = document.getElementById('image');
         selectedImage.src = `./assets/test3/im${random_number}.jpg`;
-
         document.getElementById('progress').textContent = `Progreso: ${3 - notUsedNumbers.length}/2`;
 
         window.imageNumber = random_number;
@@ -84,7 +85,9 @@
     </div>
     <script src="J03-instructions.js"></script>
     <script>
-        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted"));
+        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted")); 
+        window.index = window.isMuted ? 3 : 6 ; 
+
         if (!window.isMuted) {
             const container = document.getElementById('slider-container');
             container.innerHTML = `
@@ -132,8 +135,8 @@
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
             let userSonification = sessionStorage.getItem('sonification');
             let answersData = [window.imageNumber, window.time, userSonification, scaleSelected, squares]; // [n_imagen, tiempo, sonificacion, escala, respuesta]
-            userAnswers[3].push(answersData);
-            userAnswers[3].sort(function(a,b) {
+            userAnswers[window.index].push(answersData);
+            userAnswers[window.index].sort(function(a,b) {
                 return a[0] - b[0];
             });
             sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
@@ -149,7 +152,7 @@
             if (document.getElementById('progress').textContent.trim() === 'Progreso: 2/2') {
                 window.location.href = 'H05-endScreen.html';
             } else {
-            window.location.href = 'H04-test3.html';
+                window.location.href = 'H04-test3.html';
             }
         }
 

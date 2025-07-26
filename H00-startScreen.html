@@ -18,13 +18,13 @@
     </div>
 
     <script>
-        let usersList = localStorage.getItem('usersList');
+        let usersList = localStorage.getItem('usersList'); //Busca la lista de usuarios y sus respuestas de otras iteraciones
         if (usersList == null) {
-            usersList = [];
+            usersList = []; //Si no encuentra nada parte como una lista vacia
         } else {
-            usersList = JSON.parse(usersList);
+            usersList = JSON.parse(usersList); //Si la encuentra la carga
         }
-
+        
         document.getElementById('startButton').addEventListener('click', function() {
             var userName = document.getElementById('userName').value; 
             if(userName.trim() === '') { //Por si no colocó nombre
@@ -38,26 +38,27 @@
                 if (seleccionada.value == "mute"){
                     isMuted = true;
                 }  
-            } else {
+            } else { //Alerta por si no escogio el test con o sin sonificacion
                 alert("Por favor, selecciona una opción para el test.");
                 return;
             }
 
-            let userAnswers = null;
-            if (usersList != null) {
-                for (let val_name of usersList) {
-                    if (val_name[0] == userName) {
-                        userAnswers = val_name;
+            let userAnswers = null; //Variable para las respuestas del usuario
+            if (usersList.length != 0) { //Si ya hay respuestas anteriores
+                for (let val_name of usersList) { //Revisa en cada una de ellas
+                    if (val_name[0] == userName) { //Si ya hay para el mismo nombre de usuario
+                        userAnswers = val_name; //Entonces carga esas respuestas
                     }
                 }
             }
-            if ( userAnswers == null ) {
-                userAnswers = [userName, [], [], []];
-                usersList.push(userAnswers);
-                localStorage.setItem('usersList', JSON.stringify(usersList));
+            if ( userAnswers == null ) { //Si no encontro respuestas previas
+                userAnswers = [userName, [], [], [], [], [], []]; //Crea las respuestas del usuario como [nombre, [test1_mute], [test2_mute], [test3_mute], [test1_son], [test2_son], [test3_son]]
+                usersList.push(userAnswers); //Lo agrega a la lista de respuestas de usuarios
+                localStorage.setItem('usersList', JSON.stringify(usersList)); //Lo guarda en la memoria del navegador
             }
-            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-            sessionStorage.setItem("isMuted", JSON.stringify(isMuted));
+            
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers)); //Guarda las respuestas de este usuario en la memoria de sesion
+            sessionStorage.setItem("isMuted", JSON.stringify(isMuted)); //Guarda tambien el tipo de test, mute o son
             window.location.href = 'H01-testSelection.html';
         });
     </script>

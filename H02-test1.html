@@ -5,22 +5,23 @@
     <link rel="stylesheet" href="S02-styleTest1.css">
     <script src="./lib/fabric.js"></script>
     <script type="module">
-        let usedNumbers = []; //Para el manejo de la selección aleatoria de la imágenes y paso por todas
-        for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[1]){
+        let isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Guarda la variable segun el test con o sin sonificacion
+        let index = isMuted ? 1 : 4 ; //1 para test1 sin sonificacion, 4 para test1 con sonificacion
+
+        let usedNumbers = []; //Para el manejo de la selección aleatoria de la imagenes y paso por todas
+        for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[index]){ //Revisa los numeros ya usados de imagenes
             usedNumbers.push(number[0]);
         }
         let notUsedNumbers = [];
         for (let i = 1; i<=45; i++){
             if (!usedNumbers.includes(i)){
-                notUsedNumbers.push(i);
+                notUsedNumbers.push(i); //Guarda los numeros que aun no han sido utilizados
             }
         }
-
-        var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)];
-        var selectedImage = document.getElementById('image');
-        selectedImage.src = `./assets/test1/im${random_number}.png`;
-
-        document.getElementById('progress').textContent = `Progreso: ${46 - notUsedNumbers.length}/45`;
+        var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)]; //Escoge un numero al azar de los no usados
+        var selectedImage = document.getElementById('image'); //Carga la imagen correspondiente
+        selectedImage.src = `./assets/test1/im${random_number}.png`; //De la carpeta y archivo correspondientes
+        document.getElementById('progress').textContent = `Progreso: ${46 - notUsedNumbers.length}/45`; //Actualiza el progreso
 
         window.imageNumber = random_number;
         window.time = "";
@@ -88,8 +89,10 @@
     </div>
     <script src="J03-instructions.js"></script>
     <script>
-        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted"));
-        if (!window.isMuted) {
+        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted")); 
+        window.index = window.isMuted ? 1 : 4 ; 
+
+        if (!window.isMuted) { //Este bloque se encarga de mostrar o no la barra de volumen según corresponda
             const container = document.getElementById('slider-container');
             container.innerHTML = `
                 <div style="padding-bottom: 20px">
@@ -138,8 +141,8 @@
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
             let userSonification = sessionStorage.getItem('sonification');
             let answersData = [window.imageNumber, window.time, userSonification, scaleSelected, answerSelected]; // [n_imagen, tiempo, sonificacion, escala, respuesta]
-            userAnswers[1].push(answersData);
-            userAnswers[1].sort(function(a,b) {
+            userAnswers[window.index].push(answersData);
+            userAnswers[window.index].sort(function(a,b) {
                 return a[0] - b[0];
             });
             sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
@@ -155,7 +158,7 @@
             if (document.getElementById('progress').textContent.trim() === 'Progreso: 45/45') {
                 window.location.href = 'H05-endScreen.html';
             } else {
-            window.location.href = 'H02-test1.html';
+                window.location.href = 'H02-test1.html';
             }
         }
 

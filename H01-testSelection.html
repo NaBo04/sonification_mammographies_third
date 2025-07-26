@@ -7,8 +7,8 @@
 <body>
     <div id="leftContent" class="column">
         <div id="progress" class="contenido">
-            <h1 class="titulo">Progreso de
-                    <span id="nameMember" style="padding-left: 2px;">User</span>
+            <h1 class="titulo">
+                <span id="nameMember" style="padding-left: 2px;"></span>
             </h1>
             <ul class="progress-list">
                 <li>Test 1: <span id="test1Progress">0</span>/45</li>
@@ -46,21 +46,24 @@
     </div>
     <script src="J03-instructions.js"></script>
     <script>
-        let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
-        document.getElementById("nameMember").textContent = userAnswers[0];
-        document.getElementById("test1Progress").textContent = userAnswers[1].length;
-        document.getElementById("test2Progress").textContent = userAnswers[2].length;
-        document.getElementById("test3Progress").textContent = userAnswers[3].length;
+        let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')); //Carga las respuestas de este usuario
+        const isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Carga el tipo de test
+        let index = isMuted ? [1, 2, 3] : [4, 5, 6]; //Para que listas se usaran segun si es el test muteado o no
         
-        if (userAnswers[1].length < 45) {
+        document.getElementById("nameMember").textContent = `Test ${isMuted ? "sin sonificación" : "con sonificación"} Progreso de ${userAnswers[0]}`;
+        document.getElementById("test1Progress").textContent = userAnswers[index[0]].length;
+        document.getElementById("test2Progress").textContent = userAnswers[index[1]].length;
+        document.getElementById("test3Progress").textContent = userAnswers[index[2]].length;
+        
+        if (userAnswers[index[0]].length < 45) {
             document.getElementById("test2").disabled = true;
             document.getElementById("test3").disabled = true;
         }
-        else if (userAnswers[2].length < 45) {
+        else if (userAnswers[index[1]].length < 45) {
             document.getElementById("test1").disabled = true;
             document.getElementById("test3").disabled = true;
         }
-        else if (userAnswers[3].length < 2) {
+        else if (userAnswers[index[2]].length < 2) {
             document.getElementById("test1").disabled = true;
             document.getElementById("test2").disabled = true;
         }
@@ -90,7 +93,6 @@
                 }
             }
 
-            const isMuted = JSON.parse(sessionStorage.getItem("isMuted"));
             let mode = '_son';
             if (isMuted) {mode = '_mute'}
 
