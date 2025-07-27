@@ -13,8 +13,10 @@
             <button class="back-button" id="backButton">Cambiar de Usuario</button>
         </div>
     </div>
-    
+    <script src="J02-answers.js"></script>
     <script>
+        let isMuted = JSON.parse(sessionStorage.getItem('isMuted'));
+        let index = isMuted ? [1, 2, 3] : [4, 5, 6];
         var userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
         var nombreArchivo = "default";
 
@@ -26,26 +28,26 @@
         });
         
         let contenido = `Usuario;${userAnswers[0]}\n`;
-        if (userAnswers[1].length == 45 && userAnswers[2].length == 0 && userAnswers[3].length == 0) {
+        if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 0 && userAnswers[index[2]].length == 0) {
             contenido += '\ntest 1\nimagen;tiempo;sonificacion;nivel de seguridad;respuesta\n';
-            for (let answer of userAnswers[1]) {
+            for (let answer of userAnswers[index[0]]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
             }
-            nombreArchivo = `Test1_${userAnswers[0]}_Answers.csv`; 
+            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test1-Answers.csv`; 
         }
-        else if (userAnswers[1].length == 45 && userAnswers[2].length == 45 && userAnswers[3].length == 0) {
+        else if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 45 && userAnswers[index[2]].length == 0) {
             contenido += '\ntest 2\nimagen;tiempo;sonificacion;nivel de seguridad;cuadrados\n';
-            for (let answer of userAnswers[2]) {
+            for (let answer of userAnswers[index[1]]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
             }
-            nombreArchivo = `Test2_${userAnswers[0]}_Answers.csv`; 
+            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test2-Answers.csv`;  
         }
-        else if (userAnswers[1].length == 45 && userAnswers[2].length == 45 && userAnswers[3].length == 2) {
+        else if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 45 && userAnswers[index[2]].length == 2) {
             contenido += '\ntest 3\nimagen;tiempo;sonificacion;nivel de seguridad;cuadrados\n';
-            for (let answer of userAnswers[3]) {
+            for (let answer of userAnswers[index[2]]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
             }
-            nombreArchivo = `Test3_${userAnswers[0]}_Answers.csv`; 
+            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test3-Answers.csv`; 
             document.getElementById("mainText").innerText = "Todos los tests finalizados";
             document.getElementById("message").innerText = "Muchas gracias por tu participación.";
             document.getElementById("nextButton").disabled = true;
@@ -55,14 +57,7 @@
         }
 
         const blob = new Blob([contenido], { type: 'text/csv' });
-        const archivoCSV = new File([blob], nombreArchivo, { type: 'text/csv' });
-        const formData = new FormData();
-        formData.append('archivo', archivoCSV);
-            
-        fetch('http://localhost:5000/subir', {
-            method: 'POST',
-            body: formData
-        })
+        subirArchivoDesdeBlob(blob, nombreArchivo)
         
     </script>
 </body>

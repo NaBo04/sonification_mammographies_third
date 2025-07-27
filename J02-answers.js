@@ -1,57 +1,35 @@
-const express = require('express');
-const multer = require('multer');
-const fs = require('fs');
-const { google } = require('googleapis');
-const path = require('path');
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbxMdMNixjFUw8PJwL3xftzg4N7DvRUMb4Hm7QrNFqq--eHggbElTES8DQE35lwAAj7F/exec'
 
-const app = express();
+async function subirArchivoDesdeBlob(blob, nombreArchivo) {
+  return new Promise((resolve, reject) => {
+    const lector = new FileReader();
 
-// Carpeta temporal donde se guardarán los archivos que subes antes de enviarlos a Drive
-const upload = multer({ dest: 'uploads/' });
+    lector.onload = async function () {
+      const base64 = lector.result.split(',')[1];
 
-// Autenticación con cuenta de servicio
-const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, 'O02-credenciales.json'),
-  scopes: ['https://www.googleapis.com/auth/drive.file'],
-});
+      const datos = {
+        fileName: nombreArchivo,
+        mimeType: blob.type,
+        fileContent: base64
+      };
 
-app.use((req, res, next) => {
-  console.log(`Recibido ${req.method} a ${req.url}`);
-  next();
-});
+      try {
+        const respuesta = await fetch(webAppUrl, {
+          method: 'POST',
+          body: JSON.stringify(datos) // No incluyas headers Content-Type
+        });
 
-app.post('/subir', upload.single('archivo'), async (req, res) => {
-  try {
-    const authClient = await auth.getClient();
-    const drive = google.drive({ version: 'v3', auth: authClient });
-
-    const fileMetadata = {
-      name: req.file.originalname,
-      parents: ['1UUFTkp2WSKNoDWTc1j5op3pDrRidQveF'], // <-- REEMPLAZA ESTO con el ID de la carpeta compartida
+        const json = await respuesta.json();
+        if (json.status === 'ok') {
+          resolve(json.fileId);
+        } else {
+          reject(json.message);
+        }
+      } catch (err) {
+        reject(err.message);
+      }
     };
 
-    const media = {
-      mimeType: 'text/csv',
-      body: fs.createReadStream(req.file.path),
-    };
-
-    const response = await drive.files.create({
-      resource: fileMetadata,
-      media,
-      fields: 'id',
-    });
-
-    // Elimina archivo temporal después de subirlo
-    fs.unlinkSync(req.file.path);
-
-    console.log('Archivo subido a Drive. ID:', response.data.id);
-    res.send(`✅ Archivo subido a Drive. ID: ${response.data.id}`);
-  } catch (error) {
-    console.error('❌ Error al subir el archivo:', error);
-    res.status(500).send('Error al subir archivo a Drive.');
-  }
-});
-
-app.listen(5000, () => {
-  console.log('Servidor escuchando en http://localhost:5000');
-});
+    lector.readAsDataURL(blob);
+  });
+}

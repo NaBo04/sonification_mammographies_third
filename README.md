@@ -69,10 +69,17 @@
         del archivo de instrucciones.
 - Separé las respuestas para un mismo de usuario tanto por si los hizo con o sin sonificacion como
         por número de test. Ahora son 6 listas en total para cada nombre de usuario.
+- Hice un gran cambio en cuanto a la subida de las respuestas al Google Drive. Considerando que 
+        Google cambió sus políticas y la forma que utilizaba antes ya no funciona, tuve que buscar
+        una alternativa. Ahroa utilizo un Google App Script. Con esto, le doy los permisos para 
+        acceder a mi cuenta con el código que yo programe. Ahora conseguí que no se tenga que 
+        iniciar un servidor aparte, ni se utiliza node, ni credenciales, ni nada como antes. 
+        Funciona directamente en el navegador del usuario y al finalizar cada test como antes se 
+        suben las respuestas automáticamente. Además, ahora se separan las respuestas en distintas
+        carpetas según el test.
 
 # Proximos pasos: 
 
-- Hacer que las respuestas se suban a carpetas distintas en el OneDrive.
 - Agregar una barra que cambie el contraste en los tests como una opción más para los usuarios.
 - Indicar explícitamente en las instrucciones que deben colocar los cuadrados lo más centrados 
         posible en las microcalcificaciones.
@@ -103,6 +110,13 @@
 - Que la página no vibre al cambiar el volumen (por el tamaño del texto).
 - Cuando quite la opción de elegir entre sonificación, habrá más espacio para extender las
         instrucciones. Así quedaría mejor en el pop-up también.
+- Al pasar de cada imágen en los tests, guardar la configuración establecida de volumen, tamaño 
+        del puntero, etc.
+- Tomar todas las imágenes del test1, dividirlas en 2, quitando la línea, para en ese test poner 2
+        canvas que ponga ambas mitades y así evitar que suene la línea. Otra opción es quitar la 
+        línea con recortes, ajustar la imágen y simplemente colocar ambas zonas sin la línea 
+        intermedia, así no tengo que hacer 2 canvas y cranearme como hacer que suenen de un lado y
+        del otro.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar
