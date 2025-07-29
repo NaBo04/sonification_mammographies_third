@@ -5,8 +5,13 @@ const brushOpacity = 0.9;
 const maxSize = 128; //Tamaño maximo del cursor para que salga en el navegador
 var squareSize = Math.min(brushSize * zoom, maxSize); 
 let canvas;
+let fabricImg;
+let imgWidth;
+let imgHeight;
 let imgScale;
+let originalImageCanvas;
 let originalImageCtx;
+let originalImageData;
 let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
 let lastCursor = null;
@@ -19,6 +24,25 @@ function updateSizeValue(value) { //Actualiza el valor según la barra deslizant
 };
 function updateVolumeValue(value) { //Actualiza el valor según la barra deslizante
     document.getElementById("volumeValue").textContent = value; //Actualiza el texto que indica el volumen
+};
+function updateContrastValue(value) { //Actualiza el valor según la barra deslizante
+    document.getElementById("contrastValue").textContent = value; //Actualiza el texto que indica el volumen
+    const imageData = new ImageData(new Uint8ClampedArray(originalImageData.data), imgWidth, imgHeight);
+    const data = imageData.data;
+    const factor = (259 * (value * 255 + 255)) / (255 * (259 - value * 255));
+    for (let i = 0; i < data.length; i += 4) {
+        const gray = data[i];
+        const newGray = Math.max(0, Math.min(255, factor * (gray - 128) + 128));
+        data[i] = data[i + 1] = data[i + 2] = newGray;
+    }
+    originalImageCtx.putImageData(imageData, 0, 0);
+
+    const dataURL = originalImageCanvas.toDataURL();
+    fabricImg.setSrc(dataURL, () => {
+        fabricImg.scaleX = imgScale;
+        fabricImg.scaleY = imgScale;
+        canvas.renderAll();
+    });
 };
 
 const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado personalizado
@@ -116,21 +140,23 @@ function configurarEventosCanvas() {
 }
 
 window.addEventListener('load', () => { //Esta parte crea un canvas al que le añade la imagen que se selecconó en el HTML
-    const imgElement = document.getElementById("image");
+    const imgElement = document.getElementById("image"); //guarda el elemento HTML de la imgaen en una constante
     const initializeCanvasWithImage = () => {
-        const imgWidth = imgElement.naturalWidth;
-        const imgHeight = imgElement.naturalHeight;
-        imgScale = imgElement.width / imgElement.naturalWidth;
+        imgWidth = imgElement.naturalWidth;
+        imgHeight = imgElement.naturalHeight;
+        const canvasWidth = window.innerWidth * 0.33;
+        const canvasHeight = window.innerHeight * 0.9;
+        imgScale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
 
         canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric
-            width : imgWidth * imgScale, //dos tercios del ancho de la ventana
-            height : imgHeight * imgScale, //cuatro quintos del alto de la ventana
+            width: canvasWidth, 
+            height : canvasHeight,
             backgroundColor : "#FFF", //Color de fondo
             enableRetinaScaling: true, //Para ajustarse a varios tipos de pantalla
             freeDrawingCursor: `url(${ getDrawCursor() }) ${ brushSize } ${ brushSize }, crosshair`, //Activa el cursor personalizado
             selection: false, //Para no seleccionar y arrastrar objetos con el mouse
         });
-        const fabricImg = new fabric.Image(imgElement, {
+        fabricImg = new fabric.Image(imgElement, {
             left: 0,
             top: 0,
             selectable: false,
@@ -144,11 +170,12 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
         canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
         configurarEventosCanvas();
         //Aquí creo el contexto de dibujo sobre un canvas oculto que contiene solo la imagen original
-        const originalImageCanvas = document.createElement('canvas');
+        originalImageCanvas = document.createElement('canvas');
         originalImageCanvas.width = imgWidth;
         originalImageCanvas.height = imgHeight;
         originalImageCtx = originalImageCanvas.getContext('2d', { willReadFrequently: true });
         originalImageCtx.drawImage(imgElement, 0, 0, imgWidth, imgHeight);
+        originalImageData = originalImageCtx.getImageData(0, 0, imgWidth, imgHeight);
     }
 
     if (imgElement.complete && imgElement.naturalHeight !== 0) {

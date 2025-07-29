@@ -156,7 +156,7 @@ body { /* Ahora esto solo al cuerpo */
   width: 300px; /* cambia este valor al tamaño que quieras */
   height: 10px;  /* controla el grosor del track */
 }
-#muteCheckBox {
-    width: 20px;
-    height: 20px;
+#contrastSlider {
+  width: 300px; /* cambia este valor al tamaño que quieras */
+  height: 10px;  /* controla el grosor del track */
 }

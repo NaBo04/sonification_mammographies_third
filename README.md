@@ -77,10 +77,21 @@
         Funciona directamente en el navegador del usuario y al finalizar cada test como antes se 
         suben las respuestas automáticamente. Además, ahora se separan las respuestas en distintas
         carpetas según el test.
+- Agregué una barra de contraste en los 3 test. Cambia tanto el contraste de la imagen visible, como
+        el del canvas oculto por lo que el sonido depende de exactamente la imagen mostrada en 
+        pantalla. Además, no se ve afectada por los cuadros, zoom, desplazamiento, ni nada, por lo 
+        que es completamente compatible. Eso sí, fue complicado implementarlo, ya que las imágenes
+        son muy grandes y la librería no lo soporta, por lo que lo hice manualmente, lo que es un 
+        poco lento ante cambios muy rápidos.
+- En el proceso de implementar el contraste, hice un ajuste que quería hacer sobretodo para el test
+        3, ya que ahora las imágenes se escalan correctamente y cubren completamente el canvas. Lo 
+        que sobre en una de las direcciones queda oculto pero se puede acceder a ello desplazando
+        la imagen. Así no se pierde ni modifica la información con escalamientos. Es bueno ya que 
+        si cambio el tamaño del canvas seguirá funcionando. Afecta un poco al test 1 y 2 pero lo 
+        arreglaré luego, aunque es mínimo el efecto.
 
 # Proximos pasos: 
 
-- Agregar una barra que cambie el contraste en los tests como una opción más para los usuarios.
 - Indicar explícitamente en las instrucciones que deben colocar los cuadrados lo más centrados 
         posible en las microcalcificaciones.
 - Eliminar una de las sonificaciones, solo se hará con una el test.
@@ -117,6 +128,16 @@
         línea con recortes, ajustar la imágen y simplemente colocar ambas zonas sin la línea 
         intermedia, así no tengo que hacer 2 canvas y cranearme como hacer que suenen de un lado y
         del otro.
+- Hacer que el código funcione en un servidor/app de github como me mostró el profe que se puede
+        hacer.
+- Si el test es el 1 o el 2 dejar el tamaño fijo de la imagen, igual al tamaño que tienen las 
+        imágenes de estos. El test 3 si se debe quedar como el último código que hice que se adapta
+        con una escala bien hecha, sin perder información. Pasa que en el test 1 no queda centrado,
+        y tanto en este como en el 2 se puede perder un poquito de info. Sería bueno algo como, un
+        tercio de la pantalla en ancho, y el alto que sea lo necesario para que la escala sea 
+        correcta. 
+- El contraste es lento en cambio cuando la imagen es muy grande, se me ocurre mejor poner 2 botones
+        de + y - para que le de tiempo a cambiar.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar
