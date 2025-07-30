@@ -89,11 +89,11 @@
         la imagen. Así no se pierde ni modifica la información con escalamientos. Es bueno ya que 
         si cambio el tamaño del canvas seguirá funcionando. Afecta un poco al test 1 y 2 pero lo 
         arreglaré luego, aunque es mínimo el efecto.
+- Agregrué en las instrucciones de los test 2 y 3 que coloquen los cuadrados lo más centrados
+        posibles en las microcalcificaciones.
 
 # Proximos pasos: 
 
-- Indicar explícitamente en las instrucciones que deben colocar los cuadrados lo más centrados 
-        posible en las microcalcificaciones.
 - Eliminar una de las sonificaciones, solo se hará con una el test.
 - Cambiar en el test 1 la pregunta: ¿Es la intensidad de color igual en la imagen de arriba que en 
         la de abajo?

@@ -25,8 +25,10 @@ desplazarte por la imagen en pantalla y se producirá un sonido
 según el área encerrada por el cuadrado de tu puntero. Debes
 marcar la(s) microcalcificación(es) con un cuadrado y
 seleccionar tu nivel de seguridad para pasar a la siguiente
-imagen. Si consideras que en la imagen no hay una
-microcalcificación, no marques ningún cuadrado.
+imagen. Procura que cuando marques una microcalcificaión, 
+esta se encuentre lo más al centro del cuadrado que puedas. 
+Si consideras que en la imagen no hay una microcalcificación, 
+no marques ningún cuadrado.
 
 Controles:
   • Puedes marcar un cuadrado con el click izquierdo.
@@ -48,8 +50,10 @@ desplazarte por la imagen en pantalla y se producirá un sonido
 según el área encerrada por el cuadrado de tu puntero. Debes
 marcar la(s) microcalcificación(es) con un cuadrado y
 seleccionar tu nivel de seguridad para pasar a la siguiente
-imagen. Si consideras que en la imagen no hay una
-microcalcificación, no marques ningún cuadrado.
+imagen. Procura que cuando marques una microcalcificaión, 
+esta se encuentre lo más al centro del cuadrado que puedas. 
+Si consideras que en la imagen no hay una microcalcificación, 
+no marques ningún cuadrado.
 
 Controles:
   • Puedes marcar un cuadrado con el click izquierdo.
@@ -82,11 +86,13 @@ botón del mismo nombre.
 `,
 
     test2_mute: `
-Debes analizar un total de 45 imágenes. Debes
-marcar la(s) microcalcificación(es) con un cuadrado y
-seleccionar tu nivel de seguridad para pasar a la siguiente
-imagen. Si consideras que en la imagen no hay una
-microcalcificación, no marques ningún cuadrado.
+Debes analizar un total de 45 imágenes. Debes marcar la(s) 
+microcalcificación(es) con un cuadrado y seleccionar tu nivel
+de seguridad para pasar a la siguiente imagen. Procura que 
+cuando marques una microcalcificaión, esta se encuentre lo 
+más al centro del cuadrado que puedas. Si consideras que en 
+la imagen no hay una microcalcificación, no marques ningún 
+cuadrado.
 
 Controles:
   • Puedes marcar un cuadrado con el click izquierdo.
@@ -101,11 +107,13 @@ botón del mismo nombre.
 `,     
 
     test3_mute: `
-Debes analizar un total de 2 imágenes. Debes
-marcar la(s) microcalcificación(es) con un cuadrado y
-seleccionar tu nivel de seguridad para pasar a la siguiente
-imagen. Si consideras que en la imagen no hay una
-microcalcificación, no marques ningún cuadrado.
+Debes analizar un total de 2 imágenes. Debes marcar la(s) 
+microcalcificación(es) con un cuadrado y seleccionar tu nivel
+de seguridad para pasar a la siguiente imagen. Procura que 
+cuando marques una microcalcificaión, esta se encuentre lo 
+más al centro del cuadrado que puedas. Si consideras que en 
+la imagen no hay una microcalcificación, no marques ningún 
+cuadrado.
 
 Controles:
   • Puedes marcar un cuadrado con el click izquierdo.
