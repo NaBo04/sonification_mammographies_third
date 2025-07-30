@@ -91,10 +91,15 @@
         arreglaré luego, aunque es mínimo el efecto.
 - Agregrué en las instrucciones de los test 2 y 3 que coloquen los cuadrados lo más centrados
         posibles en las microcalcificaciones.
+- Ajusté el bloque que contiene las instrucciones en la selección del test, ahora es del 40% de la
+        pantalla que lo contenga. Con esto aproveché de ajustar la forma en que escribo las 
+        instrucciones para que se adapten también a esto. También borre lo relacionado a la caja de
+        mute y agregué lo que menciona el contraste.
+- Eliminé por completo la segunda sonificación. Incluyendo los archivos de faust, el contenido de
+        las respuestas, opciones, archivo de sonificación, etc.
 
 # Proximos pasos: 
 
-- Eliminar una de las sonificaciones, solo se hará con una el test.
 - Cambiar en el test 1 la pregunta: ¿Es la intensidad de color igual en la imagen de arriba que en 
         la de abajo?
 - Cambiar los niveles de seguridad a 100% seguro y 100% inseguro.
@@ -138,6 +143,11 @@
         correcta. 
 - El contraste es lento en cambio cuando la imagen es muy grande, se me ocurre mejor poner 2 botones
         de + y - para que le de tiempo a cambiar.
+- Me gustaría hacer que todo funcione en proporciones, del tipo que los bloque de columna y así sean
+        un porcentaje de la ventana y así se adapte a varias resoluciones de pantallas.
+- Podría cambiar lo de seleccionar un test como click y que salen las instrucciones, ya que ahora es
+        un progreso lineal, por lo que simplemente debería decir el test con las instrucciones dadas
+        y darle a comenzar y listo.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar

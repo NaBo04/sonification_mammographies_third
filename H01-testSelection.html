@@ -26,11 +26,6 @@
                     <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
                     <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
                 </div>
-                <div id="rightColumn" class="column">
-                    <h1 class="titulo">Selecciona una Sonificación</h1>
-                    <button class="option-button" id="son1" onclick="pressOptionButton('son1')">Sonificación 1</button>
-                    <button class="option-button" id="son2" onclick="pressOptionButton('son2')">Sonificación 2</button>
-                </div>
             </div>
             <div id="connections" class="footer">
                 <button class="back-button" onclick="window.location.href='H00-startScreen.html'">Volver</button>
@@ -39,9 +34,9 @@
         </div>
     </div>
     <div id="lastContent" class="column">
-        <div id="Instructions" class="contenido" style="width: 500px;">
+        <div id="Instructions" class="contenido" style="width: fit-content; max-width: 40vw;">
             <h1 id="instructions" class="titulo">Instrucciones</h1>
-            <p id="instructionsText" class="Instrucciones" style="white-space: pre-wrap;">Selecciona un test y una sonificación.</p>
+            <p id="instructionsText" class="Instrucciones">Selecciona un test.</p>
         </div>
     </div>
     <script src="J03-instructions.js"></script>
@@ -76,13 +71,11 @@
         }
         
         var testSelected = "";
-        var sonSelected = "";
         const testButtons = ["test1", "test2", "test3"];
-        const sonButtons = ["son1", "son2"];
     
         function pressOptionButton(id) {
-            const group = id.includes("test") ? (testSelected = id, testButtons) : (sonSelected = id, sonButtons);
-            for (const buttonId of group) {
+            testSelected = id;
+            for (const buttonId of testButtons) {
                 const btn = document.getElementById(buttonId);
                 if (!btn) continue;
         
@@ -98,15 +91,15 @@
 
             if (id.includes("test1")) {
                 document.getElementById('instructions').textContent = 'Instrucciones - Test 1';
-                document.getElementById('instructionsText').textContent = instrucciones[`test1${mode}`];
+                document.getElementById('instructionsText').innerHTML = instrucciones[`test1${mode}`];
             }
             else if (id.includes("test2")) {
                 document.getElementById('instructions').textContent = 'Instrucciones - Test 2';
-                document.getElementById('instructionsText').textContent = instrucciones[`test2${mode}`];
+                document.getElementById('instructionsText').innerHTML = instrucciones[`test2${mode}`];
             }
             else if (id.includes("test3")) {
                 document.getElementById('instructions').textContent = 'Instrucciones - Test 3';
-                document.getElementById('instructionsText').textContent = instrucciones[`test3${mode}`];
+                document.getElementById('instructionsText').innerHTML = instrucciones[`test3${mode}`];
             }
         }
         
@@ -115,12 +108,6 @@
                 alert('Por favor, selecciona el test que quieres realizar.');
                 return;
             }
-            if (sonSelected == ""){
-                alert('Por favor, selecciona una sonificación para el test.');
-                return;
-            }
-
-            sessionStorage.setItem('sonification', sonSelected[3]);
 
             if (testSelected == "test1"){
                 window.location.href = 'H02-test1.html';

@@ -55,7 +55,7 @@
                         <div class="modal-contenido">
                             <span class="cerrar" onclick="cerrarModal()">&times;</span>
                             <h2 style="text-align: center;">Instrucciones - Test 3</h2>
-                            <div id="contenido-instrucciones" style="white-space: pre-wrap;"></div>
+                            <div id="contenido-instrucciones"></div>
                         </div>
                     </div>
                 </div>
@@ -138,8 +138,7 @@
             }  
 
             let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
-            let userSonification = sessionStorage.getItem('sonification');
-            let answersData = [window.imageNumber, window.time, userSonification, scaleSelected, squares]; // [n_imagen, tiempo, sonificacion, escala, respuesta]
+            let answersData = [window.imageNumber, window.time, scaleSelected, squares]; // [n_imagen, tiempo, escala, respuesta]
             userAnswers[window.index].push(answersData);
             userAnswers[window.index].sort(function(a,b) {
                 return a[0] - b[0];
@@ -178,9 +177,9 @@
         function abrirModal() { //Para el manejo del pop-up de instrucciones
             document.getElementById("miModal").style.display = "block";
             if (window.isMuted) {
-                document.getElementById("contenido-instrucciones").textContent = instrucciones['test3_mute'];
+                document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test3_mute'];
             } else {
-                document.getElementById("contenido-instrucciones").textContent = instrucciones['test3_son'];
+                document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test3_son'];
             }
         } 
         function cerrarModal() {document.getElementById("miModal").style.display = "none";}
@@ -190,11 +189,9 @@
             alert("Tu navegador no es compatible con el sistema de sonificación. Por favor utiliza otro.");
         }
         
-        var sonific = sessionStorage.getItem('sonification');
         var mock_dsp = null; //Esta variable es para guardar el nodo de audio DSP (Digitla Signal Procesing)
-        import * as DSP1 from "./faust/mockDSP.js";
-        import * as DSP2 from "./faust/mockDSP2.js";
-        const { createFaustNode } = (sonific == 1) ? DSP1 : DSP2;
+        import * as DSP from "./faust/mockDSP.js";
+        const { createFaustNode } = DSP;
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         window.addEventListener("load", async () => {
