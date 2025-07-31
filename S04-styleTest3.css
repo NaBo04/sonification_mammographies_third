@@ -102,7 +102,6 @@ body { /* Ahora esto solo al cuerpo */
 }
 .helpButton {
     display: block;
-    width: 200px;
     padding: 10px;
     font-size: 18px;
     background-color: #5858ab;
@@ -140,6 +139,14 @@ body { /* Ahora esto solo al cuerpo */
   overflow: auto; /* scroll interno */
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   font-size: 20px;
+}
+.modal-contenido h1{
+    font-size: 3.5vw; 
+    white-space: nowrap; 
+    padding: 15vw;
+    padding-top: 8vw; 
+    padding-bottom: 0px; 
+    margin: auto;
 }
 .cerrar {
   color: #aaa;

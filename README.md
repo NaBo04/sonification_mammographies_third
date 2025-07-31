@@ -101,12 +101,13 @@
 - Agregué 100% seguro e inseguro a los tests. 
 - Hice varios cambios a la distribución del estilo de los tests. Con esto vairas partes se adaptan
         al tamaño de la pantalla, para que se vea bien en distintas resoluciones.
+- En las instrucciones se menciona que se tomará el tiempo
+- Implimenté el botón de pausa. Este abre un pop-up que indica que el test se pausó. Se puede volver
+        cerrando el pop-up o apretando reanudar. Cuando se pausa, al igual que cuando se leen las 
+        instrucciones, el tiempo no se sigue contando y se bloquea la imagen en la pantalla.
 
 # Proximos pasos: 
 
-- Indicar en las instrucciones que el tiempo se va a tomar durante los tests.
-- Agregar un botón de pausa en los tests, debe pausar el tiempo de fondo y abrir un pop-up para que
-        no se pueda continuar viendo el test.
 - test 1: Mantener tamaño del puntero fijo.
 - hablarle al profe para decidir las 45 fotos del test 3.
 - test 2: identifique la presencia de 1 o más lesiones sugerentes de malignidad en esta mamografía. 
@@ -142,6 +143,8 @@
 - Podría cambiar lo de seleccionar un test como click y que salen las instrucciones, ya que ahora es
         un progreso lineal, por lo que simplemente debería decir el test con las instrucciones dadas
         y darle a comenzar y listo.
+- Que el botón de instrucciones funcione igual que el pausa. Que detenga el tiempo y se bloquee la
+        imagen.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar

@@ -16,7 +16,7 @@ let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
 let lastCursor = null;
 let isDragging = false;
-
+let whiteScreen;
 
 function updateSizeValue(value) { //Actualiza el valor según la barra deslizante
     brushSize = value; //Convierte el valor a entero en base 10
@@ -44,6 +44,16 @@ function updateContrastValue(value) { //Actualiza el valor según la barra desli
         canvas.renderAll();
     });
 };
+
+function putWhiteScreen() {
+    canvas.add(whiteScreen);
+    canvas.bringToFront(whiteScreen);
+    canvas.renderAll()
+}
+function quitWhiteScreen() {
+    canvas.remove(whiteScreen);
+    canvas.renderAll();
+}
 
 const getDrawCursor = () => { //Convierte el puntero del mouse en un cuadrado personalizado
     squareSize = Math.min(brushSize * zoom, maxSize); 
@@ -185,4 +195,7 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
             initializeCanvasWithImage();
         };
     }
+
+    whiteScreen = new fabric.Rect({left: 0, top: 0, width: canvas.width, height: canvas.height,
+        fill: 'white', selectable: false, evented: false}); //Pantalla blanca para cuando se pause
 });

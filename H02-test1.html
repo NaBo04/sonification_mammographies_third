@@ -35,7 +35,19 @@
                     <h1 id="imageNumber" style="margin: auto; font-size: 50px; padding-bottom: 20px; padding-top: 20px;"> Test 1 </h1>
                 </div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
-                <p id="progress" style="margin:auto; font-size: 25px; padding-bottom: 20px; padding-top: 25px;"> Progreso: </p>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 15px; padding-bottom: 15px;">
+                    <p id="progress" style="margin: 0; font-size: 25px;">Progreso:</p>
+                    <button class="helpButton" id="pauseButton" onclick="abrirModal(this)" style="width: 100px;">Pausa</button>
+                    <div id="pauseModal" class="modal">
+                        <div class="modal-contenido">
+                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                            <h1>Test pausado</h1>
+                            <div style="padding-top: 5vw; padding-bottom: 5vw; display: flex; justify-content: center;">
+                                <button class="helpButton" id="continueButton" onclick="cerrarModal()" style="width: 18vw; height: 5vw; font-size: 2vw;">Reanudar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px; font-size: 20px;">
                     Tamaño del puntero <br>
@@ -50,7 +62,7 @@
                 <div id="slider-container" style="padding-top: 20px; padding-bottom: 20px; font-size: 20px;"></div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px;">
-                    <button class="helpButton" onclick="abrirModal()" style="margin: auto;">Instrucciones</button>
+                    <button class="helpButton" id="instructionsButton" onclick="abrirModal(this)" style="margin: auto; width: 12vw;">Instrucciones</button>
                     <div id="miModal" class="modal">
                         <div class="modal-contenido">
                             <span class="cerrar" onclick="cerrarModal()">&times;</span>
@@ -173,22 +185,38 @@
             return `${mins}:${secs}`;
         }
         function updateTimer() {
-            if (seconds < 3599) {
-                seconds++;
+            if (!isPaused) {
+                if (seconds < 3599) {
+                    seconds++;
+                }
+                window.time = formatTime(Math.min(seconds, 3599));
             }
-            window.time = formatTime(Math.min(seconds, 3599));
         }
         setInterval(updateTimer, 1000);
 
-        function abrirModal() { //Para el manejo del pop-up de instrucciones
-            document.getElementById("miModal").style.display = "block";
-            if (window.isMuted) {
-                document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test1_mute'];
-            } else {
-                document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test1_son'];
+        let isPaused = false;
+        function abrirModal(button) { //Para el manejo del pop-up de instrucciones
+            const buttonId = button.id;
+            if (buttonId == 'instructionsButton') {
+                document.getElementById("miModal").style.display = "block";
+                if (window.isMuted) {
+                    document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test1_mute'];
+                } else {
+                    document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test1_son'];
+                }
             }
-        } 
-        function cerrarModal() {document.getElementById("miModal").style.display = "none";}
+            else if (buttonId == 'pauseButton') {
+                document.getElementById("pauseModal").style.display = "block";
+            }
+            isPaused = true;
+            putWhiteScreen();
+        }
+        function cerrarModal() {
+            document.getElementById("miModal").style.display = "none";
+            document.getElementById("pauseModal").style.display = "none";
+            isPaused = false;
+            quitWhiteScreen();
+        }
         
     </script>
     <script type="module">
