@@ -11,7 +11,7 @@ body { /* Ahora esto solo al cuerpo */
 }
 
 .contenido {
-    padding: 20px; /* Bordes alrededor del contenido */
+    padding: 2vw; /* Bordes alrededor del contenido */
     background-color: white; /* Color del bloque de contenido */
     border: 1px solid #393838; /* Color del borde */
     border-radius: 10px; /* Bordes redondeados */
@@ -20,11 +20,8 @@ body { /* Ahora esto solo al cuerpo */
 
 .container {
     display: flex;
-    justify-content: space-between;
-}
-
-.column {
-    width: 45%;
+    gap: 2vw;
+    justify-content: center;
 }
 
 .option-button {
@@ -48,18 +45,18 @@ body { /* Ahora esto solo al cuerpo */
 }
 .small-button {
     padding: 5px 10px;
-    width: 40px;
+    width: 35px;
     height: 40px;
 }
 
 .titulo {
     text-align: center;
     font-size: 30px;
+    margin-bottom: auto;
 }
 
 .texto {
     font-size: 20px;
-    padding-top: 10px;
 }
 
 .footer {

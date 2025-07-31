@@ -30,7 +30,7 @@
 <body>
     <div id="centralBlock" class="contenido">
         <div id="testSelection" class="container">
-            <div id="infoColumn" class="column">
+            <div id="infoColumn" class="column" style="width: 20vw;">
                 <div class="encabezado">
                     <h1 id="imageNumber" style="margin: auto; font-size: 50px; padding-bottom: 20px; padding-top: 20px;"> Test 2 </h1>
                 </div>
@@ -39,12 +39,12 @@
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div style="padding-top: 30px; font-size: 20px;">
                     Tamaño del puntero <br>
-                    <input type="range" id="sizeSlider" min="2.5" max="50" step="2.5" value="25" oninput="updateSizeValue(this.value)">
+                    <input type="range" id="sizeSlider" min="2.5" max="50" step="2.5" value="25" oninput="updateSizeValue(this.value)" style="width: 16vw">
                     <span id="sizeValue">25</span>
                 </div>
                 <div style="padding-top: 20px; font-size: 20px;">
                     Contraste de la imagen <br>
-                    <input type="range" id="contrastSlider" min="-1" max="1" step="0.01" value="0" oninput="updateContrastValue(this.value)">
+                    <input type="range" id="contrastSlider" min="-1" max="1" step="0.01" value="0" oninput="updateContrastValue(this.value)" style="width: 16vw">
                     <span id="contrastValue">0</span>
                 </div>  
                 <div id="slider-container" style="padding-top: 20px; padding-bottom: 20px; font-size: 20px;"></div>
@@ -60,25 +60,25 @@
                     </div>
                 </div>
             </div>
-            <div id="leftColumn" class="column" style="padding-left: 20px;">
+            <div id="leftColumn" class="column" style="width: fit-content; display: flex; justify-content: center;">
                 <div>
                     <canvas id="rasterCanvas" style="border: 2px solid black;" width="500" height="650"></canvas>
                     <img id="image" src="" style="display: none;">
                     <script src="J00-canvas.js"></script>
                 </div>
             </div>
-            <div id="rightColumn" class="column" style="padding-left: 20px;">
+            <div id="rightColumn" class="column" style="width: 30vw;">
                 <h1 class="titulo">Encuentre las microcalcificaciones</h1>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
-                <h2 class="titulo" style="padding-top: 20px;">¿Qué tan seguro está de su respuesta?</h2>
-                <div style="display: flex; gap: 8px; justify-content: center;">
-                    <h3 class="texto">Inseguro</h3>
+                <h2 class="titulo" style="padding-top: 20px;">¿Qué tan seguro estás de tu respuesta?</h2>
+                <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+                    <h3 class="texto">100% Inseguro</h3>
                     <button class="option-button small-button" id="1" onclick="pressOptionButton('1')">1</button>
                     <button class="option-button small-button" id="2" onclick="pressOptionButton('2')">2</button>
                     <button class="option-button small-button" id="3" onclick="pressOptionButton('3')">3</button>
                     <button class="option-button small-button" id="4" onclick="pressOptionButton('4')">4</button>
                     <button class="option-button small-button" id="5" onclick="pressOptionButton('5')">5</button>
-                    <h3 class="texto">Seguro</h3>
+                    <h3 class="texto">100% Seguro</h3>
                 </div>
                 <hr style="border: none; height: 2px; background-color: black; width: 100%;">
                 <div id="connections" class="footer" style="padding-top: 100px;">
@@ -99,7 +99,7 @@
                 <div style="padding-bottom: 20px">
                     Volumen <br>
                     <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2"
-                        oninput="updateVolumeValue(this.value)">
+                        oninput="updateVolumeValue(this.value)" style="width: 16vw">
                     <span id="volumeValue">2</span>
                 </div>
             `;

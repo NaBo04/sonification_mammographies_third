@@ -97,13 +97,13 @@
         mute y agregué lo que menciona el contraste.
 - Eliminé por completo la segunda sonificación. Incluyendo los archivos de faust, el contenido de
         las respuestas, opciones, archivo de sonificación, etc.
+- Cambié la pregunta del test 1.
+- Agregué 100% seguro e inseguro a los tests. 
+- Hice varios cambios a la distribución del estilo de los tests. Con esto vairas partes se adaptan
+        al tamaño de la pantalla, para que se vea bien en distintas resoluciones.
 
 # Proximos pasos: 
 
-- Cambiar en el test 1 la pregunta: ¿Es la intensidad de color igual en la imagen de arriba que en 
-        la de abajo?
-- Cambiar los niveles de seguridad a 100% seguro y 100% inseguro.
-- Quitar el botón de mute de los tests, solo se maneja de fondo según lo que se escogió al inicio.
 - Indicar en las instrucciones que el tiempo se va a tomar durante los tests.
 - Agregar un botón de pausa en los tests, debe pausar el tiempo de fondo y abrir un pop-up para que
         no se pueda continuar viendo el test.
@@ -113,19 +113,13 @@
         Si considera que no hay lesión, indique su nivel de seguridad y continúe.
 - test 3: cambiar toda la interfaz a un lado y dejar más espacio para la imagen.
 - Una vez tenga las imágenes del test 3 debo borrar datos de las esquinas.
-- Intentar iniciar el servidor al ejecutar la primera ventana, para que se pueda iniciar todo solo
-        y que sea luego capaz de subir las soluciones al drive sin correr el server aparte.
 - Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
         valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
 - Arreglar el hardcodeo de las escalas en sonification, esto lo puedo hacer para cuando el profe me
         pase las sonificaciones reales. Aparte revisar que creo que la función de escalar tiene unos
         rangos mínimos-máximos por defecto equivocados.
-- Arreglar el escalamiento de la imagen, creo que se ajusta al tamño del canvas. Debería mostrar lo
-        que pueda de la imagen como un recorte, que luego se pueda desplazar en lo que falte.
 - Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos.
 - Que la página no vibre al cambiar el volumen (por el tamaño del texto).
-- Cuando quite la opción de elegir entre sonificación, habrá más espacio para extender las
-        instrucciones. Así quedaría mejor en el pop-up también.
 - Al pasar de cada imágen en los tests, guardar la configuración establecida de volumen, tamaño 
         del puntero, etc.
 - Tomar todas las imágenes del test1, dividirlas en 2, quitando la línea, para en ese test poner 2
