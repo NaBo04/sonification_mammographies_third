@@ -154,7 +154,7 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le aÃ
     const initializeCanvasWithImage = () => {
         imgWidth = imgElement.naturalWidth;
         imgHeight = imgElement.naturalHeight;
-        const canvasWidth = window.innerWidth * 0.33;
+        const canvasWidth = window.test == 3 ? window.innerWidth * 0.5 : window.innerWidth * 0.33;
         const canvasHeight = window.innerHeight * 0.9;
         imgScale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
 

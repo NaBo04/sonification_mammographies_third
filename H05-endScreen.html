@@ -29,23 +29,23 @@
         
         let contenido = `Usuario;${userAnswers[0]}\n`;
         if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 0 && userAnswers[index[2]].length == 0) {
-            contenido += '\ntest 1\nimagen;tiempo;sonificacion;nivel de seguridad;respuesta\n';
+            contenido += '\ntest 1\nimagen;tiempo;nivel de seguridad;respuesta\n';
             for (let answer of userAnswers[index[0]]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
             nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test1-Answers.csv`; 
         }
         else if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 45 && userAnswers[index[2]].length == 0) {
-            contenido += '\ntest 2\nimagen;tiempo;sonificacion;nivel de seguridad;cuadrados\n';
+            contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad;cuadrados\n';
             for (let answer of userAnswers[index[1]]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
             nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test2-Answers.csv`;  
         }
         else if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 45 && userAnswers[index[2]].length == 2) {
-            contenido += '\ntest 3\nimagen;tiempo;sonificacion;nivel de seguridad;cuadrados\n';
+            contenido += '\ntest 3\nimagen;tiempo;nivel de seguridad;cuadrados\n';
             for (let answer of userAnswers[index[2]]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]};${answer[4]}\n`;
+                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
             nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test3-Answers.csv`; 
             document.getElementById("mainText").innerText = "Todos los tests finalizados";

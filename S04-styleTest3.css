@@ -30,14 +30,9 @@ body { /* Ahora esto solo al cuerpo */
 
 .option-button {
     display: block;
-    width: 300px;
-    margin: 20px auto;
-    padding: 15px;
-    font-size: 18px;
     background-color: #495049;
     color: white;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
 }
 .option-button:hover {
@@ -48,14 +43,16 @@ body { /* Ahora esto solo al cuerpo */
     color: white;
 }
 .small-button {
-    padding: 5px 10px;
-    width: 35px;
-    height: 40px;
+    padding: 1vh;
+    width: 1.7vw;
+    height: 4vh;
+    font-size: 1vw;
+    border-radius: 0.5vw;
 }
 
 .titulo {
     text-align: center;
-    font-size: 30px;
+    font-size: 1.4vw;
     margin-bottom: auto;
 }
 
@@ -64,9 +61,10 @@ body { /* Ahora esto solo al cuerpo */
 }
 
 .footer {
-    margin-top: 60px;
     display: flex;
     justify-content: space-between;
+    align-items: end;
+    height: 20vh;
 }
 
 .back-button {
@@ -94,16 +92,16 @@ body { /* Ahora esto solo al cuerpo */
     background-color: #87d17d;
 }
 
-.encabezado {
+.division {
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* opcional, para alinear verticalmente */
-  width: 100%; /* asegura que tome todo el ancho */
+  margin: auto;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
 }
 .helpButton {
     display: block;
-    padding: 10px;
-    font-size: 18px;
+    padding: 0.5vw;
+    font-size: 1vw;
     background-color: #5858ab;
     color: white;
     border: none;

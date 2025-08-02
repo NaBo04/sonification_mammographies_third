@@ -105,15 +105,13 @@
 - Implimenté el botón de pausa. Este abre un pop-up que indica que el test se pausó. Se puede volver
         cerrando el pop-up o apretando reanudar. Cuando se pausa, al igual que cuando se leen las 
         instrucciones, el tiempo no se sigue contando y se bloquea la imagen en la pantalla.
+- Quité la barra para cambiar el tamaño del puntero en el test 1. Ahora se mantiene fijo.
+- Ajusté las instruccines de los test 2 y 3 con el tema de las lesiones de malignidad.
+- En el test 3 dejé todo los controles, instrucciones, preguntas y respuestas de un lado. Por lo que
+        ahora hay más espacio para la imagen, la cual ahora ocupa el 50% de la pantalla.
 
 # Proximos pasos: 
 
-- test 1: Mantener tamaño del puntero fijo.
-- hablarle al profe para decidir las 45 fotos del test 3.
-- test 2: identifique la presencia de 1 o más lesiones sugerentes de malignidad en esta mamografía. 
-        Si considera que no hay lesión, indique su nivel de seguridad y continúe.
-- test 3: cambiar toda la interfaz a un lado y dejar más espacio para la imagen.
-- Una vez tenga las imágenes del test 3 debo borrar datos de las esquinas.
 - Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
         valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
 - Arreglar el hardcodeo de las escalas en sonification, esto lo puedo hacer para cuando el profe me
@@ -143,8 +141,7 @@
 - Podría cambiar lo de seleccionar un test como click y que salen las instrucciones, ya que ahora es
         un progreso lineal, por lo que simplemente debería decir el test con las instrucciones dadas
         y darle a comenzar y listo.
-- Que el botón de instrucciones funcione igual que el pausa. Que detenga el tiempo y se bloquee la
-        imagen.
+- Una vez tenga las imágenes del test 3 debo borrar datos de las esquinas.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar
@@ -155,6 +152,6 @@
         mouse, y ajustar el zoom con 2 botones de + y - al lado del canvas.
 
 # Pedirle al profe
-- Todas las imágenes del test 3 de mamografías.
+- Las 45 imágenes de memografiás para el test 3.
 - La sonificación final, para esto necesito el mockDSP. Tengo que tener ojo con los rangos mínimos, 
         máximos, los intervalos de cambio, etc. Que también le añada mute y volumen.
