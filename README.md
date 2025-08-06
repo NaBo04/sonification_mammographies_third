@@ -118,9 +118,8 @@
         pase las sonificaciones reales. Aparte revisar que creo que la función de escalar tiene unos
         rangos mínimos-máximos por defecto equivocados.
 - Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos.
-- Que la página no vibre al cambiar el volumen (por el tamaño del texto).
 - Al pasar de cada imágen en los tests, guardar la configuración establecida de volumen, tamaño 
-        del puntero, etc.
+        del puntero, etc. 
 - Tomar todas las imágenes del test1, dividirlas en 2, quitando la línea, para en ese test poner 2
         canvas que ponga ambas mitades y así evitar que suene la línea. Otra opción es quitar la 
         línea con recortes, ajustar la imágen y simplemente colocar ambas zonas sin la línea 
