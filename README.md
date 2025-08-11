@@ -55,10 +55,10 @@
 
 - Destaqué en rojo la instrucción de no marcar nada si considera que la imagen no tiene lesión 
         maligna.
+- Para la versión oficial, el test 1 ya no contiene barra de contraste.
 
 # Proximos pasos: 
 
-- En el test 1 quitar el contraste.
 - Hacer una nueva versión de los test, donde se puedan tener respuestas y todo para 4 tipos 
         distintos. Los cuales serían las combinaciones de Con y Sin sonificación, Con y Sin cambio
         de contraste. En esta nueva versión solo deben ser 15 imágenes para los tests 1 y 2. No debe
