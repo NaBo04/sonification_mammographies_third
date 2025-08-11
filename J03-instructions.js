@@ -20,9 +20,10 @@ Siempre puedes volver a revisar estas instrucciones con el botón del mismo nomb
 Debes analizar un total de 45 imágenes. Con tu mouse debes desplazarte por la imagen en pantalla y 
 se producirá un sonido según el área encerrada por el cuadrado de tu puntero. Debes marcaar la 
 presencia de una o maás lesiones sugerentes de malignidad en esta mamografía con cuadrados. Marca un
-cuadrado por cada lesión y procura que se encuentre lo más centrado posible. Si consideras que la 
-mamografía no presenta una lesión marques nada. Por último, indica tu nivel de seguridad y continua. 
-Se registrará el tiempo transcurrido por cada imagen. <br>
+cuadrado por cada lesión y procura que se encuentre lo más centrado posible. 
+<span style="color:red;">Si consideras que la mamografía no presenta una lesión, no marques ningún
+cuadrado.</span> Por último, indica tu nivel de seguridad y continua. Se registrará el tiempo 
+transcurrido por cada imagen. <br>
 <br>
 Controles: <br>
   • Puedes marcar un cuadrado con el click izquierdo. <br>
@@ -40,9 +41,10 @@ Siempre puedes volver a revisar estas instrucciones con el botón del mismo nomb
 Debes analizar un total de 2 imágenes. Con tu mouse debes desplazarte por la imagen en pantalla y se
 producirá un sonido según el área encerrada por el cuadrado de tu puntero. Debes marcaar la 
 presencia de una o maás lesiones sugerentes de malignidad en esta mamografía con cuadrados. Marca un
-cuadrado por cada lesión y procura que se encuentre lo más centrado posible. Si consideras que la 
-mamografía no presenta una lesión marques nada. Por último, indica tu nivel de seguridad y continua. 
-Se registrará el tiempo transcurrido por cada imagen. <br>
+cuadrado por cada lesión y procura que se encuentre lo más centrado posible.
+<span style="color:red;">Si consideras que la mamografía no presenta una lesión, no marques ningún 
+cuadrado.</span> Por último, indica tu nivel de seguridad y continua. Se registrará el tiempo 
+transcurrido por cada imagen. <br>
 <br>
 Controles: <br>
   • Puedes marcar un cuadrado con el click izquierdo. <br>
@@ -73,9 +75,9 @@ Siempre puedes volver a revisar estas instrucciones con el botón del mismo nomb
     test2_mute: `
 Debes analizar un total de 45 imágenes. Debes marcaar la presencia de una o maás lesiones sugerentes
 de malignidad en esta mamografía con cuadrados. Marca un cuadrado por cada lesión y procura que se 
-encuentre lo más centrado posible. Si consideras que la mamografía no presenta una lesión marques 
-nada. Por último, indica tu nivel de seguridad y continua. Se registrará el tiempo transcurrido por
-cada imagen. <br>
+encuentre lo más centrado posible. <span style="color:red;">Si consideras que la mamografía no 
+presenta una lesión, no marques ningún cuadrado.</span> Por último, indica tu nivel de seguridad y 
+continua. Se registrará el tiempo transcurrido por cada imagen. <br>
 <br>
 Controles: <br>
   • Puedes marcar un cuadrado con el click izquierdo. <br>
@@ -90,9 +92,9 @@ Siempre puedes volver a revisar estas instrucciones con el botón del mismo nomb
     test3_mute: `
 Debes analizar un total de 2 imágenes. Debes marcaar la presencia de una o maás lesiones sugerentes
 de malignidad en esta mamografía con cuadrados. Marca un cuadrado por cada lesión y procura que se 
-encuentre lo más centrado posible. Si consideras que la mamografía no presenta una lesión marques 
-nada. Por último, indica tu nivel de seguridad y continua. Se registrará el tiempo transcurrido por
-cada imagen. <br>
+encuentre lo más centrado posible. <span style="color:red;">Si consideras que la mamografía no 
+presenta una lesión, no marques ningún cuadrado.</span> Por último, indica tu nivel de seguridad y 
+continua. Se registrará el tiempo transcurrido por cada imagen. <br>
 <br>
 Controles: <br>
   • Puedes marcar un cuadrado con el click izquierdo. <br>
