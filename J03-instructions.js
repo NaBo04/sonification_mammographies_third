@@ -99,7 +99,8 @@ Controles: <br>
   • Puedes ajustar el tamaño del puntero con el slider a la izquierda. <br>
   • Puedes hacer zoom con la rueda del mouse. <br>
   • Puedes desplazar la imagen desplazando el mouse mientas pulsas el click derecho. <br>
+  • Puedes regular el contraste con el slider correspondiente. <br>
   • Puedes detener el temporizador si necesitas un receso con el botón de pausa. <br>
-<br>
+<br>    
 Siempre puedes volver a revisar estas instrucciones con el botón del mismo nombre.
 `};
