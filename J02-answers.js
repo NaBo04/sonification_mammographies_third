@@ -1,9 +1,9 @@
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbxMdMNixjFUw8PJwL3xftzg4N7DvRUMb4Hm7QrNFqq--eHggbElTES8DQE35lwAAj7F/exec'
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbzdwn8gugXOcAv4FQlAz3V8c58IrdB5ax-T6OaKp7eZmsid67QtiwDT7pfikIbgt5hF/exec'
 
 async function subirArchivoDesdeBlob(blob, nombreArchivo) {
   return new Promise((resolve, reject) => {
     const lector = new FileReader();
-
+    
     lector.onload = async function () {
       const base64 = lector.result.split(',')[1];
 

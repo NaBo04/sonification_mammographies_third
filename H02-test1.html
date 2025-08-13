@@ -6,7 +6,8 @@
     <script src="./lib/fabric.js"></script>
     <script type="module">
         let isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Guarda la variable segun el test con o sin sonificacion
-        let index = isMuted ? 1 : 4 ; //1 para test1 sin sonificacion, 4 para test1 con sonificacion
+        let withContrast = JSON.parse(sessionStorage.getItem("withContrast")); //Guarda la variable segun el test con o sin contraste
+        let index = (isMuted && !withContrast) ? 1 : isMuted ? 3 : !withContrast ? 5 : 7 ; //1 para test1 mute y static, 3 para test1 mute y contrast, 5 para son y static y 7 para son y contrast
 
         let usedNumbers = []; //Para el manejo de la selección aleatoria de la imagenes y paso por todas
         for (let number of JSON.parse(sessionStorage.getItem('userAnswers'))[index]){ //Revisa los numeros ya usados de imagenes
@@ -21,7 +22,7 @@
         var random_number = notUsedNumbers[Math.floor(Math.random() * notUsedNumbers.length)]; //Escoge un numero al azar de los no usados
         var selectedImage = document.getElementById('image'); //Carga la imagen correspondiente
         selectedImage.src = `./assets/test1/im${random_number}.png`; //De la carpeta y archivo correspondientes
-        document.getElementById('progress').textContent = `Progreso: ${46 - notUsedNumbers.length}/45`; //Actualiza el progreso
+        document.getElementById('progress').textContent = `Progreso: ${46 - notUsedNumbers.length}/15`; //Actualiza el progreso
 
         window.imageNumber = random_number;
         window.time = "";
@@ -35,7 +36,7 @@
                 <div class="encabezado">
                     <h1 id="imageNumber" style="margin: auto; font-size: 50px; padding-bottom: 20px; padding-top: 20px;"> Test 1 </h1>
                 </div>
-                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
+                <hr style="border: none; height: 0.3vh; background-color: black; width: 100%;">
                 <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 15px; padding-bottom: 15px;">
                     <p id="progress" style="margin: 0; font-size: 25px;">Progreso:</p>
                     <button class="helpButton" id="pauseButton" onclick="abrirModal(this)" style="width: 100px;">Pausa</button>
@@ -49,15 +50,11 @@
                         </div>
                     </div>
                 </div>
-                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
-                <div style="padding-top: 30px; font-size: 20px;">
-                    Contraste de la imagen <br>
-                    <input type="range" id="contrastSlider" min="-1" max="1" step="0.01" value="0" oninput="updateContrastValue(this.value)" style="width: 16vw">
-                    <span id="contrastValue">0</span>
-                </div>  
-                <div id="slider-container" style="padding-top: 20px; padding-bottom: 20px; font-size: 20px;"></div>
-                <hr style="border: none; height: 2px; background-color: black; width: 100%;">
-                <div style="padding-top: 30px;">
+                <hr style="border: none; height: 0.3vh; background-color: black; width: 100%;">
+                <div id="slider-contrast-container" style="font-size: 20px; padding-top: 1vh;"></div>
+                <div id="slider-volume-container" style="font-size: 20px; padding-bottom: 1vh;"></div>
+                <hr id="line" style="border: none; height: 0.3vh; background-color: black; width: 100%; display: none;">
+                <div style="padding-top: 2vh;">
                     <button class="helpButton" id="instructionsButton" onclick="abrirModal(this)" style="margin: auto; width: 12vw;">Instrucciones</button>
                     <div id="miModal" class="modal">
                         <div class="modal-contenido">
@@ -102,21 +99,35 @@
     </div>
     <script src="J03-instructions.js"></script>
     <script>
-        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted")); 
-        window.index = window.isMuted ? 1 : 4 ; 
+        window.isMuted = JSON.parse(sessionStorage.getItem("isMuted"));
+        window.withContrast = JSON.parse(sessionStorage.getItem("withContrast"));
+        window.index = (window.isMuted && !window.withContrast) ? 1 : window.isMuted ? 3 : !window.withContrast ? 5 : 7 ;
 
         if (!window.isMuted) { //Este bloque se encarga de mostrar o no la barra de volumen según corresponda
-            const container = document.getElementById('slider-container');
+            const container = document.getElementById('slider-volume-container');
             container.innerHTML = `
-                <div style="padding-bottom: 20px">
+                <div style="padding-top: 1vh; padding-bottom: 1vh">
                     Volumen <br>
                     <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2"
                         oninput="updateVolumeValue(this.value)" style="width: 16vw">
                     <span id="volumeValue">2</span>
                 </div>
             `;
+            document.getElementById('line').style.display = "block";
         }
-
+        if (window.withContrast) {
+            const container2 = document.getElementById('slider-contrast-container');
+            container2.innerHTML = `
+                <div style="padding-top: 1vh; padding-bottom: 1vh">
+                    Contraste de la imagen <br>
+                    <input type="range" id="contrastSlider" min="-1" max="1" step="0.01" value="0" 
+                        oninput="updateContrastValue(this.value)" style="width: 16vw">
+                    <span id="contrastValue">0</span>
+                </div>  
+            `;
+            document.getElementById('line').style.display = "block";
+        }
+        
         const putSquare = false;
         var answerSelected = "";
         var scaleSelected = ""; 
@@ -167,7 +178,7 @@
             }
             localStorage.setItem('usersList', JSON.stringify(usersList));
 
-            if (document.getElementById('progress').textContent.trim() === 'Progreso: 45/45') {
+            if (document.getElementById('progress').textContent.trim() === 'Progreso: 15/15') {
                 window.location.href = 'H05-endScreen.html';
             } else {
                 window.location.href = 'H02-test1.html';
@@ -195,11 +206,10 @@
             const buttonId = button.id;
             if (buttonId == 'instructionsButton') {
                 document.getElementById("miModal").style.display = "block";
-                if (window.isMuted) {
-                    document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test1_mute'];
-                } else {
-                    document.getElementById("contenido-instrucciones").innerHTML = instrucciones['test1_son'];
-                }
+                const instruction_data = (window.isMuted && !window.withContrast) ? 'test1_mute_static' 
+                    : window.isMuted ? 'test1_mute_contrast' 
+                    : !window.withContrast ? 'test1_son_static' : 'test1_son_contrast' ;
+                document.getElementById("contenido-instrucciones").innerHTML = instrucciones[instruction_data];
             }
             else if (buttonId == 'pauseButton') {
                 document.getElementById("pauseModal").style.display = "block";

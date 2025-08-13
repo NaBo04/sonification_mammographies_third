@@ -13,7 +13,6 @@
             <ul class="progress-list">
                 <li>Test 1: <span id="test1Progress">0</span>/45</li>
                 <li>Test 2: <span id="test2Progress">0</span>/45</li>
-                <li>Test 3: <span id="test3Progress">0</span>/2</li>
             </ul>
         </div>
     </div>
@@ -24,7 +23,6 @@
                     <h1 class="titulo">Selecciona el test a realizar</h1>
                     <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
                     <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
-                    <button class="option-button" id="test3" onclick="pressOptionButton('test3')">Test 3</button>
                 </div>
             </div>
             <div id="connections" class="footer">
@@ -42,36 +40,28 @@
     <script src="J03-instructions.js"></script>
     <script>
         let userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')); //Carga las respuestas de este usuario
-        const isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Carga el tipo de test
-        let index = isMuted ? [1, 2, 3] : [4, 5, 6]; //Para que listas se usaran segun si es el test muteado o no
-        
-        document.getElementById("nameMember").textContent = `Test ${isMuted ? "sin sonificación" : "con sonificación"} Progreso de ${userAnswers[0]}`;
+        const isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Carga el tipo de test son o mute
+        const withContrast = JSON.parse(sessionStorage.getItem("withContrast")); //Carga el tipo de test contrast o static
+        let index = (isMuted && !withContrast) ? [1, 2] : isMuted ? [3, 4] : !withContrast ? [5, 6] : [7, 8]; //Para que listas se usaran segun si es el test muteado o no
+        document.getElementById("nameMember").textContent = `Test ${isMuted ? "sin sonificación" : "con sonificación"} y ${withContrast ? "con contraste" : "sin contraste" } - Progreso de ${userAnswers[0]}`;
         document.getElementById("test1Progress").textContent = userAnswers[index[0]].length;
         document.getElementById("test2Progress").textContent = userAnswers[index[1]].length;
-        document.getElementById("test3Progress").textContent = userAnswers[index[2]].length;
         
-        if (userAnswers[index[0]].length < 45) {
+        if (userAnswers[index[0]].length < 15) {
             document.getElementById("test2").disabled = true;
-            document.getElementById("test3").disabled = true;
         }
-        else if (userAnswers[index[1]].length < 45) {
+        else if (userAnswers[index[1]].length < 15) {
             document.getElementById("test1").disabled = true;
-            document.getElementById("test3").disabled = true;
-        }
-        else if (userAnswers[index[2]].length < 2) {
-            document.getElementById("test1").disabled = true;
-            document.getElementById("test2").disabled = true;
         }
         else {
             alert('Ya terminaste todos los test.');
             document.getElementById("test1").disabled = true;
             document.getElementById("test2").disabled = true;
-            document.getElementById("test3").disabled = true;
             window.location.href = 'index.html'; 
         }
         
         var testSelected = "";
-        const testButtons = ["test1", "test2", "test3"];
+        const testButtons = ["test1", "test2"];
     
         function pressOptionButton(id) {
             testSelected = id;
@@ -87,19 +77,17 @@
             }
 
             let mode = '_son';
-            if (isMuted) {mode = '_mute'}
+            let mode2 = '_static';
+            if (isMuted) {mode = '_mute';}
+            if (withContrast) {mode2 = '_contrast';}
 
             if (id.includes("test1")) {
                 document.getElementById('instructions').textContent = 'Instrucciones - Test 1';
-                document.getElementById('instructionsText').innerHTML = instrucciones[`test1${mode}`];
+                document.getElementById('instructionsText').innerHTML = instrucciones[`test1${mode}${mode2}`];
             }
             else if (id.includes("test2")) {
                 document.getElementById('instructions').textContent = 'Instrucciones - Test 2';
-                document.getElementById('instructionsText').innerHTML = instrucciones[`test2${mode}`];
-            }
-            else if (id.includes("test3")) {
-                document.getElementById('instructions').textContent = 'Instrucciones - Test 3';
-                document.getElementById('instructionsText').innerHTML = instrucciones[`test3${mode}`];
+                document.getElementById('instructionsText').innerHTML = instrucciones[`test2${mode}${mode2}`];
             }
         }
         
@@ -113,8 +101,6 @@
                 window.location.href = 'H02-test1.html';
             } else if (testSelected == "test2") {
                 window.location.href = 'H03-test2.html';
-            } else{
-                window.location.href = 'H04-test3.html';
             }
         }
       </script>

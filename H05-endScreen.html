@@ -16,7 +16,8 @@
     <script src="J02-answers.js"></script>
     <script>
         let isMuted = JSON.parse(sessionStorage.getItem('isMuted'));
-        let index = isMuted ? [1, 2, 3] : [4, 5, 6];
+        let withContrast = JSON.parse(sessionStorage.getItem('withContrast'));
+        let index = (isMuted && !withContrast) ? [1, 2] : isMuted ? [3, 4] : !withContrast ? [5, 6] : [7, 8]; //Para que listas se usaran segun si es el test muteado o no
         var userAnswers = JSON.parse(sessionStorage.getItem('userAnswers'));
         var nombreArchivo = "default";
 
@@ -28,30 +29,23 @@
         });
         
         let contenido = `Usuario;${userAnswers[0]}\n`;
-        if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 0 && userAnswers[index[2]].length == 0) {
+        if (userAnswers[index[0]].length == 15 && userAnswers[index[1]].length == 0) {
             contenido += '\ntest 1\nimagen;tiempo;nivel de seguridad;respuesta\n';
             for (let answer of userAnswers[index[0]]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
-            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test1-Answers.csv`; 
+            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}-${withContrast ? 'Contrast' : 'Static'}-Test1-Answers.csv`; 
         }
-        else if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 45 && userAnswers[index[2]].length == 0) {
+        else if (userAnswers[index[0]].length == 15 && userAnswers[index[1]].length == 15) {
             contenido += '\ntest 2\nimagen;tiempo;nivel de seguridad;cuadrados\n';
             for (let answer of userAnswers[index[1]]) {
                 contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
             }
-            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test2-Answers.csv`;  
-        }
-        else if (userAnswers[index[0]].length == 45 && userAnswers[index[1]].length == 45 && userAnswers[index[2]].length == 2) {
-            contenido += '\ntest 3\nimagen;tiempo;nivel de seguridad;cuadrados\n';
-            for (let answer of userAnswers[index[2]]) {
-                contenido += `${answer[0]};${answer[1]};${answer[2]};${answer[3]}\n`;
-            }
-            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}Test3-Answers.csv`; 
+            nombreArchivo = `${userAnswers[0]}-${isMuted ? 'Mute' : 'Son'}-${withContrast ? 'Contrast' : 'Static'}-Test2-Answers.csv`;  
             document.getElementById("mainText").innerText = "Todos los tests finalizados";
             document.getElementById("message").innerText = "Muchas gracias por tu participación.";
             document.getElementById("nextButton").disabled = true;
-        } 
+        }
         else {
             contenido += 'Error';
         }
