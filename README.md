@@ -56,13 +56,13 @@
 - Destaqué en rojo la instrucción de no marcar nada si considera que la imagen no tiene lesión 
         maligna.
 - Para la versión oficial, el test 1 ya no contiene barra de contraste.
+- Implementé la versión para hacer pruebas. Esta incluye solo los tests 1 y 2, y se pueden realizar
+        4 formas distintas de cada uno. Estas son las combinaciones de hacer los test con y sin 
+        sonificación, y hacerlos con y sin contraste. Las respuestas se cargan a una nueva carpeta
+        de Google Drive.
 
 # Proximos pasos: 
 
-- Hacer una nueva versión de los test, donde se puedan tener respuestas y todo para 4 tipos 
-        distintos. Los cuales serían las combinaciones de Con y Sin sonificación, Con y Sin cambio
-        de contraste. En esta nueva versión solo deben ser 15 imágenes para los tests 1 y 2. No debe
-        haber test 3.
 - Insistir al profe con la sonificación, el pago y el correo de Marcelo para pedirle las imágenes
         oficiales para el test 3.
 - Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
