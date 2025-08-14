@@ -1,4 +1,4 @@
-var brushSize = 25;
+var brushSize;
 var zoom = 1;
 const brushColor = '#FF0F0F90';
 const brushOpacity = 0.9;
@@ -150,6 +150,7 @@ function configurarEventosCanvas() {
 }
 
 window.addEventListener('load', () => { //Esta parte crea un canvas al que le añade la imagen que se selecconó en el HTML
+    brushSize = window.pointerSize;
     const imgElement = document.getElementById("image"); //guarda el elemento HTML de la imgaen en una constante
     const initializeCanvasWithImage = () => {
         imgWidth = imgElement.naturalWidth;
@@ -198,4 +199,5 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
 
     whiteScreen = new fabric.Rect({left: 0, top: 0, width: canvas.width, height: canvas.height,
         fill: 'white', selectable: false, evented: false}); //Pantalla blanca para cuando se pause
+    window.withContrast && updateContrastValue(window.contrastValue);
 });

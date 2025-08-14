@@ -27,6 +27,7 @@
         window.imageNumber = random_number;
         window.time = "";
         window.test = 1;
+        window.pointerSize = 25;
     </script>
 </head>
 <body>
@@ -103,26 +104,35 @@
         window.withContrast = JSON.parse(sessionStorage.getItem("withContrast"));
         window.index = (window.isMuted && !window.withContrast) ? 1 : window.isMuted ? 3 : !window.withContrast ? 5 : 7 ;
 
+        var volumeValue = JSON.parse(sessionStorage.getItem('volumeValue1'));
+        if (volumeValue == null) {
+            volumeValue = 2;
+        }
         if (!window.isMuted) { //Este bloque se encarga de mostrar o no la barra de volumen según corresponda
             const container = document.getElementById('slider-volume-container');
             container.innerHTML = `
                 <div style="padding-top: 1vh; padding-bottom: 1vh">
                     Volumen <br>
-                    <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="2"
+                    <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="${parseFloat(volumeValue)}"
                         oninput="updateVolumeValue(this.value)" style="width: 16vw">
-                    <span id="volumeValue">2</span>
+                    <span id="volumeValue">${volumeValue}</span>
                 </div>
             `;
             document.getElementById('line').style.display = "block";
+        }
+
+        window.contrastValue = JSON.parse(sessionStorage.getItem('contrastValue1'));
+        if (window.contrastValue == null) {
+            window.contrastValue = 0;
         }
         if (window.withContrast) {
             const container2 = document.getElementById('slider-contrast-container');
             container2.innerHTML = `
                 <div style="padding-top: 1vh; padding-bottom: 1vh">
                     Contraste de la imagen <br>
-                    <input type="range" id="contrastSlider" min="-1" max="1" step="0.01" value="0" 
+                    <input type="range" id="contrastSlider" min="-1" max="1" step="0.01" value="${parseFloat(window.contrastValue)}" 
                         oninput="updateContrastValue(this.value)" style="width: 16vw">
-                    <span id="contrastValue">0</span>
+                    <span id="contrastValue">${parseFloat(window.contrastValue)}</span>
                 </div>  
             `;
             document.getElementById('line').style.display = "block";
@@ -177,6 +187,12 @@
                 }
             }
             localStorage.setItem('usersList', JSON.stringify(usersList));
+            if (!window.isMuted) {
+                sessionStorage.setItem('volumeValue1', JSON.stringify(document.getElementById('volumeSlider').value));
+            }
+            if (window.withContrast) {
+                sessionStorage.setItem('contrastValue1', JSON.stringify(document.getElementById('contrastSlider').value));
+            }
 
             if (document.getElementById('progress').textContent.trim() === 'Progreso: 15/15') {
                 window.location.href = 'H05-endScreen.html';
@@ -244,6 +260,7 @@
             mock_dsp.connect(audioContext.destination); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo
             mock_dsp.setParamValue("/mock_dsp/mute", 1);
             if (!window.isMuted) {
+                mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
                 document.getElementById("volumeSlider").addEventListener("input", () => {
                     mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
                 });
