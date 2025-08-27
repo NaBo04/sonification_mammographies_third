@@ -112,14 +112,14 @@
 
         var volumeValue = JSON.parse(sessionStorage.getItem('volumeValue2'));
         if (volumeValue == null) {
-            volumeValue = 2;
+            volumeValue = 0.5;
         }
         if (!window.isMuted) {
             const container = document.getElementById('slider-volume-container');
             container.innerHTML = `
                 <div style="padding-top: 1vh; padding-bottom: 1vh">
                     Volumen <br>
-                    <input type="range" id="volumeSlider" min="1" max="10" step="0.01" value="${parseFloat(volumeValue)}"
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.001" value="${parseFloat(volumeValue)}"
                         oninput="updateVolumeValue(this.value)" style="width: 16vw">
                     <span id="volumeValue">${volumeValue}</span>
                 </div>
@@ -255,17 +255,17 @@
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         window.addEventListener("load", async () => {
-            const { faustNode } = await createFaustNode(audioContext, "mock_dsp");
+            const { faustNode } = await createFaustNode(audioContext, "FinalSonification");
             mock_dsp = faustNode;
             window.mock_dsp = faustNode; 
             if (!mock_dsp) return;
             await mock_dsp.start();
             mock_dsp.connect(audioContext.destination); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo
-            mock_dsp.setParamValue("/mock_dsp/mute", 1);
+            mock_dsp.setParamValue("/FinalSonification/0.mute", 1);
             if (!window.isMuted) {
-                mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
+                mock_dsp.setParamValue("/FinalSonification/1.gain", parseFloat(volumeSlider.value));
                 document.getElementById("volumeSlider").addEventListener("input", () => {
-                    mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
+                    mock_dsp.setParamValue("/FinalSonification/1.gain", parseFloat(volumeSlider.value));
                 });
             }
         });
