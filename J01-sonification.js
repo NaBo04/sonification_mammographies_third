@@ -1,7 +1,7 @@
-function scaleToRange(x, xmin, xmax, a = 0.001, b = 0.1) {
+function scaleToRange(x, xmin, xmax, abs_min, abs_max) {
     if (x < xmin) x = xmin;
     if (x > xmax) x = xmax;
-    return a + ((x - xmin) / (xmax - xmin)) * (b - a);
+    return abs_min + ((x - xmin) / (xmax - xmin)) * (abs_max - abs_min);
 }
 
 function sonification(mean, std, skw, kur){ //Convierte los datos estadisticos en sonido
@@ -9,10 +9,11 @@ function sonification(mean, std, skw, kur){ //Convierte los datos estadisticos e
         return;
     }
 
-	mock_dsp.setParamValue("/mock_dsp/mean", parseFloat(mean));
-	mock_dsp.setParamValue("/mock_dsp/std_dev", parseFloat(std));
-	mock_dsp.setParamValue("/mock_dsp/skewness", parseFloat(skw));
-	mock_dsp.setParamValue("/mock_dsp/kurtosis", parseFloat(kur));
+	mock_dsp.setParamValue("/FinalSonification/2.f0", parseFloat(mean));
+	mock_dsp.setParamValue("/FinalSonification/3.harmonicity", parseFloat(std));
+	mock_dsp.setParamValue("/FinalSonification/4.repetition_rate", parseFloat(skw));
+	mock_dsp.setParamValue("/FinalSonification/5.bandpass/fc", parseFloat(kur));
+    mock_dsp.setParamValue("/FinalSonification/6.bandpass/Q", 1.0);
 }
 
 function statisticalData(data) {
@@ -32,10 +33,10 @@ function statisticalData(data) {
         if (!isFinite(kurtosis) || kurtosis < 0) kurtosis = 0;
     }
     //Acá donde se sacan las escalas de los valores debo preguntarle al profe lo que considere adecuado
-    const scaledMean = scaleToRange(mean, 0, 255);
-    const scaledStd = scaleToRange(stdDev, 0, 128)
-    const scaledSkew = scaleToRange(Math.abs(skewness), 0, 10);
-    const scaledKurt = scaleToRange(kurtosis, 0, 20); 
+    const scaledMean = scaleToRange(mean, 0, 255, 20, 2000);
+    const scaledStd = scaleToRange(stdDev, 0, 128, 0.25, 8.0)
+    const scaledSkew = scaleToRange(Math.abs(skewness), 0, 10, 0.1, 30.0);
+    const scaledKurt = scaleToRange(kurtosis, 0, 20, 20, 10000); 
 
     sonification(scaledMean, scaledStd, scaledSkew, scaledKurt);
 }
@@ -58,10 +59,10 @@ window.addEventListener('load', () => {
     
     canvas.upperCanvasEl.addEventListener('mouseenter', () => {
         if (window.isMuted == false) {
-            mock_dsp.setParamValue("/mock_dsp/mute", 0);
+            mock_dsp.setParamValue("/FinalSonification/0.mute", 0);
         }
     });
     canvas.upperCanvasEl.addEventListener('mouseleave', () => {
-        mock_dsp.setParamValue("/mock_dsp/mute", 1);
+        mock_dsp.setParamValue("/FinalSonification/0.mute", 1);
     });
 });

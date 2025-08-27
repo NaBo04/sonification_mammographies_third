@@ -223,16 +223,16 @@
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         window.addEventListener("load", async () => {
-            const { faustNode } = await createFaustNode(audioContext, "mock_dsp");
+            const { faustNode } = await createFaustNode(audioContext, "FinalSonification");
             mock_dsp = faustNode;
             window.mock_dsp = faustNode; 
             if (!mock_dsp) return;
             await mock_dsp.start();
             mock_dsp.connect(audioContext.destination); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo
-            mock_dsp.setParamValue("/mock_dsp/mute", 1);
+            mock_dsp.setParamValue("/FinalSonification/0.mute", 1);
             if (!window.isMuted) {
                 document.getElementById("volumeSlider").addEventListener("input", () => {
-                    mock_dsp.setParamValue("/mock_dsp/volume", parseFloat(volumeSlider.value));
+                    mock_dsp.setParamValue("/FinalSonification/1.gain", parseFloat(volumeSlider.value));
                 });
             }
         });
