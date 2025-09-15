@@ -46,6 +46,10 @@
         document.getElementById("nameMember").textContent = `Test ${isMuted ? "sin sonificación" : "con sonificación"} y ${withContrast ? "con contraste" : "sin contraste" } - Progreso de ${userAnswers[0]}`;
         document.getElementById("test1Progress").textContent = userAnswers[index[0]].length;
         document.getElementById("test2Progress").textContent = userAnswers[index[1]].length;
+
+        sessionStorage.removeItem('volumeValue'); //Para reiniciar las barras de volumen, contraste y tamaño del puntero si se volvio al inicio
+        sessionStorage.removeItem('contrastValue');
+        sessionStorage.removeItem('pointerSize');
         
         if (userAnswers[index[0]].length < 15) {
             document.getElementById("test2").disabled = true;

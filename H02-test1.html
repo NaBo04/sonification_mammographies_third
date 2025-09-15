@@ -104,7 +104,7 @@
         window.withContrast = JSON.parse(sessionStorage.getItem("withContrast"));
         window.index = (window.isMuted && !window.withContrast) ? 1 : window.isMuted ? 3 : !window.withContrast ? 5 : 7 ;
 
-        var volumeValue = JSON.parse(sessionStorage.getItem('volumeValue1'));
+        var volumeValue = JSON.parse(sessionStorage.getItem('volumeValue'));
         if (volumeValue == null) {
             volumeValue = 0.5;
         }
@@ -121,7 +121,7 @@
             document.getElementById('line').style.display = "block";
         }
 
-        window.contrastValue = JSON.parse(sessionStorage.getItem('contrastValue1'));
+        window.contrastValue = JSON.parse(sessionStorage.getItem('contrastValue'));
         if (window.contrastValue == null) {
             window.contrastValue = 0;
         }
@@ -188,10 +188,10 @@
             }
             localStorage.setItem('usersList', JSON.stringify(usersList));
             if (!window.isMuted) {
-                sessionStorage.setItem('volumeValue1', JSON.stringify(document.getElementById('volumeSlider').value));
+                sessionStorage.setItem('volumeValue', JSON.stringify(document.getElementById('volumeSlider').value));
             }
             if (window.withContrast) {
-                sessionStorage.setItem('contrastValue1', JSON.stringify(document.getElementById('contrastSlider').value));
+                sessionStorage.setItem('contrastValue', JSON.stringify(document.getElementById('contrastSlider').value));
             }
 
             if (document.getElementById('progress').textContent.trim() === 'Progreso: 15/15') {
@@ -258,7 +258,7 @@
             if (!mock_dsp) return;
             await mock_dsp.start();
             mock_dsp.connect(audioContext.destination); //Carga la funcion startmockDSP una vez haya cargado la pagina por completo
-            mock_dsp.setParamValue("/FinalSonification/0.mute", 0.5);
+            mock_dsp.setParamValue("/FinalSonification/0.mute", 1);
             if (!window.isMuted) {
                 mock_dsp.setParamValue("/moFinalSonificationck_dsp/1.gain", parseFloat(volumeSlider.value));
                 document.getElementById("volumeSlider").addEventListener("input", () => {

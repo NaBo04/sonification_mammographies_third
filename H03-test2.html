@@ -110,7 +110,7 @@
         window.withContrast = JSON.parse(sessionStorage.getItem("withContrast"));
         window.index = (window.isMuted && !window.withContrast) ? 2 : window.isMuted ? 4 : !window.withContrast ? 6 : 8 ;
 
-        var volumeValue = JSON.parse(sessionStorage.getItem('volumeValue2'));
+        var volumeValue = JSON.parse(sessionStorage.getItem('volumeValue'));
         if (volumeValue == null) {
             volumeValue = 0.5;
         }
@@ -126,7 +126,7 @@
             `;
         }
 
-        window.contrastValue = JSON.parse(sessionStorage.getItem('contrastValue2'));
+        window.contrastValue = JSON.parse(sessionStorage.getItem('contrastValue'));
         if (window.contrastValue == null) {
             window.contrastValue = 0;
         }
@@ -192,10 +192,10 @@
 
             sessionStorage.setItem('pointerSize', JSON.stringify(document.getElementById('sizeSlider').value));
             if (!window.isMuted) {
-                sessionStorage.setItem('volumeValue2', JSON.stringify(document.getElementById('volumeSlider').value));
+                sessionStorage.setItem('volumeValue', JSON.stringify(document.getElementById('volumeSlider').value));
             }
             if (window.withContrast) {
-                sessionStorage.setItem('contrastValue2', JSON.stringify(document.getElementById('contrastSlider').value));
+                sessionStorage.setItem('contrastValue', JSON.stringify(document.getElementById('contrastSlider').value));
             }
 
             if (document.getElementById('progress').textContent.trim() === 'Progreso: 15/15') {

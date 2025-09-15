@@ -60,11 +60,12 @@
         4 formas distintas de cada uno. Estas son las combinaciones de hacer los test con y sin 
         sonificación, y hacerlos con y sin contraste. Las respuestas se cargan a una nueva carpeta
         de Google Drive.
+- Ahora al pasar de imagen en cada test se guarda el último valor de contraste, volumen y tamaño del
+        puntero ajustado por el usuario. Si vuelve a la pantalla de selección se reinician a los 
+        valores por defecto.
 
 # Proximos pasos: 
 
-- Al pasar de cada imágen en los tests, guardar la configuración establecida de volumen, tamaño 
-        del puntero, etc. 
 - Podría cambiar lo de seleccionar un test como click y que salen las instrucciones, ya que ahora es
         un progreso lineal, por lo que simplemente debería decir el test con las instrucciones dadas
         y darle a comenzar y listo.

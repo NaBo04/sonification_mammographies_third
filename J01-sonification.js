@@ -66,3 +66,4 @@ window.addEventListener('load', () => {
         mock_dsp.setParamValue("/FinalSonification/0.mute", 1);
     });
 });
+
