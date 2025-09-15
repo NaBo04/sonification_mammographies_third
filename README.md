@@ -66,11 +66,11 @@
 - Quité la selección de test, ya que ahora es un avance lineal, por lo que salen directamente las 
         instrucciones del test en que vaya el usuario.
 - Agregué tablas para el progreso de todas las posibilidades de un usuario.
+- Ajusté la sonificación y ahora siempre es a partir de la imagen original y no de la imagen con 
+        contraste aplicado.
 
 # Proximos pasos: 
 
-- La sonificación tiene que ser con respecto a la imagen original, no alterarse con el contraste de
-        la imagen.
 - Si el test es el 1 o el 2 dejar el tamaño fijo de la imagen, igual al tamaño que tienen las 
         imágenes de estos. El test 3 si se debe quedar como el último código que hice que se adapta
         con una escala bien hecha, sin perder información. Pasa que en el test 1 no queda centrado,

@@ -11,6 +11,7 @@ let imgHeight;
 let imgScale;
 let originalImageCanvas;
 let originalImageCtx;
+let originalImageCtxCopy;
 let originalImageData;
 let lastBrushSize = null; //Estas 3 let son para manejar el cambio en el cursor
 let lastZoom = null;
@@ -35,22 +36,33 @@ function updateContrastValue(value) { //Actualiza el valor según la barra desli
         const newGray = Math.max(0, Math.min(255, factor * (gray - 128) + 128));
         data[i] = data[i + 1] = data[i + 2] = newGray;
     }
-    originalImageCtx.putImageData(imageData, 0, 0);
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = imgWidth;
+    tempCanvas.height = imgHeight;
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCtx.putImageData(imageData, 0, 0);
 
-    const dataURL = originalImageCanvas.toDataURL();
-    fabricImg.setSrc(dataURL, () => {
-        fabricImg.scaleX = imgScale;
-        fabricImg.scaleY = imgScale;
-        canvas.renderAll();
-    });
+    fabricImg.setElement(tempCanvas);
+    fabricImg.scaleX = imgScale;
+    fabricImg.scaleY = imgScale;
+    canvas.renderAll();
+    
+    // >>>>>>>> ESTA VERSIÓN ES PARA QUE EL SONIDO DEPENDA DEL CONTRASTE <<<<<<<<
+    // originalImageCtx.putImageData(imageData, 0, 0);
+    // const dataURL = originalImageCanvas.toDataURL();
+    // fabricImg.setSrc(dataURL, () => {
+    //     fabricImg.scaleX = imgScale;
+    //     fabricImg.scaleY = imgScale;
+    //     canvas.renderAll();
+    // });
 };
 
-function putWhiteScreen() {
+function putWhiteScreen() { //Coloca una pantalla blanca para los momentos de pausa
     canvas.add(whiteScreen);
     canvas.bringToFront(whiteScreen);
     canvas.renderAll()
 }
-function quitWhiteScreen() {
+function quitWhiteScreen() { //Quita la pantalla blanca anterior
     canvas.remove(whiteScreen);
     canvas.renderAll();
 }
@@ -153,11 +165,11 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
     brushSize = window.pointerSize;
     const imgElement = document.getElementById("image"); //guarda el elemento HTML de la imgaen en una constante
     const initializeCanvasWithImage = () => {
-        imgWidth = imgElement.naturalWidth;
-        imgHeight = imgElement.naturalHeight;
+        imgWidth = imgElement.naturalWidth; //Este bloque es para ajustar las dimensiones de la imagen al canvas
+        imgHeight = imgElement.naturalHeight; 
         const canvasWidth = window.test == 3 ? window.innerWidth * 0.5 : window.innerWidth * 0.33;
         const canvasHeight = window.innerHeight * 0.9;
-        imgScale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+        imgScale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight); //Finalmente obteniendo la escala necesaria
 
         canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric
             width: canvasWidth, 
@@ -180,8 +192,8 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a�
         canvas.add(fabricImg); //Añade la imagen al canvas
         canvas.zoomToPoint(new fabric.Point(0, 0), zoom);
         configurarEventosCanvas();
-        //Aquí creo el contexto de dibujo sobre un canvas oculto que contiene solo la imagen original
-        originalImageCanvas = document.createElement('canvas');
+        
+        originalImageCanvas = document.createElement('canvas'); //Aquí creo el contexto de dibujo sobre un canvas oculto que contiene solo la imagen original
         originalImageCanvas.width = imgWidth;
         originalImageCanvas.height = imgHeight;
         originalImageCtx = originalImageCanvas.getContext('2d', { willReadFrequently: true });
