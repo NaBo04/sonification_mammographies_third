@@ -63,12 +63,12 @@
 - Ahora al pasar de imagen en cada test se guarda el último valor de contraste, volumen y tamaño del
         puntero ajustado por el usuario. Si vuelve a la pantalla de selección se reinician a los 
         valores por defecto.
+- Quité la selección de test, ya que ahora es un avance lineal, por lo que salen directamente las 
+        instrucciones del test en que vaya el usuario.
+- Agregué tablas para el progreso de todas las posibilidades de un usuario.
 
 # Proximos pasos: 
 
-- Podría cambiar lo de seleccionar un test como click y que salen las instrucciones, ya que ahora es
-        un progreso lineal, por lo que simplemente debería decir el test con las instrucciones dadas
-        y darle a comenzar y listo.
 - La sonificación tiene que ser con respecto a la imagen original, no alterarse con el contraste de
         la imagen.
 - Si el test es el 1 o el 2 dejar el tamaño fijo de la imagen, igual al tamaño que tienen las 
@@ -93,7 +93,8 @@
 - Arreglar el hardcodeo de las escalas en sonification, esto lo puedo hacer para cuando el profe me
         pase las sonificaciones reales. Aparte revisar que creo que la función de escalar tiene unos
         rangos mínimos-máximos por defecto equivocados.
-- Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos.
+- Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos. Aprovechar de 
+        centrar el botón de empezar y quitarle un poco de espacio arriba.
 
 # Pasos opcionales
 - Añadir un botón de volver adelante y atrás para los cuadrados puestos, esto es cosa de guardar

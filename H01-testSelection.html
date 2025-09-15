@@ -7,34 +7,53 @@
 <body>
     <div id="leftContent" class="column">
         <div id="progress" class="contenido">
-            <h1 class="titulo">
+            <h1 class="titulo" style="padding-bottom: 3vh;">
                 <span id="nameMember" style="padding-left: 2px;"></span>
             </h1>
-            <ul class="progress-list">
-                <li>Test 1: <span id="test1Progress">0</span>/15</li>
-                <li>Test 2: <span id="test2Progress">0</span>/15</li>
-            </ul>
+            <table style="margin-bottom: 5vh;">
+                <tr>
+                <td>Test 1</td>
+                <td>Sin Contraste</td>
+                <td>Con Contraste</td>
+                </tr>
+                <tr>
+                <td>Sin Sonificación</span></td>
+                <td><span id="cell_A">A</span>/15</td>
+                <td><span id="cell_C">C</span>/15</td>
+                </tr>
+                <tr>
+                <td>Con Sonificación</td>
+                <td><span id="cell_E">E</span>/15</td>
+                <td><span id="cell_G">G</span>/15</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                <td>Test 2</td>
+                <td>Sin Contraste</td>
+                <td>Con Contraste</td>
+                </tr>
+                <tr>
+                <td>Sin Sonificación</span></td>
+                <td><span id="cell_B">B</span>/15</td>
+                <td><span id="cell_D">D</span>/15</td>
+                </tr>
+                <tr>
+                <td>Con Sonificación</td>
+                <td><span id="cell_F">F</span>/15</td>
+                <td><span id="cell_H">H</span>/15</td>
+                </tr>
+            </table>
         </div>
     </div>
     <div id="rightContent" class="column">
-        <div id="centralBlock" class="contenido">
-            <div id="testSelection" class="container">
-                <div id="midleColumn" class="column">
-                    <h1 class="titulo">Selecciona el test a realizar</h1>
-                    <button class="option-button" id="test1" onclick="pressOptionButton('test1')">Test 1</button>
-                    <button class="option-button" id="test2" onclick="pressOptionButton('test2')">Test 2</button>
-                </div>
-            </div>
+        <div id="Instructions" class="contenido" style="width: fit-content;">
+            <h1 id="instructions" class="titulo">Instrucciones</h1>
+            <p id="instructionsText" class="Instrucciones"></p>
             <div id="connections" class="footer">
                 <button class="back-button" onclick="window.location.href='index.html'">Volver</button>
                 <button class="next-button" onclick="pressNextButton()">Empezar</button>
             </div>
-        </div>
-    </div>
-    <div id="lastContent" class="column">
-        <div id="Instructions" class="contenido" style="width: fit-content; max-width: 40vw;">
-            <h1 id="instructions" class="titulo">Instrucciones</h1>
-            <p id="instructionsText" class="Instrucciones">Selecciona un test.</p>
         </div>
     </div>
     <script src="J03-instructions.js"></script>
@@ -43,67 +62,38 @@
         const isMuted = JSON.parse(sessionStorage.getItem("isMuted")); //Carga el tipo de test son o mute
         const withContrast = JSON.parse(sessionStorage.getItem("withContrast")); //Carga el tipo de test contrast o static
         let index = (isMuted && !withContrast) ? [1, 2] : isMuted ? [3, 4] : !withContrast ? [5, 6] : [7, 8]; //Para que listas se usaran segun si es el test muteado o no
-        document.getElementById("nameMember").textContent = `Test ${isMuted ? "sin sonificación" : "con sonificación"} y ${withContrast ? "con contraste" : "sin contraste" } - Progreso de ${userAnswers[0]}`;
-        document.getElementById("test1Progress").textContent = userAnswers[index[0]].length;
-        document.getElementById("test2Progress").textContent = userAnswers[index[1]].length;
+        document.getElementById("nameMember").textContent = `Progreso de ${userAnswers[0]}`;
+
+        const cells = ["A", "B", "C", "D", "E", "F", "G", "H"];
+        for (let i = 0; i < cells.length; i++) {
+            const id = "cell_" + cells[i];      
+            document.getElementById(id).textContent = userAnswers[i + 1].length;
+        }
 
         sessionStorage.removeItem('volumeValue'); //Para reiniciar las barras de volumen, contraste y tamaño del puntero si se volvio al inicio
         sessionStorage.removeItem('contrastValue');
         sessionStorage.removeItem('pointerSize');
+
+        let mode = isMuted ? 'mute' : 'son';
+        let mode2 = withContrast ? 'contrast' : 'static';
         
         if (userAnswers[index[0]].length < 15) {
-            document.getElementById("test2").disabled = true;
+            document.getElementById('instructions').textContent = `Instrucciones - Test 1 ${isMuted ? "sin sonificación" : "con sonificación"} y ${withContrast ? "con contraste" : "sin contraste" }`;
+            document.getElementById('instructionsText').innerHTML = instrucciones[`test1_${mode}_${mode2}`];
         }
         else if (userAnswers[index[1]].length < 15) {
-            document.getElementById("test1").disabled = true;
+            document.getElementById('instructions').textContent = `Instrucciones - Test 2 ${isMuted ? "sin sonificación" : "con sonificación"} y ${withContrast ? "con contraste" : "sin contraste" }`;
+            document.getElementById('instructionsText').innerHTML = instrucciones[`test2_${mode}_${mode2}`];
         }
         else {
             alert('Ya terminaste todos los test.');
-            document.getElementById("test1").disabled = true;
-            document.getElementById("test2").disabled = true;
-            window.location.href = 'index.html'; 
-        }
-        
-        var testSelected = "";
-        const testButtons = ["test1", "test2"];
-    
-        function pressOptionButton(id) {
-            testSelected = id;
-            for (const buttonId of testButtons) {
-                const btn = document.getElementById(buttonId);
-                if (!btn) continue;
-        
-                if (buttonId === id) {
-                    btn.classList.add('selected');
-                } else {
-                    btn.classList.remove('selected');
-                }
-            }
-
-            let mode = '_son';
-            let mode2 = '_static';
-            if (isMuted) {mode = '_mute';}
-            if (withContrast) {mode2 = '_contrast';}
-
-            if (id.includes("test1")) {
-                document.getElementById('instructions').textContent = 'Instrucciones - Test 1';
-                document.getElementById('instructionsText').innerHTML = instrucciones[`test1${mode}${mode2}`];
-            }
-            else if (id.includes("test2")) {
-                document.getElementById('instructions').textContent = 'Instrucciones - Test 2';
-                document.getElementById('instructionsText').innerHTML = instrucciones[`test2${mode}${mode2}`];
-            }
+            window.location.href = 'index.html';
         }
         
         function pressNextButton(){
-            if (testSelected == ""){
-                alert('Por favor, selecciona el test que quieres realizar.');
-                return;
-            }
-
-            if (testSelected == "test1"){
+            if (userAnswers[index[0]].length < 15) {
                 window.location.href = 'H02-test1.html';
-            } else if (testSelected == "test2") {
+            } else {
                 window.location.href = 'H03-test2.html';
             }
         }

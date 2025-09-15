@@ -15,49 +15,17 @@ body { /* Ahora esto solo al cuerpo */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombreado */
 }
-.option-button {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 15px;
-    font-size: 18px;
-    background-color: #495049;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.option-button:hover {
-    background-color: #a1aaa1;
-}
-
-.option-button.selected {
-    background-color: rgb(76, 133, 240);
-    color: white;
-}
-
-.option-button:disabled {
-    background-color: #a1aaa1;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%; 
-}
-
 
 .column {
     padding: 10px;
 }
 #leftContent {
-    width: 25%;
+    width: 25vw;
+    max-height: 95vh;
 }
 #rightContent {
-    max-width: 40%;
-    min-width: 10%;
-    box-sizing: border-box; /* Esto incluye padding y borde dentro del ancho total */
+    max-width: 50vw;
+    max-height: 95vh;
 }
 
 .progress-list{
@@ -105,4 +73,22 @@ body { /* Ahora esto solo al cuerpo */
 .titulo {
     text-align: center;
     font-size: 25px;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 2.5vh;
+}
+td {
+    border: 2px solid black;
+    width: 15vw;
+    height: 8vh;
+    text-align: center;
+    vertical-align: middle;
+}
+tr:first-child td {
+    border-top: none;
+}
+td:first-child {
+    border-left: none;
 }
