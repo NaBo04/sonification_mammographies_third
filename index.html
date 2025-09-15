@@ -28,7 +28,6 @@
         } else {
             usersList = JSON.parse(usersList); //Si la encuentra la carga
         }
-        localStorage.removeItem('usersList');
 
         document.getElementById('startButton').addEventListener('click', function() {
             var userName = document.getElementById('userName').value; 
