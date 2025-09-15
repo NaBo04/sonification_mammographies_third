@@ -66,8 +66,7 @@
 
         const cells = ["A", "B", "C", "D", "E", "F", "G", "H"];
         for (let i = 0; i < cells.length; i++) {
-            const id = "cell_" + cells[i];      
-            document.getElementById(id).textContent = userAnswers[i + 1].length;
+            document.getElementById(`cell_${cells[i]}`).textContent = userAnswers[i + 1].length;
         }
 
         sessionStorage.removeItem('volumeValue'); //Para reiniciar las barras de volumen, contraste y tamaño del puntero si se volvio al inicio
