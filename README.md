@@ -68,31 +68,25 @@
 - Agregué tablas para el progreso de todas las posibilidades de un usuario.
 - Ajusté la sonificación y ahora siempre es a partir de la imagen original y no de la imagen con 
         contraste aplicado.
+- Ahora el tamaño de la imagen en el test 1 y 2 está en proporción para que quepa justo según su
+        tamaño original. Es decir 500 x 375.
 
 # Proximos pasos: 
 
-- Si el test es el 1 o el 2 dejar el tamaño fijo de la imagen, igual al tamaño que tienen las 
-        imágenes de estos. El test 3 si se debe quedar como el último código que hice que se adapta
-        con una escala bien hecha, sin perder información. Pasa que en el test 1 no queda centrado,
-        y tanto en este como en el 2 se puede perder un poquito de info. Sería bueno algo como, un
-        tercio de la pantalla en ancho, y el alto que sea lo necesario para que la escala sea 
-        correcta. 
-- El contraste es lento en cambio cuando la imagen es muy grande, se me ocurre mejor poner 2 botones
-        de + y - para que le de tiempo a cambiar.
-- Me gustaría hacer que todo funcione en proporciones, del tipo que los bloque de columna y así sean
-        un porcentaje de la ventana y así se adapte a varias resoluciones de pantallas.
-- Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
-        valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
 - Tomar todas las imágenes del test1, dividirlas en 2, quitando la línea, para en ese test poner 2
         canvas que ponga ambas mitades y así evitar que suene la línea. Otra opción es quitar la 
         línea con recortes, ajustar la imágen y simplemente colocar ambas zonas sin la línea 
         intermedia, así no tengo que hacer 2 canvas y cranearme como hacer que suenen de un lado y
         del otro.
-- Insistir al profe con la sonificación, el pago y el correo de Marcelo para pedirle las imágenes
-        oficiales para el test 3.
+- Revisar el tema de la red neuronal. El profe me añadió a otro github en el que debería estar. Este
+        valor es un número más para los parámetros del mockDSP y debería manejar un sonido también.
 - Arreglar el hardcodeo de las escalas en sonification, esto lo puedo hacer para cuando el profe me
         pase las sonificaciones reales. Aparte revisar que creo que la función de escalar tiene unos
-        rangos mínimos-máximos por defecto equivocados.
+        rangos mínimos-máximos por defecto equivocados. Hablar con el profe para ajustar los rangos 
+        de los valores para la sonificación.
+- También habar con él para pasar los resultados a un Drive suyo, o darle acceso al mío.
+- Me gustaría hacer que todo funcione en proporciones, del tipo que los bloque de columna y así sean
+        un porcentaje de la ventana y así se adapte a varias resoluciones de pantallas.
 - Al final de todo, elminiar los botones de volver, atrás, cambiar de usuario, todos. Aprovechar de 
         centrar el botón de empezar y quitarle un poco de espacio arriba.
 
