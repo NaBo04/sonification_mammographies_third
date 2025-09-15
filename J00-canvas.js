@@ -170,7 +170,6 @@ window.addEventListener('load', () => { //Esta parte crea un canvas al que le a√
         const canvasWidth = window.test == 3 ? window.innerWidth * 0.5 : window.innerWidth * 0.3;
         const canvasHeight = window.test == 3 ? window.innerHeight * 0.9 : window.test == 1 ? canvasWidth * 1.32 : canvasWidth / 0.75 ;
         imgScale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight); //Finalmente obteniendo la escala necesaria
-        console.log(canvasWidth, canvasHeight);
 
         canvas = new fabric.Canvas("rasterCanvas", { //Toma el elemento con id=rasterCanvas del HTML y lo convierte en un canvas de fabric
             width: canvasWidth, 

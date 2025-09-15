@@ -63,7 +63,7 @@
         const withContrast = JSON.parse(sessionStorage.getItem("withContrast")); //Carga el tipo de test contrast o static
         let index = (isMuted && !withContrast) ? [1, 2] : isMuted ? [3, 4] : !withContrast ? [5, 6] : [7, 8]; //Para que listas se usaran segun si es el test muteado o no
         document.getElementById("nameMember").textContent = `Progreso de ${userAnswers[0]}`;
-
+        console.log(userAnswers);
         const cells = ["A", "B", "C", "D", "E", "F", "G", "H"];
         for (let i = 0; i < cells.length; i++) {
             document.getElementById(`cell_${cells[i]}`).textContent = userAnswers[i + 1].length;
